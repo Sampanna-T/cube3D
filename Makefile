@@ -7,6 +7,7 @@ MK = mkdir
 CLSPATH = build
 
 INC = inc/Cube.java\
+inc/CubeNode.java\
 inc/RubiksCube.java\
 
 SRC = src/Node.java\
@@ -14,8 +15,7 @@ src/RubiksCube3X3.java\
 Main.java\
 
 
-
-all: compileSrc compileInc 
+all: compileInc  compileSrc 
 
 compileInc: 
 	$(CC) $(CPFLAG) $(CLSPATH) $(INC) $(DFLAG) $(CLSPATH)

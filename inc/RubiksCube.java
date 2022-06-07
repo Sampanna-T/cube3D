@@ -9,7 +9,6 @@
  
 public abstract class RubiksCube implements Cube{
 	
-	private Node piece[][][];//Used to hold Nodes in 3D array
 	private int dimension;//Represents the dimension of Rubiks Cube
 
 	/**
@@ -22,9 +21,21 @@ public abstract class RubiksCube implements Cube{
 	*/
 	public RubiksCube(int dimension){
 		this.dimension = dimension;
-		piece = new Node[dimension][dimension][dimension];
-		setRubiksCube();
 	}
+	
+	/**
+	* @brief 
+	* returns the dimension of Current RubiksCube
+	*
+	* @param dimension
+	* dimension represents the dimension of RubiksCube
+	*
+	* @return int 
+	*/
+	public int getDimension(){
+		return dimension;
+	}
+
 	
 	/**
 	* @brief 
@@ -34,12 +45,10 @@ public abstract class RubiksCube implements Cube{
 	* @param j
 	* @param k
 	* @param index
-	* @param String
 	* i,j,k represents the index the Node in the 3D cube
 	* index represents the index within the Node
-	* color represents the color to be set at given index of the Node
 	*
 	* @return String 
 	*/
-	protected abstract boolean setColor(int i, int j, int k, int index, String color);
+	public abstract String getColor(int i, int j, int k, int index);
 }

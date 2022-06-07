@@ -22,6 +22,10 @@ public interface Cube{
 	String VERTICAL = "VERTICAL";
 	String HORIZONTAL = "HORIZONTAL";
 
+	//varaiables representing way of displaying the colors of Cube
+	boolean FACE_WISE = true;
+	boolean NODE_WISE = false;
+
 	//varaiables representing all possible movement of layer of the cube
 	boolean R_CLK = true;
 	boolean R_ANTICLK = false;
@@ -134,24 +138,6 @@ public interface Cube{
 	*
 	* @return String 
 	*/
-	public abstract String circleVertial(boolean direction);
-
-	
-	/**
-	* @brief 
-	* returns the color of given index of 3D cube in String format
-	*
-	* @param i
-	* @param j
-	* @param k
-	* @param index
-	* i,j,k represents the index the Node in the 3D cube
-	* index represents the index within the Node
-	*
-	* @return String 
-	*/
-	public abstract String getColor(int i, int j, int k, int index);
-
-	
+	public abstract String circleVertial(boolean direction);	
 	
 }
