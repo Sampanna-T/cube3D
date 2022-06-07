@@ -1,0 +1,4 @@
+1) adding 2 types of display nodewise color print & facewise color print
+2) 2 types of input, nodewise & facewise
+3) after solving get back to the initial scramble steps.
+4) Use arraylist of Pair where each Pair is storing the motion as key & rubiks cube state as value.

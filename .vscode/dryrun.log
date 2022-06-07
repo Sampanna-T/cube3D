@@ -1,0 +1,6 @@
+make.exe --dry-run --always-make --keep-going --print-directory
+make.exe: Entering directory `d:/Project/RubixCube/RubiksCube'
+javac -cp build src/Node.java src/RubiksCube3X3.java Main.java  -d build 
+javac -cp build inc/Cube.java inc/RubiksCube.java  -d build
+make.exe: Leaving directory `d:/Project/RubixCube/RubiksCube'
+ 

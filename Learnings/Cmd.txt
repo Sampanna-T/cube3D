@@ -1,0 +1,6 @@
+To create .class file in specified path
+1)javac abc.java -d classFolder
+
+To add dependent .class file seach folder and then compile abc.java and store .class file in f1
+2)javac -cp .classFilePath abc.java -d f1
+ 
