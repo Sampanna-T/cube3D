@@ -74,19 +74,22 @@ public class Node extends CubeNode{
     
     /**
 	* @brief 
-	* adds newColor to the color[] at given subIndex
+	* adds newColor to the color[] at given subIndex & returns true if valid
     * 
 	* @param subIndex
 	* @param newColor
 	* 
     *
-	* @return void 
+	* @return boolean 
 	*/
-    public void setColor(int subIndex, String newColor){
+    public boolean setColor(int subIndex, String newColor){
         boolean isSubIndexValid = isInRange(subIndex,0,getSize()-1);
 
-        if(isSubIndexValid)color[subIndex] = newColor;
-        else return;
+        if(isSubIndexValid){
+            color[subIndex] = newColor;
+            return true;
+        }
+        else return false;
     }
 
 }

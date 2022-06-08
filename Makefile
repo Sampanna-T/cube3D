@@ -6,8 +6,7 @@ MK = mkdir
 
 CLSPATH = build
 
-INC = inc/Cube.java\
-inc/CubeNode.java\
+INC = inc/CubeNode.java\
 inc/RubiksCube.java\
 
 SRC = src/Node.java\

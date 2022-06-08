@@ -11,7 +11,6 @@ public abstract class CubeNode{
 	*/
     public abstract int getSize();
 
-    
 
     /**
 	* @brief 
@@ -84,7 +83,6 @@ public abstract class CubeNode{
         
         if(iValid && jValid && kValid)return true; 
         else return false;
-        
     }
 
 
