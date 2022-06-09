@@ -3,18 +3,19 @@ DFLAG = -d
 CPFLAG = -cp
 RM = rm -rf
 MK = mkdir
+RN = java
+MAIN = Main
 
 CLSPATH = build
 
-INC = inc/CubeNode.java\
+INC = src/Node.java\
 inc/RubiksCube.java\
 
-SRC = src/Node.java\
-src/RubiksCube3X3.java\
+SRC = src/RubiksCube3X3.java\
 Main.java\
 
 
-all: compileInc  compileSrc 
+all: compileInc  compileSrc run
 
 compileInc: 
 	$(CC) $(CPFLAG) $(CLSPATH) $(INC) $(DFLAG) $(CLSPATH)
@@ -22,6 +23,10 @@ compileInc:
 compileSrc:
 	$(CC) $(CPFLAG) $(CLSPATH) $(SRC) $(DFLAG) $(CLSPATH) 
 
+run:
+	$(RN) $(CPFLAG) $(CLSPATH) $(MAIN)
+
+
 clean: 
 	$(RM) $(CLSPATH)
-	$(MK) $(CLSPATH)
+	$(MK) $(CLSPATH)   
