@@ -27,6 +27,10 @@ public abstract class RubiksCube{
 	public static final boolean FACE_WISE = true;
 	public static final boolean NODE_WISE = false;
 
+	//variables representing if whether testing or not
+	public static final boolean STRING_INPUT = true;
+	public static final boolean USER_INPUT = false;
+
 	//varaiables representing all possible movement of layer of the cube
 	public static final boolean R_CLK = true;
 	public static final boolean R_ANTICLK = false;
@@ -68,28 +72,63 @@ public abstract class RubiksCube{
 
 	/**
 	* @brief 
-	* initializes the colors of the Cube by taking input from user
-	* 
+	* initializes the colors of the Cube based on type & colorInput
+	* @param type
+	* @param colorInput
+	* if type = STRING_INPUT & colorInput is specified RubiksCube is initialized with given color input 
+	* if type = USER_INPUT & colorInput is any arbitrary String then RubiksCube is initialized with user input
+	*
 	* @return void 
 	*/
-	public void setRubiksCube(){
-		Scanner input = new Scanner(System.in);
-		setRubiksCube(FRONT,input);
-		setRubiksCube(LEFT,input);
-		setRubiksCube(BACK,input);
-		setRubiksCube(RIGHT,input);
-		setRubiksCube(UP,input);
-		setRubiksCube(DOWN,input);
+	protected void setRubiksCube(boolean type, String colorInput){
+		if(type == STRING_INPUT){
+			setCube(type,colorInput);
+		}
+		else{
+			setCube(type,colorInput);
+		}
+	}
+
+
+	/**
+	* @brief 
+	* initializes the colors of the Cube based on type & colorInput
+	*
+	* @param type
+	* @param colorInput
+	* if type = STRING_INPUT & colorInput is specified RubiksCube is initialized with given color input 
+	* if type = USER_INPUT & colorInput is any arbitrary String then RubiksCube is initialized with user input
+	*
+	* @return void 
+	*/
+	private void setCube(boolean type,String colorInput){
+		Scanner input;
+		if(type == STRING_INPUT)
+			input = new Scanner(colorInput);
+		else
+			input = new Scanner(System.in);
+
+		setCube(FRONT,input);
+		setCube(LEFT,input);
+		setCube(BACK,input);
+		setCube(RIGHT,input);
+		setCube(UP,input);
+		setCube(DOWN,input);
 	}
 
 
 	/**
 	* @brief 
 	* initializes the colors of a particular face
-	* 
+	* @param face
+	* @param input
+	* face can be either FRONT,LEFT,BACK,RIGHT,UP OR DOWN... Based on which face to initialize with color
+	* that face colors will be initialized
+	* input represents reference to Scanner object to take input from either user or already accepted colorInput 
+	*
 	* @return void 
 	*/
-	private void setRubiksCube(String face, Scanner input){
+	private void setCube(String face, Scanner input){
 		int i=-1,j=-1,k=-1;
 		switch(face){
 			case FRONT : 	i = 0;
@@ -186,12 +225,87 @@ public abstract class RubiksCube{
 						}
 					System.out.println();
 					}
-				System.out.println("_______________________________________");
+				System.out.println("---------------------------------------");
 				}
 			System.out.println("*******************************************");
 		}
 		else if(type == FACE_WISE){
-			;
+			int i=-1,j=-1,k=-1;
+
+			System.out.println("*******************************************");
+			System.out.println("FRONT FACE COLORS - ");
+			i = 0;
+				for(j = 0; j < dimension; j++){
+					for(k = 0; k < dimension; k++){
+						System.out.print(getColor(i,j,k,0)+" ");
+					}
+					System.out.println();
+				}
+			System.out.println("---------------------------------------");
+
+			System.out.println("LEFT FACE COLORS - ");
+			k = 0;
+				for(j = 0; j < dimension; j++){
+					for(i = dimension-1; i >= 0; i--){
+						System.out.print(getColor(i,j,k,Node.getCount(i,j,k,dimension)-1)+" ");
+					}
+					System.out.println();
+				}
+			System.out.println("---------------------------------------");
+			
+			System.out.println("BACK FACE COLORS - ");
+			i = dimension-1;
+				for(j = 0; j < dimension; j++){
+					for(k = dimension-1; k >= 0; k--){
+						System.out.print(getColor(i,j,k,0)+" ");
+					}
+					System.out.println();
+				}
+			System.out.println("---------------------------------------");
+					
+
+			System.out.println("RIGHT FACE COLORS - ");
+			k = dimension-1;
+				for(j = 0; j < dimension; j++){
+					for(i = 0; i < dimension; i++){
+						System.out.print(getColor(i,j,k,Node.getCount(i,j,k,dimension)-1)+" ");
+					}
+					System.out.println();
+				}
+			System.out.println("---------------------------------------");
+
+			System.out.println("UP FACE COLORS - ");
+			j = 0;
+				for(i = dimension-1; i >= 0; i--){
+					for(k = 0; k < dimension; k++){
+						int count = Node.getCount(i,j,k,dimension);
+						if(count == 1)System.out.print(getColor(i,j,k,0)+" ");
+						else if(count == 2){
+							if(i==0 || i==dimension-1)System.out.print(getColor(i,j,k,1)+" ");
+							else System.out.print(getColor(i,j,k,0)+" ");
+						}
+						else if(count == 3)System.out.print(getColor(i,j,k,1)+" ");
+					}		
+					System.out.println();
+				}
+			System.out.println("---------------------------------------");
+
+			System.out.println("DOWN FACE COLORS - ");
+			j = dimension-1;
+				for(i = 0; i < dimension; i++){
+					for(k = 0; k < dimension; k++){
+						int count = Node.getCount(i,j,k,dimension);
+						if(count == 1)System.out.print(getColor(i,j,k,0)+" ");	
+						else if(count == 2){
+							if(i==0 || i==dimension-1)System.out.print(getColor(i,j,k,1)+" ");
+							else System.out.print(getColor(i,j,k,0)+" ");
+						}
+						else if(count == 3)System.out.print(getColor(i,j,k,1)+" ");
+					}
+					System.out.println();
+				}	
+			System.out.println("---------------------------------------");
+			System.out.println("*******************************************");
 		}
 		
 	}

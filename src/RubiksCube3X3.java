@@ -18,6 +18,11 @@ public class RubiksCube3X3 extends RubiksCube{
         setRubiksCube();
     }
 
+	public RubiksCube3X3(String colorInput){
+		super(3);
+		piece = new Node[3][3][3];
+		setRubiksCube(colorInput);
+	}
 
 	/**
 	* @brief 
@@ -25,7 +30,7 @@ public class RubiksCube3X3 extends RubiksCube{
 	* 
 	* @return void 
 	*/
-	public void setRubiksCube(){
+	private void setRubiksCube(){
         for(int i = 0; i < getDimension(); i++){
             for(int j = 0; j < getDimension(); j++){
                 for(int k = 0; k < getDimension(); k++){
@@ -34,9 +39,27 @@ public class RubiksCube3X3 extends RubiksCube{
                 }
             }
         }
-        super.setRubiksCube();
+        super.setRubiksCube(USER_INPUT,"");
     }
 	
+
+	/**
+	* @brief 
+	* initializes the colors of the Cube by taking all the colors as input at once
+	* 
+	* @return void 
+	*/
+	private void setRubiksCube(String colorInput){
+		for(int i = 0; i < getDimension(); i++){
+            for(int j = 0; j < getDimension(); j++){
+                for(int k = 0; k < getDimension(); k++){
+                    int count = Node.getCount(i,j,k,getDimension());
+                    piece[i][j][k] = new Node(count);
+                }
+            }
+        }
+        super.setRubiksCube(STRING_INPUT,colorInput);
+	}
 
 	/**
 	* @brief 
