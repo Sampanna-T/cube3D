@@ -84,7 +84,7 @@ public abstract class RubiksCube{
 		if(type == STRING_INPUT){
 			setCube(type,colorInput);
 		}
-		else{
+		else if(type == USER_INPUT){
 			setCube(type,colorInput);
 		}
 	}
@@ -105,8 +105,10 @@ public abstract class RubiksCube{
 		Scanner input;
 		if(type == STRING_INPUT)
 			input = new Scanner(colorInput);
-		else
+		else if(type == USER_INPUT)
 			input = new Scanner(System.in);
+		else
+			input = null;
 
 		setCube(FRONT,input);
 		setCube(LEFT,input);
@@ -135,7 +137,7 @@ public abstract class RubiksCube{
 							for(j = 0; j < dimension; j++){
 								for(k = 0; k < dimension; k++){
 									String color = input.next().toUpperCase();
-									setColor(i,j,k,0,color);
+									setFrontColor(i,j,k,color);
 								}
 							}
 							break;
@@ -144,7 +146,7 @@ public abstract class RubiksCube{
 							for(j = 0; j < dimension; j++){
 								for(i = dimension-1; i >= 0; i--){
 									String color = input.next().toUpperCase();
-									setColor(i,j,k,Node.getCount(i,j,k,dimension)-1,color);
+									setLeftColor(i,j,k,color);
 								}
 							}
 							break;
@@ -153,7 +155,7 @@ public abstract class RubiksCube{
 							for(j = 0; j < dimension; j++){
 								for(k = dimension-1; k >= 0; k--){
 									String color = input.next().toUpperCase();
-									setColor(i,j,k,0,color);
+									setBackColor(i,j,k,color);
 								}
 							}
 							break;
@@ -162,7 +164,7 @@ public abstract class RubiksCube{
 							for(j = 0; j < dimension; j++){
 								for(i = 0; i < dimension; i++){
 									String color = input.next().toUpperCase();
-									setColor(i,j,k,Node.getCount(i,j,k,dimension)-1,color);
+									setRightColor(i,j,k,color);
 								}
 							}
 							break;
@@ -171,13 +173,7 @@ public abstract class RubiksCube{
 							for(i = dimension-1; i >= 0; i--){
 								for(k = 0; k < dimension; k++){
 									String color = input.next().toUpperCase();
-									int count = Node.getCount(i,j,k,dimension);
-									if(count == 1)setColor(i,j,k,0,color);
-									else if(count == 2){
-										if(i==0 || i==dimension-1)setColor(i,j,k,1,color);
-										else setColor(i,j,k,0,color);
-									}
-									else if(count == 3)setColor(i,j,k,1,color);
+									setUpColor(i,j,k,color);
 								}
 							}
 							break;
@@ -186,13 +182,7 @@ public abstract class RubiksCube{
 							for(i = 0; i < dimension; i++){
 								for(k = 0; k < dimension; k++){
 									String color = input.next().toUpperCase();
-									int count = Node.getCount(i,j,k,dimension);
-									if(count == 1)setColor(i,j,k,0,color);	
-									else if(count == 2){
-										if(i==0 || i==dimension-1)setColor(i,j,k,1,color);
-										else setColor(i,j,k,0,color);
-									}
-									else if(count == 3)setColor(i,j,k,1,color);
+									setDownColor(i,j,k,color);
 								}
 							}
 							break;
@@ -212,6 +202,21 @@ public abstract class RubiksCube{
 	*/
 	public void display(boolean type){
 		if(type == NODE_WISE){
+			displayNodeWise();
+		}
+		else if(type == FACE_WISE){
+			displayFaceWise();
+		}
+		
+	}
+
+	/**
+	* @brief 
+	* displays colors present in the cube Node wise
+	*
+	* @return void 
+	*/
+	private void displayNodeWise(){
 			System.out.println("*******************************************");
 				for(int i = 0; i < dimension; i++){
 					for(int j = 0; j < dimension; j++){
@@ -228,16 +233,23 @@ public abstract class RubiksCube{
 				System.out.println("---------------------------------------");
 				}
 			System.out.println("*******************************************");
-		}
-		else if(type == FACE_WISE){
-			int i=-1,j=-1,k=-1;
+	}
+
+	/**
+	* @brief 
+	* displays colors present in the cube Face wise
+	*
+	* @return void 
+	*/
+	private void displayFaceWise(){
+		int i=-1,j=-1,k=-1;
 
 			System.out.println("*******************************************");
 			System.out.println("FRONT FACE COLORS - ");
 			i = 0;
 				for(j = 0; j < dimension; j++){
 					for(k = 0; k < dimension; k++){
-						System.out.print(getColor(i,j,k,0)+" ");
+						System.out.print(getFrontColor(i,j,k)+" ");
 					}
 					System.out.println();
 				}
@@ -247,7 +259,7 @@ public abstract class RubiksCube{
 			k = 0;
 				for(j = 0; j < dimension; j++){
 					for(i = dimension-1; i >= 0; i--){
-						System.out.print(getColor(i,j,k,Node.getCount(i,j,k,dimension)-1)+" ");
+						System.out.print(getLeftColor(i,j,k)+" ");
 					}
 					System.out.println();
 				}
@@ -257,7 +269,7 @@ public abstract class RubiksCube{
 			i = dimension-1;
 				for(j = 0; j < dimension; j++){
 					for(k = dimension-1; k >= 0; k--){
-						System.out.print(getColor(i,j,k,0)+" ");
+						System.out.print(getBackColor(i,j,k)+" ");
 					}
 					System.out.println();
 				}
@@ -268,7 +280,7 @@ public abstract class RubiksCube{
 			k = dimension-1;
 				for(j = 0; j < dimension; j++){
 					for(i = 0; i < dimension; i++){
-						System.out.print(getColor(i,j,k,Node.getCount(i,j,k,dimension)-1)+" ");
+						System.out.print(getRightColor(i,j,k)+" ");
 					}
 					System.out.println();
 				}
@@ -278,13 +290,7 @@ public abstract class RubiksCube{
 			j = 0;
 				for(i = dimension-1; i >= 0; i--){
 					for(k = 0; k < dimension; k++){
-						int count = Node.getCount(i,j,k,dimension);
-						if(count == 1)System.out.print(getColor(i,j,k,0)+" ");
-						else if(count == 2){
-							if(i==0 || i==dimension-1)System.out.print(getColor(i,j,k,1)+" ");
-							else System.out.print(getColor(i,j,k,0)+" ");
-						}
-						else if(count == 3)System.out.print(getColor(i,j,k,1)+" ");
+						System.out.print(getUpColor(i,j,k)+" ");
 					}		
 					System.out.println();
 				}
@@ -294,20 +300,12 @@ public abstract class RubiksCube{
 			j = dimension-1;
 				for(i = 0; i < dimension; i++){
 					for(k = 0; k < dimension; k++){
-						int count = Node.getCount(i,j,k,dimension);
-						if(count == 1)System.out.print(getColor(i,j,k,0)+" ");	
-						else if(count == 2){
-							if(i==0 || i==dimension-1)System.out.print(getColor(i,j,k,1)+" ");
-							else System.out.print(getColor(i,j,k,0)+" ");
-						}
-						else if(count == 3)System.out.print(getColor(i,j,k,1)+" ");
+						System.out.print(getDownColor(i,j,k)+" ");
 					}
 					System.out.println();
 				}	
 			System.out.println("---------------------------------------");
 			System.out.println("*******************************************");
-		}
-		
 	}
 
 
@@ -319,12 +317,199 @@ public abstract class RubiksCube{
 	* @param j
 	* @param k
 	* @param index
-	* i,j,k represents the index the Node in the 3D cube
+	* i,j,k represents the index of the Node in the 3D cube
 	* index represents the index within the Node
 	*
 	* @return String 
 	*/
 	public abstract String getColor(int i, int j, int k, int subindex);
+
+
+	/**
+	* @brief 
+	* returns the up color of 3D cube in String format for given Node
+	*
+	* @param i
+	* @param j
+	* @param k
+	* i,j,k represents the index of the Node in the 3D cube
+	*
+	* @return String 
+	*/
+	public String getUpColor(int i, int j, int k){
+		return getUpDownColor(i,j,k,UP);
+	}
+
+
+	/**
+	* @brief 
+	* returns the down color of 3D cube in String format for given Node
+	*
+	* @param i
+	* @param j
+	* @param k
+	* i,j,k represents the index of the Node in the 3D cube
+	*
+	* @return String 
+	*/
+	public String getDownColor(int i, int j, int k){
+		return getUpDownColor(i,j,k,DOWN);
+    }
+
+
+	/**
+	* @brief 
+	* returns the Up/down color of 3D cube in String format for given Node
+	*
+	* @param i
+	* @param j
+	* @param k	
+	* @param type
+	* i,j,k represents the index of the Node in the 3D cube
+	* if type = UP up color is returned
+	* if type = DOWN down color is returned
+	*
+	* @return String 
+	*/
+	private String getUpDownColor(int i, int j, int k, String type){
+		
+		if(!Node.isIndexValid(i,j,k,dimension))return null;
+
+		if(type.equals(UP) && (j != 0)){
+			return null;
+		}
+		else if(type.equals(DOWN) && (j != dimension-1)){
+			return null;
+		}
+		else{
+			if(i == 0 || i == dimension-1)return getColor(i,j,k,1);
+			else return getColor(i,j,k,0);
+		}
+	}
+
+	/**
+	* @brief 
+	* returns the left color of 3D cube in String format for given Node
+	*
+	* @param i
+	* @param j
+	* @param k
+	* i,j,k represents the index of the Node in the 3D cube
+	*
+	* @return String 
+	*/
+	public String getLeftColor(int i, int j, int k){
+        return getLeftRightColor(i,j,k,LEFT);
+    }
+
+
+	/**
+	* @brief 
+	* returns the right color of 3D cube in String format for given Node
+	*
+	* @param i
+	* @param j
+	* @param k
+	* i,j,k represents the index of the Node in the 3D cube
+	*
+	* @return String 
+	*/
+	public String getRightColor(int i, int j, int k){
+        return getLeftRightColor(i,j,k,RIGHT);
+    }
+
+	
+	/**
+	* @brief 
+	* returns the left/right color of 3D cube in String format for given Node
+	*
+	* @param i
+	* @param j
+	* @param k
+	* @param type
+	* i,j,k represents the index of the Node in the 3D cube
+	* if type = RIGHT the right color is returned
+	* if type = LEFT the left color is returned
+	*
+	* @return String 
+	*/
+	private String getLeftRightColor(int i, int j, int k, String type){
+	
+		if(!Node.isIndexValid(i,j,k,dimension))return null;
+
+		if(type.equals(LEFT) && k != 0){
+			return null;
+		}
+		else if(type.equals(RIGHT) && (k != dimension-1)){
+			return null;
+		}
+		else{
+			int lastColorIndex = Node.getCount(i,j,k,dimension)-1;
+			return getColor(i,j,k,lastColorIndex);
+		}
+	}
+	
+
+	/**
+	* @brief 
+	* returns the back color of 3D cube in String format for given Node
+	*
+	* @param i
+	* @param j
+	* @param k
+	* i,j,k represents the index of the Node in the 3D cube
+	*
+	* @return String 
+	*/
+	public String getBackColor(int i, int j, int k){
+        return getFrontBackColor(i,j,k,BACK);
+    }
+
+
+	/**
+	* @brief 
+	* returns the right color of 3D cube in String format for given Node
+	*
+	* @param i
+	* @param j
+	* @param k
+	* i,j,k represents the index of the Node in the 3D cube
+	*
+	* @return String 
+	*/
+	public String getFrontColor(int i, int j, int k){
+        return getFrontBackColor(i,j,k,FRONT);
+    }
+
+	
+	/**
+	* @brief 
+	* returns the front/back color of 3D cube in String format for given Node
+	*
+	* @param i
+	* @param j
+	* @param k
+	* @param type
+	* i,j,k represents the index of the Node in the 3D cube
+	* if type = FRONT the front color is returned
+	* if type = BACK the back color is returned
+	*
+	* @return String 
+	*/
+	private String getFrontBackColor(int i, int j, int k, String type){
+
+		if(!Node.isIndexValid(i,j,k,dimension))return null; 
+
+		if(type.equals(FRONT) && (i != 0)){
+			return null;
+		}
+		else if(type.equals(BACK) && (i != dimension-1)){
+			return null;
+		}
+		else{
+			return getColor(i,j,k,0);
+		}
+	}
 
 
 	/**
@@ -336,14 +521,218 @@ public abstract class RubiksCube{
 	* @param k
 	* @param index
 	* @param color
-	* i,j,k represents the index the Node in the 3D cube
+	* i,j,k represents the index of the Node in the 3D cube
 	* index represents the index within the Node
-	* color is the color to be set
+	* color represents the color to be set
 	*
 	* @return void 
 	*/
 	public abstract void setColor(int i, int j, int k, int subindex, String color);
 
+	/**
+	* @brief 
+	* sets the up color of 3D cube in String format for given Node
+	*
+	* @param i
+	* @param j
+	* @param k
+	* @param color
+	* i,j,k represents the index of the Node in the 3D cube
+	* color represents the color to be set
+	*
+	* @return void 
+	*/
+	public void setUpColor(int i, int j, int k, String color){
+		setUpDownColor(i,j,k,UP,color);
+	}
+
+
+	/**
+	* @brief 
+	* sets the down color of 3D cube in String format for given Node
+	*
+	* @param i
+	* @param j
+	* @param k
+	* @param color
+	* i,j,k represents the index of the Node in the 3D cube
+	* color represents the color to be set
+	*
+	* @return void
+	*/
+	public void setDownColor(int i, int j, int k, String color){
+		setUpDownColor(i,j,k,DOWN,color);
+    }
+
+
+	/**
+	* @brief 
+	* sets the Up/down color of 3D cube in String format for given Node
+	*
+	* @param i
+	* @param j
+	* @param k	
+	* @param type
+	* @param color
+	* i,j,k represents the index of the Node in the 3D cube
+	* if type = UP up color is returned
+	* if type = DOWN down color is returned
+	* color represents the color to be set
+	*
+	* @return void
+	*/
+	private void setUpDownColor(int i, int j, int k, String type, String color){
+		
+		if(!Node.isIndexValid(i,j,k,dimension))return;
+
+		if(type.equals(UP) && (j != 0)){
+			return;
+		}
+		else if(type.equals(DOWN) && (j != dimension-1)){
+			return;
+		}
+		else{
+			if(i == 0 || i == dimension-1)setColor(i,j,k,1,color);
+			else setColor(i,j,k,0,color);
+		}
+	}
+
+	/**
+	* @brief 
+	* sets the left color of 3D cube in String format for given Node
+	*
+	* @param i
+	* @param j
+	* @param k
+	* @param color
+	* i,j,k represents the index of the Node in the 3D cube
+	* color represents the color to be set
+	*
+	* @return void
+	*/
+	public void setLeftColor(int i, int j, int k, String color){
+        setLeftRightColor(i,j,k,LEFT,color);
+    }
+
+
+	/**
+	* @brief 
+	* sets the right color of 3D cube in String format for given Node
+	*
+	* @param i
+	* @param j
+	* @param k
+	* @param color
+	* i,j,k represents the index of the Node in the 3D cube
+	* color represents the color to be set
+	*
+	* @return void
+	*/
+	public void setRightColor(int i, int j, int k, String color){
+        setLeftRightColor(i,j,k,RIGHT,color);
+    }
+
+	
+	/**
+	* @brief 
+	* sets the left/right color of 3D cube in String format for given Node
+	*
+	* @param i
+	* @param j
+	* @param k
+	* @param type
+	* @param color
+	* i,j,k represents the index of the Node in the 3D cube
+	* if type = RIGHT the right color is returned
+	* if type = LEFT the left color is returned
+	* color represents the color to be set
+	*
+	* @return void
+	*/
+	private void setLeftRightColor(int i, int j, int k, String type, String color){
+	
+		if(!Node.isIndexValid(i,j,k,dimension))return;
+
+		if(type.equals(LEFT) && k != 0){
+			return;
+		}
+		else if(type.equals(RIGHT) && (k != dimension-1)){
+			return;
+		}
+		else{
+			int lastColorIndex = Node.getCount(i,j,k,dimension)-1;
+			setColor(i,j,k,lastColorIndex,color);
+		}
+	}
+	
+
+	/**
+	* @brief 
+	* sets the back color of 3D cube in String format for given Node
+	*
+	* @param i
+	* @param j
+	* @param k
+	* @param color
+	* i,j,k represents the index of the Node in the 3D cube
+	* color represents the color to be set
+	*
+	* @return void
+	*/
+	public void setBackColor(int i, int j, int k, String color){
+        setFrontBackColor(i,j,k,BACK,color);
+    }
+
+
+	/**
+	* @brief 
+	* sets the right color of 3D cube in String format for given Node
+	*
+	* @param i
+	* @param j
+	* @param k
+	* @param color
+	* i,j,k represents the index of the Node in the 3D cube
+	* color represents the color to be set
+	*
+	* @return void
+	*/
+	public void setFrontColor(int i, int j, int k, String color){
+        setFrontBackColor(i,j,k,FRONT,color);
+    }
+
+	
+	/**
+	* @brief 
+	* sets the front/back color of 3D cube in String format for given Node
+	*
+	* @param i
+	* @param j
+	* @param k
+	* @param type
+	* @param color
+	* i,j,k represents the index of the Node in the 3D cube
+	* if type = FRONT the front color is returned
+	* if type = BACK the back color is returned
+	* color represents the color to be set
+	*
+	* @return void
+	*/
+	private void setFrontBackColor(int i, int j, int k, String type, String color){
+
+		if(!Node.isIndexValid(i,j,k,dimension))return; 
+
+		if(type.equals(FRONT) && (i != 0)){
+			return;
+		}
+		else if(type.equals(BACK) && (i != dimension-1)){
+			return;
+		}
+		else{
+			setColor(i,j,k,0,color);
+		}
+	}
+	
 
 	/**
 	* @brief 

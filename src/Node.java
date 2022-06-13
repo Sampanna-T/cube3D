@@ -122,7 +122,7 @@ public class Node{
 	*
 	* @return boolean 
 	*/
-    private static boolean isCornerNode(int i, int j, int k, int dimension){
+    public static boolean isCornerNode(int i, int j, int k, int dimension){
         if(!isIndexValid(i,j,k,dimension))return false;
 
         boolean iValid = (i==0 || i==dimension-1);
@@ -147,7 +147,7 @@ public class Node{
 	*
 	* @return boolean 
 	*/
-    private static boolean isEdgeNode(int i, int j, int k, int dimension){
+    public static boolean isEdgeNode(int i, int j, int k, int dimension){
         if(!isIndexValid(i,j,k,dimension))return false;
         
         boolean ijValid = (i == 0 || i == dimension-1) && (j == 0 || j == dimension-1);
@@ -180,7 +180,7 @@ public class Node{
 	*
 	* @return boolean 
 	*/
-    private static boolean isCenterNode(int i, int j, int k, int dimension){
+    public static boolean isCenterNode(int i, int j, int k, int dimension){
         if(!isIndexValid(i,j,k,dimension))return false;
         
         boolean iValid = (i == 0 || i == dimension-1);

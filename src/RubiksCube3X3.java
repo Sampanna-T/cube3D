@@ -127,8 +127,32 @@ public class RubiksCube3X3 extends RubiksCube{
 	* @return String 
 	*/
 	public String rotate(int i, boolean direction){
-        return null;
-    }
+		String faceColor[] = new String[getDimension()*getDimension()];
+		String sideColor[] = new String[getDimension()*getDimension()];
+		int faceIndex = 0;
+		int sideIndex = 0;
+
+		int j = 0, k = 0;
+		for(; j < getDimension(); j++)
+			for(; k < getDimension(); k++)
+				faceColor[faceIndex++] = getColor(i,j,k,0);
+		
+		j = 0;
+		for(k = 0; k < getDimension(); k++){
+			if(i == 0 || i == getDimension()-1)sideColor[sideIndex++] = getColor(i,j,k,1);
+			else sideColor[sideIndex++] = getColor(i,j,k,0); 
+		}
+		k = getDimension()-1;
+		for(j = 0; j < getDimension(); j++)sideColor[sideIndex++] = getColor(i,j,k,Node.getCount(i,j,k,getDimension())-1);
+		j = getDimension()-1;
+		for(k = getDimension()-1; k >= 0; k--){
+			if(i == 0 || i == getDimension()-1)sideColor[sideIndex++] = getColor(i,j,k,1);
+			else sideColor[sideIndex++] = getColor(i,j,k,0);
+		}
+		k = 0;
+		for(j = getDimension()-1; j >= 0; j--)sideColor[sideIndex++] = getColor(i,j,k,Node.getCount(i,j,k,getDimension())-1);
+		return null;
+	}
 
 
 	/**
