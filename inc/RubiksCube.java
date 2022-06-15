@@ -22,6 +22,8 @@ public abstract class RubiksCube{
 	public static final String ROTATE = "ROTATE";
 	public static final String VERTICAL = "VERTICAL";
 	public static final String HORIZONTAL = "HORIZONTAL";
+	public static final String CLKWISE = "CLKWISE";
+	public static final String ANTICLK = "ANTI-CLKWISE";
 
 	//varaiables representing way of displaying the colors of Cube
 	public static final boolean FACE_WISE = true;
@@ -701,7 +703,7 @@ public abstract class RubiksCube{
         setFrontBackColor(i,j,k,FRONT,color);
     }
 
-	
+
 	/**
 	* @brief 
 	* sets the front/back color of 3D cube in String format for given Node
@@ -733,6 +735,65 @@ public abstract class RubiksCube{
 		}
 	}
 	
+	
+	/**
+	* @brief 
+	* transposes the faceColor[][]
+	*
+	* @param faceColor
+	* faceColor[][] holds all the face Color to be transposed
+	*
+	* @return void 
+	*/
+	private void transpose(String faceColor[][]){
+		
+        for(int i = 0; i < faceColor.length; i++){
+            for(int j = 0; j < i; j++){
+                String temp = faceColor[i][j];
+                faceColor[i][j] = faceColor[j][i];
+                faceColor[j][i] = temp;
+            }
+        }
+	}
+
+
+	/**
+	* @brief 
+	* rotates given faceColor in R_CLK or R_ANTICLK
+	*
+	* @param faceColor
+	* @param direction
+	* faceColor represents all the faceColor
+	* direction = R_CLK rotates faceColor[][] in clkwise direction
+	* direction = R_ANTICLK rotates faceColor[][] in anticlkwise direction
+	*
+	* @return void 
+	*/
+	private void rotateFaceColor(String faceColor[][], boolean direction){
+
+		transpose(faceColor);
+
+		if(direction){
+			for(int i = 0; i < faceColor.length; i++){
+				for(int j = 0; j < faceColor[0].length/2; j++){
+					String temp = faceColor[i][j];
+					faceColor[i][j] = faceColor[i][faceColor[0].length-j-1];
+					faceColor[i][faceColor[0].length-j-1] = temp;
+				}
+        	}
+		}
+		else{
+			for(int i = 0; i < faceColor.length/2; i++){
+            	for(int j = 0; j < faceColor[0].length; j++){
+					String temp = faceColor[i][j];
+					faceColor[i][j] = faceColor[faceColor.length-1-i][j];
+					faceColor[faceColor.length-1-i][j] = temp;
+            	}
+        	}
+		}
+    
+	}
+
 
 	/**
 	* @brief 
@@ -746,7 +807,68 @@ public abstract class RubiksCube{
 	*
 	* @return String 
 	*/
-	public abstract String rotate(int i, boolean direction);
+	public String rotate(int i, boolean direction){
+		int lengthSide = getDimension()*4;
+
+		if((i == 0) || (i == getDimension()-1)){
+			String faceColor[][] = new String[getDimension()][getDimension()];
+			
+			for(int j = 0; j < getDimension(); j++)
+				for(int k = 0; k < getDimension(); k++)
+					faceColor[j][k] = getColor(i,j,k,0);
+
+			rotateFaceColor(faceColor,direction);
+						
+			for(int j = 0; j < getDimension(); j++)
+				for(int k = 0; k < getDimension(); k++)
+					setColor(i,j,k,0,faceColor[j][k]);
+
+		}
+		
+		String sideColor[] = new String[lengthSide];
+		int sideIndex = 0;
+		int index = -1;
+		if(direction == R_CLK)index = lengthSide-getDimension();
+		else if(direction == R_ANTICLK)index = getDimension();
+
+		int j = 0, k = 0;
+		for(k = 0; k < getDimension(); k++)sideColor[sideIndex++] = getUpColor(i,j,k);	
+		k = getDimension()-1;
+		for(j = 0; j < getDimension(); j++)sideColor[sideIndex++] = getRightColor(i,j,k);
+		j = getDimension()-1;
+		for(k = getDimension()-1; k >= 0; k--)sideColor[sideIndex++] = getDownColor(i,j,k);
+		k = 0;
+		for(j = getDimension()-1; j >= 0; j--)sideColor[sideIndex++] = getLeftColor(i,j,k);
+
+	
+		j = 0;
+		for(k = 0; k < getDimension(); k++){
+			setUpColor(i,j,k,sideColor[index]);
+			index = (index+1)%lengthSide;
+		}
+		k = getDimension()-1;
+		for(j = 0; j < getDimension(); j++){
+			setRightColor(i,j,k,sideColor[index]);
+			index = (index+1)%lengthSide;
+		}
+		j = getDimension()-1;
+		for(k = getDimension()-1; k >= 0; k--){
+			setDownColor(i,j,k,sideColor[index]);
+			index = (index+1)%lengthSide;
+		}
+		k = 0;
+		for(j = getDimension()-1; j >= 0; j--){
+			setLeftColor(i,j,k,sideColor[index]);
+			index = (index+1)%lengthSide;
+		}
+
+		if(direction == R_CLK)
+			return ROTATE+" "+CLKWISE;
+		else if(direction == R_ANTICLK)
+			return ROTATE+" "+ANTICLK;
+		else
+			return null;
+	}
 
 
 	/**
@@ -761,7 +883,73 @@ public abstract class RubiksCube{
 	*
 	* @return String 
 	*/
-	public abstract String horizontal(int j, boolean direction);
+	public String horizontal(int j, boolean direction){
+		int lengthSide = getDimension()*4;
+
+		if((j == 0) || (j == getDimension()-1)){
+			String faceColor[][] = new String[getDimension()][getDimension()];
+			
+			for(int i = 0; i < getDimension(); i++){
+				for(int k = 0; k < getDimension(); k++){
+					if(j==0)faceColor[i][k] = getUpColor(i,j,k);
+					else if(j==getDimension()-1)faceColor[i][k] = getDownColor(i,j,k);
+				}
+			}
+
+			rotateFaceColor(faceColor,direction);
+						
+			for(int i = 0; i < getDimension(); i++){
+				for(int k = 0; k < getDimension(); k++){
+					if(j==0)setUpColor(i,j,k,faceColor[i][k]);
+					else if(j==getDimension()-1)setDownColor(i,j,k,faceColor[i][k]);
+				}
+			}
+
+		}
+		
+		String sideColor[] = new String[lengthSide];
+		int sideIndex = 0;
+		int index = -1;
+		if(direction == H_RIGHT)index = lengthSide-getDimension();
+		else if(direction == H_LEFT)index = getDimension();
+
+		int i = 0, k = 0;
+		for(k = 0; k < getDimension(); k++)sideColor[sideIndex++] = getFrontColor(i,j,k);	
+		k = getDimension()-1;
+		for(i = 0; i < getDimension(); i++)sideColor[sideIndex++] = getRightColor(i,j,k);
+		i = getDimension()-1;
+		for(k = getDimension()-1; k >= 0; k--)sideColor[sideIndex++] = getBackColor(i,j,k);
+		k = 0;
+		for(i = getDimension()-1; i >= 0; i--)sideColor[sideIndex++] = getLeftColor(i,j,k);
+	
+		i = 0;
+		for(k = 0; k < getDimension(); k++){
+			setFrontColor(i,j,k,sideColor[index]);
+			index = (index+1)%lengthSide;
+		}
+		k = getDimension()-1;
+		for(i = 0; i < getDimension(); i++){
+			setRightColor(i,j,k,sideColor[index]);
+			index = (index+1)%lengthSide;
+		}
+		i = getDimension()-1;
+		for(k = getDimension()-1; k >= 0; k--){
+			setBackColor(i,j,k,sideColor[index]);
+			index = (index+1)%lengthSide;
+		}
+		k = 0;
+		for(i = getDimension()-1; i >= 0; i--){
+			setLeftColor(i,j,k,sideColor[index]);
+			index = (index+1)%lengthSide;
+		}
+
+		if(direction == H_RIGHT)
+			return HORIZONTAL+" "+RIGHT;
+		else if(direction == H_LEFT)
+			return HORIZONTAL+" "+LEFT;
+		else
+			return null;
+	}
 
 	
 	/**
@@ -776,7 +964,69 @@ public abstract class RubiksCube{
 	*
 	* @return String 
 	*/
-	public abstract String vertical(int k, boolean direction);
+	public String vertical(int k, boolean direction){
+		int lengthSide = getDimension()*4;
+
+		if((k == 0) || (k == getDimension()-1)){
+			String faceColor[][] = new String[getDimension()][getDimension()];
+			
+			for(int j = 0; j < getDimension(); j++)
+				for(int i = 0; i < getDimension(); i++)
+					faceColor[j][i] = getColor(i,j,k,Node.getCount(i,j,k,getDimension())-1);
+				
+
+			rotateFaceColor(faceColor,direction);
+						
+			for(int j = 0; j < getDimension(); j++)
+				for(int i = 0; i < getDimension(); i++)
+					setColor(i,j,k,Node.getCount(i,j,k,getDimension())-1,faceColor[j][i]);
+				
+		}
+		
+		String sideColor[] = new String[lengthSide];
+		int sideIndex = 0;
+		int index = -1;
+		if(direction == V_UP)index = lengthSide-getDimension();
+		else if(direction == V_DOWN)index = getDimension();
+
+		int j = 0, i = 0;
+		for(i = 0; i < getDimension(); i++)sideColor[sideIndex++] = getUpColor(i,j,k);	
+		i = getDimension()-1;
+		for(j = 0; j < getDimension(); j++)sideColor[sideIndex++] = getBackColor(i,j,k);
+		j = getDimension()-1;
+		for(i = getDimension()-1; i >= 0; i--)sideColor[sideIndex++] = getDownColor(i,j,k);
+		i = 0;
+		for(j = getDimension()-1; j >= 0; j--)sideColor[sideIndex++] = getFrontColor(i,j,k);
+	
+		j = 0;
+		i = 0;
+		for(i = 0; i < getDimension(); i++){
+			setUpColor(i,j,k,sideColor[index]);
+			index = (index+1)%lengthSide;
+		}	
+		i = getDimension()-1;
+		for(j = 0; j < getDimension(); j++){
+			setBackColor(i,j,k,sideColor[index]);
+			index = (index+1)%lengthSide;
+		}
+		j = getDimension()-1;
+		for(i = getDimension()-1; i >= 0; i--){
+			setDownColor(i,j,k,sideColor[index]);
+			index = (index+1)%lengthSide;
+		}
+		i = 0;
+		for(j = getDimension()-1; j >= 0; j--){
+			setFrontColor(i,j,k,sideColor[index]);
+			index = (index+1)%lengthSide;
+		}
+
+		if(direction == V_UP)
+			return VERTICAL+" "+UP;
+		else if(direction == V_DOWN)
+			return VERTICAL+" "+DOWN;
+		else
+			return null;
+	}
 
 
 	/**
@@ -789,7 +1039,22 @@ public abstract class RubiksCube{
 	*
 	* @return String 
 	*/
-	public abstract String circleHorizontal(boolean direction);
+	public String circleHorizontal(boolean direction){
+		
+		for(int count = 0; count < getDimension(); count++){
+			horizontal(count,direction);
+		}
+
+		if(direction == H_RIGHT	){
+			return HORIZONTAL+" "+RIGHT;
+		}
+		else if(direction == H_LEFT){
+			return HORIZONTAL+" "+LEFT;
+		}
+		else{
+			return null;
+		}
+	}
 	
 
 	/**
@@ -802,6 +1067,21 @@ public abstract class RubiksCube{
 	*
 	* @return String 
 	*/
-	public abstract String circleVertical(boolean direction);	
+	public String circleVertical(boolean direction){
+				
+		for(int count = 0; count < getDimension(); count++){
+			vertical(count,direction);
+		}
+
+		if(direction == V_UP){
+			return VERTICAL+" "+UP;
+		}
+		else if(direction == V_DOWN){
+			return VERTICAL+" "+DOWN;
+		}
+		else{
+			return null;
+		}
+	}	
 
 }
