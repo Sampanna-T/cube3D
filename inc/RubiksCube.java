@@ -25,6 +25,9 @@ public abstract class RubiksCube{
 	public static final String CLKWISE = "CLKWISE";
 	public static final String ANTICLK = "ANTI-CLKWISE";
 
+	//variable to represent layer
+	public static final String LAYER = "LAYER";
+
 	//varaiables representing way of displaying the colors of Cube
 	public static final boolean FACE_WISE = true;
 	public static final boolean NODE_WISE = false;
@@ -83,12 +86,11 @@ public abstract class RubiksCube{
 	* @return void 
 	*/
 	protected void setRubiksCube(boolean type, String colorInput){
-		if(type == STRING_INPUT){
+		if(type == STRING_INPUT)
 			setCube(type,colorInput);
-		}
-		else if(type == USER_INPUT){
+		else if(type == USER_INPUT)
 			setCube(type,colorInput);
-		}
+		
 	}
 
 
@@ -194,6 +196,50 @@ public abstract class RubiksCube{
 
 	/**
 	* @brief 
+	* returns all the colors of the RubiksCube at once
+	*
+	* @return String
+	*/
+	public String getAllColors(){
+		StringBuilder colors = new StringBuilder("");
+		int i=-1,j=-1,k=-1;
+
+			i = 0;
+				for(j = 0; j < dimension; j++)
+					for(k = 0; k < dimension; k++)
+						colors.append(getFrontColor(i,j,k)+" ");
+					
+			k = 0;
+				for(j = 0; j < dimension; j++)
+					for(i = dimension-1; i >= 0; i--)
+						colors.append(getLeftColor(i,j,k)+" ");
+					
+			i = dimension-1;
+				for(j = 0; j < dimension; j++)
+					for(k = dimension-1; k >= 0; k--)
+						colors.append(getBackColor(i,j,k)+" ");
+
+			k = dimension-1;
+				for(j = 0; j < dimension; j++)
+					for(i = 0; i < dimension; i++)
+						colors.append(getRightColor(i,j,k)+" ");
+				
+			j = 0;
+				for(i = dimension-1; i >= 0; i--)
+					for(k = 0; k < dimension; k++)
+						colors.append(getUpColor(i,j,k)+" ");
+				
+			j = dimension-1;
+				for(i = 0; i < dimension; i++)
+					for(k = 0; k < dimension; k++)
+						colors.append(getDownColor(i,j,k)+" ");
+
+		return colors.toString();
+	}
+
+
+	/**
+	* @brief 
 	* displays colors present in the cube based on type
 	*
 	* @param type
@@ -203,14 +249,12 @@ public abstract class RubiksCube{
 	* @return void 
 	*/
 	public void display(boolean type){
-		if(type == NODE_WISE){
+		if(type == NODE_WISE)
 			displayNodeWise();
-		}
-		else if(type == FACE_WISE){
+		else if(type == FACE_WISE)
 			displayFaceWise();
-		}
-		
 	}
+
 
 	/**
 	* @brief 
@@ -230,12 +274,13 @@ public abstract class RubiksCube{
 							}	
 							System.out.print(" ");
 						}
-					System.out.println();
+						System.out.println();
 					}
-				System.out.println("---------------------------------------");
+					System.out.println("---------------------------------------");
 				}
-			System.out.println("*******************************************");
+				System.out.println("*******************************************");
 	}
+
 
 	/**
 	* @brief 
@@ -250,9 +295,7 @@ public abstract class RubiksCube{
 			System.out.println("FRONT FACE COLORS - ");
 			i = 0;
 				for(j = 0; j < dimension; j++){
-					for(k = 0; k < dimension; k++){
-						System.out.print(getFrontColor(i,j,k)+" ");
-					}
+					for(k = 0; k < dimension; k++)System.out.print(getFrontColor(i,j,k)+" ");
 					System.out.println();
 				}
 			System.out.println("---------------------------------------");
@@ -260,9 +303,7 @@ public abstract class RubiksCube{
 			System.out.println("LEFT FACE COLORS - ");
 			k = 0;
 				for(j = 0; j < dimension; j++){
-					for(i = dimension-1; i >= 0; i--){
-						System.out.print(getLeftColor(i,j,k)+" ");
-					}
+					for(i = dimension-1; i >= 0; i--)System.out.print(getLeftColor(i,j,k)+" ");
 					System.out.println();
 				}
 			System.out.println("---------------------------------------");
@@ -270,9 +311,7 @@ public abstract class RubiksCube{
 			System.out.println("BACK FACE COLORS - ");
 			i = dimension-1;
 				for(j = 0; j < dimension; j++){
-					for(k = dimension-1; k >= 0; k--){
-						System.out.print(getBackColor(i,j,k)+" ");
-					}
+					for(k = dimension-1; k >= 0; k--)System.out.print(getBackColor(i,j,k)+" ");
 					System.out.println();
 				}
 			System.out.println("---------------------------------------");
@@ -281,9 +320,7 @@ public abstract class RubiksCube{
 			System.out.println("RIGHT FACE COLORS - ");
 			k = dimension-1;
 				for(j = 0; j < dimension; j++){
-					for(i = 0; i < dimension; i++){
-						System.out.print(getRightColor(i,j,k)+" ");
-					}
+					for(i = 0; i < dimension; i++)System.out.print(getRightColor(i,j,k)+" ");
 					System.out.println();
 				}
 			System.out.println("---------------------------------------");
@@ -291,9 +328,7 @@ public abstract class RubiksCube{
 			System.out.println("UP FACE COLORS - ");
 			j = 0;
 				for(i = dimension-1; i >= 0; i--){
-					for(k = 0; k < dimension; k++){
-						System.out.print(getUpColor(i,j,k)+" ");
-					}		
+					for(k = 0; k < dimension; k++)System.out.print(getUpColor(i,j,k)+" ");	
 					System.out.println();
 				}
 			System.out.println("---------------------------------------");
@@ -301,9 +336,7 @@ public abstract class RubiksCube{
 			System.out.println("DOWN FACE COLORS - ");
 			j = dimension-1;
 				for(i = 0; i < dimension; i++){
-					for(k = 0; k < dimension; k++){
-						System.out.print(getDownColor(i,j,k)+" ");
-					}
+					for(k = 0; k < dimension; k++)System.out.print(getDownColor(i,j,k)+" ");
 					System.out.println();
 				}	
 			System.out.println("---------------------------------------");

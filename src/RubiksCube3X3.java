@@ -118,33 +118,94 @@ public class RubiksCube3X3 extends RubiksCube{
 	* @brief 
 	* returns the rotate operation performed in String format
 	*
-	* @param i
 	* @param direction
-	* i represents the layer of the cube to be rotated
-	* direction = R_CLK rotates ith layer of cube in clkwise direction
-	* direction = R_ANTICLK rotates ith layer of cube in anticlkwise direction
+	* direction = R_CLK rotates Front layer of cube in clkwise direction
+	* direction = R_ANTICLK rotates Front layer of cube in anticlkwise direction
 	*
 	* @return String 
 	*/
-	public String rotate(int i, boolean direction){
-		return super.rotate(i,direction);
+	public String rotateFront(boolean direction){
+		int i = 0;
+		return super.rotate(i,direction)+" "+LAYER+(i+1);
 	}
+
+
+	/**
+	* @brief 
+	* returns the rotate operation performed in String format
+	*
+	* @param direction
+	* direction = R_CLK rotates Midddle layer of cube in clkwise direction
+	* direction = R_ANTICLK rotates Middle layer of cube in anticlkwise direction
+	*
+	* @return String 
+	*/
+	public String rotateMiddle(boolean direction){		
+		int i = 1;
+		return super.rotate(i,direction)+" "+LAYER+(i+1);
+	}
+
+
+	/**
+	* @brief 
+	* returns the rotate operation performed in String format
+	*
+	* @param direction
+	* direction = R_CLK rotates Back layer of cube in clkwise direction
+	* direction = R_ANTICLK rotates Back layer of cube in anticlkwise direction
+	*
+	* @return String 
+	*/
+	public String rotateBack(boolean direction){		
+		int i = 2;
+		return super.rotate(i,direction)+" "+LAYER+(i+1);
+	}
+
+	/**
+	* @brief 
+	* returns the horizontal operation performed in String format
+	*
+	* @param direction
+	* direction = H_RIGHT moves Up layer of cube in the right direction
+	* direction = H_LEFT moves Up layer of cube in the left direction
+	*
+	* @return String 
+	*/
+	public String upHorizontal(boolean direction){
+		int j = 0;
+		return super.horizontal(j,direction)+" "+LAYER+(j+1);
+    }
 
 
 	/**
 	* @brief 
 	* returns the horizontal operation performed in String format
 	*
-	* @param j
 	* @param direction
-	* j represents the layer of the cube to be moved horizontally
-	* direction = H_RIGHT moves jth layer of cube in the right direction
-	* direction = H_LEFT moves jth layer of cube in the left direction
+	* direction = H_RIGHT moves Middle layer of cube in the right direction
+	* direction = H_LEFT moves Middle layer of cube in the left direction
 	*
 	* @return String 
 	*/
-	public String horizontal(int j, boolean direction){
-		return super.horizontal(j,direction);
+	public String middleHorizontal(boolean direction){
+		int j = 1;
+		return super.horizontal(j,direction)+" "+LAYER+(j+1);
+    }
+
+
+	/**
+	* @brief 
+	* returns the horizontal operation performed in String format
+	*
+	* @param direction
+	* direction = H_RIGHT moves Down layer of cube in the right direction
+	* direction = H_LEFT moves Down layer of cube in the left direction
+	*
+	* @return String 
+	*/
+	public String downHorizontal(boolean direction){
+		int j = 2;
+		return super.horizontal(j,direction)+" "+LAYER+(j+1);
     }
 
 	
@@ -152,16 +213,47 @@ public class RubiksCube3X3 extends RubiksCube{
 	* @brief 
 	* returns the vertical operation performed in String format
 	*
-	* @param k
 	* @param direction
-	* k represents the layer of the cube to be moved vertically
-	* direction = V_UP moves kth layer of cube in the upward direction
-	* direction = V_DOWN moves kth layer of cube in the downward direction
+	* direction = V_UP moves Left layer of cube in the upward direction
+	* direction = V_DOWN moves Left layer of cube in the downward direction
 	*
 	* @return String 
 	*/
-	public String vertical(int k, boolean direction){
-		return super.vertical(k,direction);
+	public String leftVertical(boolean direction){
+		int k = 0;
+		return super.vertical(k,direction)+" "+LAYER+(k+1);
+    }
+
+
+	/**
+	* @brief 
+	* returns the vertical operation performed in String format
+	*
+	* @param direction
+	* direction = V_UP moves Middle layer of cube in the upward direction
+	* direction = V_DOWN moves Middle layer of cube in the downward direction
+	*
+	* @return String 
+	*/
+	public String middleVertical(boolean direction){
+		int k = 1;
+		return super.vertical(k,direction)+" "+LAYER+(k+1);
+    }
+
+
+	/**
+	* @brief 
+	* returns the vertical operation performed in String format
+	*
+	* @param direction
+	* direction = V_UP moves Right layer of cube in the upward direction
+	* direction = V_DOWN moves Right layer of cube in the downward direction
+	*
+	* @return String 
+	*/
+	public String rightVertical(boolean direction){
+		int k = 2;
+		return super.vertical(k,direction)+" "+LAYER+(k+1);
     }
 
 
