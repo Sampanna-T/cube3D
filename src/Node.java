@@ -19,10 +19,8 @@ public class Node{
     /**
 	* @brief 
 	* constructor to initialize the Node 
-	*
 	* @param size
 	* represents the size of color[] 
-    *
 	*/
     public Node(int size){
         createNode(size);
@@ -32,27 +30,19 @@ public class Node{
     /**
 	* @brief 
 	* creates a new String[] object and assigns it to color
-    *
 	* @param size
     * represents the size of color[] being created 
-    *
 	* @return void
 	*/
     private void createNode(int size){
-        if(size <= MAX_SIZE && size >= MIN_SIZE){
-            color = new String[size];
-        }
-        else{
-            color = null;
-        }
+        if(size <= MAX_SIZE && size >= MIN_SIZE)color = new String[size];
+        else color = null;
     }
 
 
     /**
 	* @brief 
 	* returns the size of color[]
-	*
-    *
 	* @return int 
 	*/
     public int getSize(){
@@ -63,14 +53,10 @@ public class Node{
     /**
 	* @brief 
 	* returns size of color[] for given dimension & i,j,k value
-    * 
-	* @param i
-	* @param j
-	* @param k
+	* @param i,j,k
 	* @param dimension
     * i,j,k represents Node index of 3D cube
     * dimension represents the dimension of 3D cube
-	*
 	* @return int 
 	*/
     public static int getCount(int i, int j, int k, int dimension){
@@ -86,14 +72,10 @@ public class Node{
     /**
 	* @brief 
 	* returns true if i,j,k value are valid for given dimension
-    * 
-	* @param i
-	* @param j
-	* @param k
+	* @param i,j,k
 	* @param dimension
     * i,j,k represents Node index of 3D cube
     * dimension represents the dimension of 3D cube
-	*
 	* @return boolean 
 	*/
     public static boolean isIndexValid(int i, int j, int k, int dimension){
@@ -105,21 +87,16 @@ public class Node{
         
         if(iValid && iValid && kValid)return true; 
         else return false;
-
     }
 
 
     /**
 	* @brief 
 	* returns true if i,j,k represents a valid corner Node for given dimension i.e. color[] holding 3 colors
-    * 
-	* @param i
-	* @param j
-	* @param k
+	* @param i,j,k
 	* @param dimension
     * i,j,k represents Node index of 3D cube
     * dimension represents the dimension of 3D cube
-	*
 	* @return boolean 
 	*/
     public static boolean isCornerNode(int i, int j, int k, int dimension){
@@ -137,14 +114,10 @@ public class Node{
     /**
 	* @brief 
 	* returns true if i,j,k represents a valid edge Node for given dimension i.e. color[] holding 2 colors
-    * 
-	* @param i
-	* @param j
-	* @param k
+	* @param i,j,k
 	* @param dimension
     * i,j,k represents Node index of 3D cube
     * dimension represents the dimension of 3D cube
-	*
 	* @return boolean 
 	*/
     public static boolean isEdgeNode(int i, int j, int k, int dimension){
@@ -170,14 +143,10 @@ public class Node{
     /**
 	* @brief 
 	* returns true if i,j,k represents a valid center Node for given dimension i.e. color[] holding 1 color
-    * 
-	* @param i
-	* @param j
-	* @param k
+	* @param i,j,k
 	* @param dimension
     * i,j,k represents Node index of 3D cube
     * dimension represents the dimension of 3D cube
-	*
 	* @return boolean 
 	*/
     public static boolean isCenterNode(int i, int j, int k, int dimension){
@@ -202,14 +171,12 @@ public class Node{
     /**
 	* @brief 
 	* returns true if given value lies in the range of from to to
-    * 
 	* @param value
 	* @param from
 	* @param to
     * value represents the value to be checked if it is in the range 
     * from represents start range
     * to represents end range
-	*
 	* @return boolean 
 	*/
     public static boolean isInRange(int value, int from, int to){
@@ -220,10 +187,8 @@ public class Node{
     /**
 	* @brief 
 	* returns color for given subIndex i.e index of color[]
-    * 
 	* @param subIndex
     * represents index of color[] 
-    *
 	* @return String 
 	*/
     public String getColor(int subIndex){
@@ -237,11 +202,8 @@ public class Node{
     /**
 	* @brief 
 	* adds newColor to the color[] at given subIndex & returns true if valid
-    * 
 	* @param subIndex
 	* @param newColor
-	* 
-    *
 	* @return boolean 
 	*/
     public boolean setColor(int subIndex, String newColor){

@@ -12,63 +12,71 @@ public class RubiksCube3X3 extends RubiksCube{
 
     private Node piece[][][];
     
+	/**
+	* @brief 
+	* creates all the nodes of the RubiksCube & sets the colors based on user input 
+	* @return void 
+	*/
     public RubiksCube3X3(){
         super(3);
         piece = new Node[3][3][3];
         setRubiksCube();
     }
 
+	/**
+	* @brief 
+	* creates all the nodes of the RubiksCube & sets the colors from space separated String 
+	* @return void 
+	*/
 	public RubiksCube3X3(String colorInput){
 		super(3);
 		piece = new Node[3][3][3];
 		setRubiksCube(colorInput);
 	}
 
+
+
 	/**
 	* @brief 
 	* initializes the colors of the Cube by taking input from user
-	* 
+	* @return void 
+	*/
+	private void createNode(){
+        for(int i = 0; i < getDimension(); i++)
+            for(int j = 0; j < getDimension(); j++)
+                for(int k = 0; k < getDimension(); k++)
+                    piece[i][j][k] = new Node(Node.getCount(i,j,k,getDimension()));    
+	}
+    
+
+	/**
+	* @brief 
+	* initializes the colors of the Cube by taking input from user
 	* @return void 
 	*/
 	private void setRubiksCube(){
-        for(int i = 0; i < getDimension(); i++){
-            for(int j = 0; j < getDimension(); j++){
-                for(int k = 0; k < getDimension(); k++){
-                    int count = Node.getCount(i,j,k,getDimension());
-                    piece[i][j][k] = new Node(count);
-                }
-            }
-        }
-        super.setRubiksCube(USER_INPUT,"");
+		createNode();
+        super.setRubiksCube(USER_INPUT,null);
     }
 	
 
 	/**
 	* @brief 
 	* initializes the colors of the Cube by taking all the colors as input at once
-	* 
 	* @return void 
 	*/
 	private void setRubiksCube(String colorInput){
-		for(int i = 0; i < getDimension(); i++){
-            for(int j = 0; j < getDimension(); j++){
-                for(int k = 0; k < getDimension(); k++){
-                    int count = Node.getCount(i,j,k,getDimension());
-                    piece[i][j][k] = new Node(count);
-                }
-            }
-        }
+		createNode();
         super.setRubiksCube(STRING_INPUT,colorInput);
 	}
+
 
 	/**
 	* @brief 
 	* displays colors present in the cube based on type
-	*
 	* @param type
 	* type = FACE_WISE then color is displayed face wise 
 	* type = NODE_WISE then color is displayed node wise
-	*
 	* @return void 
 	*/
 	public void display(boolean type){
@@ -79,14 +87,10 @@ public class RubiksCube3X3 extends RubiksCube{
 	/**
 	* @brief 
 	* returns the color of given index of 3D cube in String format
-	*
-	* @param i
-	* @param j
-	* @param k
+	* @param i,j,k
 	* @param index
 	* i,j,k represents the index the Node in the 3D cube
 	* index represents the index within the Node
-	*
 	* @return String 
 	*/
 	public String getColor(int i, int j, int k, int subindex){
@@ -97,16 +101,12 @@ public class RubiksCube3X3 extends RubiksCube{
 	/**
 	* @brief 
 	* returns the color of given index of 3D cube in String format
-	*
-	* @param i
-	* @param j
-	* @param k
+	* @param i,j,k
 	* @param index
 	* @param color
 	* i,j,k represents the index the Node in the 3D cube
 	* index represents the index within the Node
 	* color is the color to be set
-	*
 	* @return void 
 	*/
 	public void setColor(int i, int j, int k, int subindex, String color){
@@ -117,11 +117,9 @@ public class RubiksCube3X3 extends RubiksCube{
 	/**
 	* @brief 
 	* returns the rotate operation performed in String format
-	*
 	* @param direction
 	* direction = R_CLK rotates Front layer of cube in clkwise direction
 	* direction = R_ANTICLK rotates Front layer of cube in anticlkwise direction
-	*
 	* @return String 
 	*/
 	public String rotateFront(boolean direction){
@@ -133,11 +131,9 @@ public class RubiksCube3X3 extends RubiksCube{
 	/**
 	* @brief 
 	* returns the rotate operation performed in String format
-	*
 	* @param direction
 	* direction = R_CLK rotates Midddle layer of cube in clkwise direction
 	* direction = R_ANTICLK rotates Middle layer of cube in anticlkwise direction
-	*
 	* @return String 
 	*/
 	public String rotateMiddle(boolean direction){		
@@ -149,11 +145,9 @@ public class RubiksCube3X3 extends RubiksCube{
 	/**
 	* @brief 
 	* returns the rotate operation performed in String format
-	*
 	* @param direction
 	* direction = R_CLK rotates Back layer of cube in clkwise direction
 	* direction = R_ANTICLK rotates Back layer of cube in anticlkwise direction
-	*
 	* @return String 
 	*/
 	public String rotateBack(boolean direction){		
@@ -164,11 +158,9 @@ public class RubiksCube3X3 extends RubiksCube{
 	/**
 	* @brief 
 	* returns the horizontal operation performed in String format
-	*
 	* @param direction
 	* direction = H_RIGHT moves Up layer of cube in the right direction
 	* direction = H_LEFT moves Up layer of cube in the left direction
-	*
 	* @return String 
 	*/
 	public String upHorizontal(boolean direction){
@@ -180,11 +172,9 @@ public class RubiksCube3X3 extends RubiksCube{
 	/**
 	* @brief 
 	* returns the horizontal operation performed in String format
-	*
 	* @param direction
 	* direction = H_RIGHT moves Middle layer of cube in the right direction
 	* direction = H_LEFT moves Middle layer of cube in the left direction
-	*
 	* @return String 
 	*/
 	public String middleHorizontal(boolean direction){
@@ -196,11 +186,9 @@ public class RubiksCube3X3 extends RubiksCube{
 	/**
 	* @brief 
 	* returns the horizontal operation performed in String format
-	*
 	* @param direction
 	* direction = H_RIGHT moves Down layer of cube in the right direction
 	* direction = H_LEFT moves Down layer of cube in the left direction
-	*
 	* @return String 
 	*/
 	public String downHorizontal(boolean direction){
@@ -212,11 +200,9 @@ public class RubiksCube3X3 extends RubiksCube{
 	/**
 	* @brief 
 	* returns the vertical operation performed in String format
-	*
 	* @param direction
 	* direction = V_UP moves Left layer of cube in the upward direction
 	* direction = V_DOWN moves Left layer of cube in the downward direction
-	*
 	* @return String 
 	*/
 	public String leftVertical(boolean direction){
@@ -228,11 +214,9 @@ public class RubiksCube3X3 extends RubiksCube{
 	/**
 	* @brief 
 	* returns the vertical operation performed in String format
-	*
 	* @param direction
 	* direction = V_UP moves Middle layer of cube in the upward direction
 	* direction = V_DOWN moves Middle layer of cube in the downward direction
-	*
 	* @return String 
 	*/
 	public String middleVertical(boolean direction){
@@ -244,11 +228,9 @@ public class RubiksCube3X3 extends RubiksCube{
 	/**
 	* @brief 
 	* returns the vertical operation performed in String format
-	*
 	* @param direction
 	* direction = V_UP moves Right layer of cube in the upward direction
 	* direction = V_DOWN moves Right layer of cube in the downward direction
-	*
 	* @return String 
 	*/
 	public String rightVertical(boolean direction){
@@ -260,11 +242,9 @@ public class RubiksCube3X3 extends RubiksCube{
 	/**
 	* @brief 
 	* returns the circleHorizontal operation performed in String format
-	*
 	* @param direction
 	* direction = H_RIGHT moves the entire cube towards right direction
 	* direction = H_LEFT moves the entire cube towards left direction
-	*
 	* @return String 
 	*/
 	public String circleHorizontal(boolean direction){
@@ -275,11 +255,9 @@ public class RubiksCube3X3 extends RubiksCube{
 	/**
 	* @brief 
 	* returns the circleHorizontal operation performed in String format
-	*
 	* @param direction
 	* direction = V_UP moves the entire cube towards upward direction
 	* direction = V_DOWN moves the entire cube towards downward direction
-	*
 	* @return String 
 	*/
 	public String circleVertical(boolean direction){
