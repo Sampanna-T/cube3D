@@ -6,12 +6,9 @@
  * 
  * @date 8th June 2022
  */
-import java.util.*;
 
 public class RubiksCube3X3 extends RubiksCube{
 
-    private Node piece[][][];
-    
 	/**
 	* @brief 
 	* creates all the nodes of the RubiksCube & sets the colors based on user input 
@@ -19,9 +16,9 @@ public class RubiksCube3X3 extends RubiksCube{
 	*/
     public RubiksCube3X3(){
         super(3);
-        piece = new Node[3][3][3];
-        setRubiksCube();
+        super.setRubiksCube(USER_INPUT,null);
     }
+
 
 	/**
 	* @brief 
@@ -30,88 +27,8 @@ public class RubiksCube3X3 extends RubiksCube{
 	*/
 	public RubiksCube3X3(String colorInput){
 		super(3);
-		piece = new Node[3][3][3];
-		setRubiksCube(colorInput);
-	}
-
-
-
-	/**
-	* @brief 
-	* initializes the colors of the Cube by taking input from user
-	* @return void 
-	*/
-	private void createNode(){
-        for(int i = 0; i < getDimension(); i++)
-            for(int j = 0; j < getDimension(); j++)
-                for(int k = 0; k < getDimension(); k++)
-                    piece[i][j][k] = new Node(Node.getCount(i,j,k,getDimension()));    
-	}
-    
-
-	/**
-	* @brief 
-	* initializes the colors of the Cube by taking input from user
-	* @return void 
-	*/
-	private void setRubiksCube(){
-		createNode();
-        super.setRubiksCube(USER_INPUT,null);
-    }
-	
-
-	/**
-	* @brief 
-	* initializes the colors of the Cube by taking all the colors as input at once
-	* @return void 
-	*/
-	private void setRubiksCube(String colorInput){
-		createNode();
         super.setRubiksCube(STRING_INPUT,colorInput);
 	}
-
-
-	/**
-	* @brief 
-	* displays colors present in the cube based on type
-	* @param type
-	* type = FACE_WISE then color is displayed face wise 
-	* type = NODE_WISE then color is displayed node wise
-	* @return void 
-	*/
-	public void display(boolean type){
-        super.display(type);
-    }
-
-
-	/**
-	* @brief 
-	* returns the color of given index of 3D cube in String format
-	* @param i,j,k
-	* @param index
-	* i,j,k represents the index the Node in the 3D cube
-	* index represents the index within the Node
-	* @return String 
-	*/
-	public String getColor(int i, int j, int k, int subindex){
-        return piece[i][j][k].getColor(subindex);
-    }
-
-
-	/**
-	* @brief 
-	* returns the color of given index of 3D cube in String format
-	* @param i,j,k
-	* @param index
-	* @param color
-	* i,j,k represents the index the Node in the 3D cube
-	* index represents the index within the Node
-	* color is the color to be set
-	* @return void 
-	*/
-	public void setColor(int i, int j, int k, int subindex, String color){
-        piece[i][j][k].setColor(subindex,color);
-    }
 
 
 	/**

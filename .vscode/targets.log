@@ -7,7 +7,7 @@ make.exe all --print-data-base --no-builtin-variables --no-builtin-rules --quest
 
 # This program built for i386-pc-mingw32
 
-# Make data base, printed on Fri Jun 17 14:09:43 2022
+# Make data base, printed on Wed Jun 22 17:55:23 2022
 
 # Variables
 
@@ -62,7 +62,7 @@ PROGRAMW6432 = C:\Program Files
 # environment
 PROGRAMDATA = C:\ProgramData
 # environment
-VSCODE_IPC_HOOK_EXTHOST = \\.\pipe\vscode-ipc-5e1ff8b0-4968-4301-8ac7-c9c496f467c0-sock
+VSCODE_IPC_HOOK_EXTHOST = \\.\pipe\vscode-ipc-07142839-1bb0-4893-a45f-bc6716bb0b4a-sock
 # environment
 VSCODE_CWD = C:\Users\kashi\AppData\Local\Programs\Microsoft VS Code
 # environment
@@ -86,7 +86,7 @@ ELECTRON_RUN_AS_NODE = 1
 # automatic
 %F = $(notdir $%)
 # environment
-CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_18224_AHZCUQXNNEAZNTVZ
+CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_22152_NEOIATBDYAGUCHTE
 # makefile (from `makefile', line 3)
 CPFLAG = -cp
 # environment
@@ -178,8 +178,6 @@ SYSTEMROOT = C:\WINDOWS
 # environment
 APPDATA = C:\Users\kashi\AppData\Roaming
 # environment
-__COMPAT_LAYER = DetectorsAppHealth
-# environment
 TEMP = C:\Users\kashi\AppData\Local\Temp
 # environment
 COMSPEC = C:\WINDOWS\system32\cmd.exe
@@ -212,11 +210,11 @@ LANG = C
 # environment
 PROCESSOR_LEVEL = 23
 # environment
-VSCODE_PID = 18224
+VSCODE_PID = 22152
 # environment
 USERDOMAIN_ROAMINGPROFILE = LAPTOP-FGFKSPOU
 # variable set hash-table stats:
-# Load=102/1024=10%, Rehash=0, Collisions=11/129=9%
+# Load=101/1024=10%, Rehash=0, Collisions=11/128=9%
 
 # Pattern-specific Variable Values
 
@@ -333,6 +331,6 @@ compileInc:
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Fri Jun 17 14:09:43 2022
+# Finished Make data base on Wed Jun 22 17:55:23 2022
 
  

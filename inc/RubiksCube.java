@@ -10,22 +10,22 @@
 
 public abstract class RubiksCube{
 
-	//variables representing faces of the cube
+	//variables representing possible movements of a given layer of the cube
 	public static final String FRONT = "FRONT";
 	public static final String BACK = "BACK";
 	public static final String LEFT = "LFET";
 	public static final String RIGHT = "RIGHT";
 	public static final String UP = "UP";
 	public static final String DOWN = "DOWN";
+	public static final String CLKWISE = "CLKWISE";
+	public static final String ANTICLK = "ANTI-CLKWISE";
 	
-	//variables representing direction of movement of layer/layers of the cube
+	//variables representing operations that can be performed in the cube
 	public static final String ROTATE = "ROTATE";
 	public static final String VERTICAL = "VERTICAL";
 	public static final String HORIZONTAL = "HORIZONTAL";
-	public static final String CLKWISE = "CLKWISE";
-	public static final String ANTICLK = "ANTI-CLKWISE";
 
-	//variable to represent layer
+	//variable to represent layer of the cube
 	public static final String LAYER = "LAYER";
 
 	//varaiables representing way of displaying the colors of Cube
@@ -44,8 +44,9 @@ public abstract class RubiksCube{
 	public static final boolean V_UP = true;
 	public static final boolean V_DOWN = false;
 	
-	//Represents the dimension of Rubiks Cube
+	//Represents the dimension of Rubiks Cube & piece represents the ref to 3D cube
 	private int dimension;
+	private Node piece[][][];
 
 
 	/**
@@ -56,6 +57,21 @@ public abstract class RubiksCube{
 	*/
 	public RubiksCube(int dimension){
 		this.dimension = dimension;
+		piece = new Node[dimension][dimension][dimension];
+		createNodes();
+	}
+
+
+	/**
+	* @brief 
+	* initializes the colors of the Cube by taking input from user
+	* @return void 
+	*/
+	private void createNodes(){
+        for(int i = 0; i < dimension; i++)
+            for(int j = 0; j < dimension; j++)
+                for(int k = 0; k < dimension; k++)
+                    piece[i][j][k] = new Node(Node.getCount(i,j,k,dimension));    
 	}
 
 
@@ -280,12 +296,14 @@ public abstract class RubiksCube{
 	* @brief 
 	* returns the color of given index of 3D cube in String format
 	* @param i,j,k
-	* @param index
+	* @param subIndex
 	* i,j,k represents the index of the Node in the 3D cube
 	* index represents the index within the Node
 	* @return String 
 	*/
-	public abstract String getColor(int i, int j, int k, int subindex);
+	public String getColor(int i, int j, int k, int subIndex){
+		return piece[i][j][k].getColor(subIndex);
+	}
 
 
 	/**
@@ -323,9 +341,6 @@ public abstract class RubiksCube{
 	* @return String 
 	*/
 	private String getUpDownColor(int i, int j, int k, String type){
-		
-		if(!Node.isIndexValid(i,j,k,dimension))return null;
-
 		if(type.equals(UP) && (j != 0))return null;
 		else if(type.equals(DOWN) && (j != dimension-1))return null;
 		else{
@@ -369,9 +384,6 @@ public abstract class RubiksCube{
 	* @return String 
 	*/
 	private String getLeftRightColor(int i, int j, int k, String type){
-	
-		if(!Node.isIndexValid(i,j,k,dimension))return null;
-
 		if(type.equals(LEFT) && k != 0)return null;
 		else if(type.equals(RIGHT) && (k != dimension-1))return null;
 		else return getColor(i,j,k,Node.getCount(i,j,k,dimension)-1);	
@@ -413,9 +425,6 @@ public abstract class RubiksCube{
 	* @return String 
 	*/
 	private String getFrontBackColor(int i, int j, int k, String type){
-
-		if(!Node.isIndexValid(i,j,k,dimension))return null; 
-
 		if(type.equals(FRONT) && (i != 0))return null;
 		else if(type.equals(BACK) && (i != dimension-1))return null;
 		else return getColor(i,j,k,0);
@@ -433,7 +442,9 @@ public abstract class RubiksCube{
 	* color represents the color to be set
 	* @return void 
 	*/
-	public abstract void setColor(int i, int j, int k, int subindex, String color);
+	public void setColor(int i, int j, int k, int subIndex, String color){
+		piece[i][j][k].setColor(subIndex,color);
+	}
 
 	/**
 	* @brief 
@@ -476,9 +487,6 @@ public abstract class RubiksCube{
 	* @return void
 	*/
 	private void setUpDownColor(int i, int j, int k, String type, String color){
-		
-		if(!Node.isIndexValid(i,j,k,dimension))return;
-
 		if(type.equals(UP) && (j != 0))return;
 		else if(type.equals(DOWN) && (j != dimension-1))return;
 		else{
@@ -528,9 +536,6 @@ public abstract class RubiksCube{
 	* @return void
 	*/
 	private void setLeftRightColor(int i, int j, int k, String type, String color){
-	
-		if(!Node.isIndexValid(i,j,k,dimension))return;
-
 		if(type.equals(LEFT) && k != 0)return;
 		else if(type.equals(RIGHT) && (k != dimension-1))return;
 		else setColor(i,j,k,Node.getCount(i,j,k,dimension)-1,color);
@@ -579,66 +584,9 @@ public abstract class RubiksCube{
 	* @return void
 	*/
 	private void setFrontBackColor(int i, int j, int k, String type, String color){
-
-		if(!Node.isIndexValid(i,j,k,dimension))return; 
-
 		if(type.equals(FRONT) && (i != 0))return;
 		else if(type.equals(BACK) && (i != dimension-1))return;
 		else setColor(i,j,k,0,color);
-	}
-	
-	
-	/**
-	* @brief 
-	* transposes the faceColor[][]
-	* @param faceColor
-	* faceColor[][] holds all the face Color to be transposed
-	* @return void 
-	*/
-	private void transpose(String faceColor[][]){	
-        for(int i = 0; i < faceColor.length; i++){
-            for(int j = 0; j < i; j++){
-                String temp = faceColor[i][j];
-                faceColor[i][j] = faceColor[j][i];
-                faceColor[j][i] = temp;
-            }
-        }
-	}
-
-
-	/**
-	* @brief 
-	* rotates given faceColor in R_CLK or R_ANTICLK
-	* @param faceColor
-	* @param direction
-	* faceColor represents all the faceColor
-	* direction = R_CLK rotates faceColor[][] in clkwise direction
-	* direction = R_ANTICLK rotates faceColor[][] in anticlkwise direction
-	* @return void 
-	*/
-	private void rotateFaceColor(String faceColor[][], boolean direction){
-
-		transpose(faceColor);
-
-		if(direction){
-			for(int i = 0; i < faceColor.length; i++){
-				for(int j = 0; j < faceColor[0].length/2; j++){
-					String temp = faceColor[i][j];
-					faceColor[i][j] = faceColor[i][faceColor[0].length-j-1];
-					faceColor[i][faceColor[0].length-j-1] = temp;
-				}
-        	}
-		}
-		else{
-			for(int i = 0; i < faceColor.length/2; i++){
-            	for(int j = 0; j < faceColor[0].length; j++){
-					String temp = faceColor[i][j];
-					faceColor[i][j] = faceColor[faceColor.length-1-i][j];
-					faceColor[faceColor.length-1-i][j] = temp;
-            	}
-        	}
-		}
-    
 	}
 
 
@@ -747,7 +695,6 @@ public abstract class RubiksCube{
 					else if(j==getDimension()-1)setDownColor(i,j,k,faceColor[i][k]);
 				}
 			}
-
 		}
 		
 		//storing all the side colors in sideColor[]
@@ -823,8 +770,7 @@ public abstract class RubiksCube{
 						
 			for(int j = 0; j < getDimension(); j++)
 				for(int i = 0; i < getDimension(); i++)
-					setColor(i,j,k,Node.getCount(i,j,k,getDimension())-1,faceColor[j][i]);
-				
+					setColor(i,j,k,Node.getCount(i,j,k,getDimension())-1,faceColor[j][i]);		
 		}
 		
 		//storing all the side colors in sideColor[]
@@ -871,6 +817,60 @@ public abstract class RubiksCube{
 			return VERTICAL+" "+DOWN;
 		else
 			return null;
+	}
+
+
+	/**
+	* @brief 
+	* transposes the faceColor[][]
+	* @param faceColor
+	* faceColor[][] holds all the face Color to be transposed
+	* @return void 
+	*/
+	private void transpose(String faceColor[][]){	
+        for(int i = 0; i < faceColor.length; i++){
+            for(int j = 0; j < i; j++){
+                String temp = faceColor[i][j];
+                faceColor[i][j] = faceColor[j][i];
+                faceColor[j][i] = temp;
+            }
+        }
+	}
+
+
+	/**
+	* @brief 
+	* rotates given faceColor in R_CLK or R_ANTICLK
+	* @param faceColor
+	* @param direction
+	* faceColor represents all the faceColor
+	* direction = R_CLK rotates faceColor[][] in clkwise direction
+	* direction = R_ANTICLK rotates faceColor[][] in anticlkwise direction
+	* @return void 
+	*/
+	private void rotateFaceColor(String faceColor[][], boolean direction){
+
+		transpose(faceColor);
+
+		if(direction){
+			for(int i = 0; i < faceColor.length; i++){
+				for(int j = 0; j < faceColor[0].length/2; j++){
+					String temp = faceColor[i][j];
+					faceColor[i][j] = faceColor[i][faceColor[0].length-j-1];
+					faceColor[i][faceColor[0].length-j-1] = temp;
+				}
+        	}
+		}
+		else{
+			for(int i = 0; i < faceColor.length/2; i++){
+            	for(int j = 0; j < faceColor[0].length; j++){
+					String temp = faceColor[i][j];
+					faceColor[i][j] = faceColor[faceColor.length-1-i][j];
+					faceColor[faceColor.length-1-i][j] = temp;
+            	}
+        	}
+		}
+    
 	}
 
 
