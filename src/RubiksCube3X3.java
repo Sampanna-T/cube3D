@@ -1,5 +1,5 @@
 /**
- * @file Cube.java
+ * @file RubiksCube3X3.java
  * @author Sampanna T (kashisadan16@gmail.com)
  * @brief 
  * Provides complete implementation of RubiksCube class to perform all rubiks cube moves
@@ -23,6 +23,8 @@ public class RubiksCube3X3 extends RubiksCube{
 	/**
 	* @brief 
 	* creates all the nodes of the RubiksCube & sets the colors from space separated String 
+	* @param colorInput
+	* colorInput must hold all the colors of RubiksCube
 	* @return void 
 	*/
 	public RubiksCube3X3(String colorInput){

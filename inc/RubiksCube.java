@@ -1,5 +1,5 @@
 /**
- * @file Cube.java
+ * @file RubiksCube.java
  * @author Sampanna T (kashisadan16@gmail.com)
  * @brief 
  * Provides partial implementation of Cube & allows different dimension cubes to extend it's functionality

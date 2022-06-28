@@ -12,6 +12,9 @@ INC = src/Node.java\
 inc/RubiksCube.java\
 
 SRC = src/RubiksCube3X3.java\
+src/Algorithm3X3.java\
+src/PlusBottom.java\
+src/Solve3X3.java\
 Main.java\
 
 

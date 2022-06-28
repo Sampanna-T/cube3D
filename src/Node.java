@@ -1,5 +1,5 @@
 /**
- * @file Cube.java
+ * @file Node.java
  * @author Sampanna T (kashisadan16@gmail.com)
  * @brief 
  * Provides partial implementation of a Node of a Cube
