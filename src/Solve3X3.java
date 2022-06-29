@@ -17,6 +17,11 @@ public class Solve3X3{
         this.cube3X3 = cube3X3;
     }
 
+    
+    public static void add(String move, String state, List<Pair<String,String>> solution){
+        solution.add(new Pair(move,state));
+    }
+
 
     public static List<Pair<String,String>> solveCube(RubiksCube3X3 cube3X3){
         try{
@@ -42,7 +47,8 @@ public class Solve3X3{
     }
 
     public static void layerFirst(RubiksCube3X3 cube3X3,List <Pair<String,String>>solution)throws Exception{
-
+        /*LayerFirst layerFirstObj = new LayerFirst(cube3X3,solution);
+        layerFirstObj.solveAll();*/
     }
 
     public static void layerSecond(RubiksCube3X3 cube3X3,List <Pair<String,String>>solution)throws Exception{

@@ -308,6 +308,18 @@ public abstract class RubiksCube{
 
 	/**
 	* @brief 
+	* returns all the colors of given index of 3D cube in String[] format
+	* @param i,j,k
+	* i,j,k represents the index of the Node in the 3D cube
+	* @return String[] 
+	*/
+	public String[] getColors(int i, int j, int k){
+		return piece[i][j][k].getColors();
+	}
+
+
+	/**
+	* @brief 
 	* returns the up color of 3D cube in String format for given Node
 	* @param i,j,k
 	* i,j,k represents the index of the Node in the 3D cube

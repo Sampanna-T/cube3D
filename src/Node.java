@@ -184,6 +184,23 @@ public class Node{
         else return false;
     }
 
+
+    /**
+	* @brief 
+	* returns all the colors in the form of String[]
+	* @return String[]
+	*/
+    public String[] getColors(){
+        if(color == null)
+            return null;
+        else{
+            String colors[] = new String[color.length];
+            for(int i = 0; i < color.length; i++)colors[i] = color[i];
+            return colors;
+        }
+    }
+
+
     /**
 	* @brief 
 	* returns color for given subIndex i.e index of color[]

@@ -10,4 +10,16 @@ public class Main{
 		}
 	}
 }
-/*r y y w w b o y y r y w g g r g g w o g g w y y g r o r b y w b o r w w w o b o o o b b g b r b r r g y b o*/
+
+/*
+B B W Y R Y W R B B R Y Y B G W B O O R R O O O G O G B B G B G G O G Y W G Y Y Y R R O O G W Y W W W R W R
+*/
+
+/*
+w o b o o o b b g 
+g g r g g y w r w
+o b y g r r b r b
+y o w b b w r w r
+o r g y y w g g o
+r y y w w b o y y
+*/

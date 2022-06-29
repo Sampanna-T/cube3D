@@ -9,7 +9,7 @@ public class PlusBottom{
     
    	/**
 	* @brief 
-	* creates all the nodes of the RubiksCube & sets the colors based on user input 
+	* initializes PlusBottom object with cube objectect & solution list 
 	* @return void
 	*/
     public PlusBottom(RubiksCube3X3 cube3X3, List <Pair<String,String>>solution){
@@ -21,7 +21,7 @@ public class PlusBottom{
 
 	/**
 	* @brief
-	* Adds [move,RubiksCube3X3] state pair into the solution list  
+	* Adds [move,RubiksCube state] pair into the solution list  
 	* @return void 
 	*/
     public void solveAll()throws Exception{
@@ -44,7 +44,7 @@ public class PlusBottom{
     * downMidColor basically represents middle color @ down layer
 	* @return void 
 	*/
-    public void solveColorUp(String downMidColor) throws Exception{
+    private void solveColorUp(String downMidColor) throws Exception{
         byte loopCheck = 0;
 
         while(isColorUp()){
@@ -79,7 +79,7 @@ public class PlusBottom{
     * downMidColor basically represents middle color @ down layer
 	* @return void 
 	*/
-    public void solveColorMiddle(String downMidColor)throws Exception{
+    private void solveColorMiddle(String downMidColor)throws Exception{
         byte loopCheck = 0;
 
         while(isColorMiddle()){
@@ -123,7 +123,7 @@ public class PlusBottom{
     * downMidColor basically represents middle color @ down layer
 	* @return void 
 	*/
-    public void solveColorDown(String downMidColor)throws Exception{
+    private void solveColorDown(String downMidColor)throws Exception{
         byte loopCheck = 0;
 
         while(isColorDown()){
@@ -174,7 +174,7 @@ public class PlusBottom{
     * downMidColor basically represents middle color @ down layer
 	* @return void 
 	*/
-    public void solvePlusBottom(String downMidColor)throws Exception{
+    private void solvePlusBottom(String downMidColor)throws Exception{
         byte loopCheck = 0;
         
         for(int pos=0;pos<4;pos++){
