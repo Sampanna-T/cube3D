@@ -7,7 +7,7 @@ make.exe all --print-data-base --no-builtin-variables --no-builtin-rules --quest
 
 # This program built for i386-pc-mingw32
 
-# Make data base, printed on Wed Jun 29 11:04:50 2022
+# Make data base, printed on Wed Jun 29 22:04:38 2022
 
 # Variables
 
@@ -16,7 +16,7 @@ make.exe all --print-data-base --no-builtin-variables --no-builtin-rules --quest
 # automatic
 ?F = $(notdir $?)
 # makefile (from `makefile', line 14)
-SRC = src/RubiksCube3X3.java src/Algorithm3X3.java src/PlusBottom.java src/Solve3X3.java Main.java 
+SRC = src/RubiksCube3X3.java src/Algorithm3X3.java src/PlusBottom.java src/LayerFirst.java src/LayerSecond.java src/Solve3X3.java Main.java 
 # makefile
 MAKEFLAGS = Rrqp
 # environment
@@ -62,7 +62,7 @@ PROGRAMW6432 = C:\Program Files
 # environment
 PROGRAMDATA = C:\ProgramData
 # environment
-VSCODE_IPC_HOOK_EXTHOST = \\.\pipe\vscode-ipc-54863471-26f4-4a8b-86df-b6c1295ef4c6-sock
+VSCODE_IPC_HOOK_EXTHOST = \\.\pipe\vscode-ipc-0617ffda-8c83-4cf0-bd75-3572edc81dc6-sock
 # environment
 VSCODE_CWD = C:\Users\kashi\AppData\Local\Programs\Microsoft VS Code
 # environment
@@ -86,7 +86,7 @@ ELECTRON_RUN_AS_NODE = 1
 # automatic
 %F = $(notdir $%)
 # environment
-CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_5940_LEGYLBUPUVPJILGG
+CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_25108_NCDJDIGVKNMZJABL
 # makefile (from `makefile', line 3)
 CPFLAG = -cp
 # environment
@@ -210,7 +210,7 @@ LANG = C
 # environment
 PROCESSOR_LEVEL = 23
 # environment
-VSCODE_PID = 5940
+VSCODE_PID = 25108
 # environment
 USERDOMAIN_ROAMINGPROFILE = LAPTOP-FGFKSPOU
 # variable set hash-table stats:
@@ -253,7 +253,7 @@ all: compileInc compileSrc run
 # Not a target:
 makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-28 07:06:49
+#  Last modified 2022-06-29 16:41:27
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -269,7 +269,7 @@ run:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  commands to execute (from `makefile', line 30):
+#  commands to execute (from `makefile', line 32):
 	$(RN) $(CPFLAG) $(CLSPATH) $(MAIN)
 	
 
@@ -277,7 +277,7 @@ clean:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  commands to execute (from `makefile', line 34):
+#  commands to execute (from `makefile', line 36):
 	$(RM) $(CLSPATH)
 	$(MK) $(CLSPATH)   
 	
@@ -286,7 +286,7 @@ compileSrc:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  commands to execute (from `makefile', line 27):
+#  commands to execute (from `makefile', line 29):
 	$(CC) $(CPFLAG) $(CLSPATH) $(SRC) $(DFLAG) $(CLSPATH) 
 	
 
@@ -314,7 +314,7 @@ compileInc:
 # ? := 
 # variable set hash-table stats:
 # Load=8/32=25%, Rehash=0, Collisions=5/16=31%
-#  commands to execute (from `makefile', line 24):
+#  commands to execute (from `makefile', line 26):
 	$(CC) $(CPFLAG) $(CLSPATH) $(INC) $(DFLAG) $(CLSPATH)
 	
 
@@ -331,6 +331,6 @@ compileInc:
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Wed Jun 29 11:04:50 2022
+# Finished Make data base on Wed Jun 29 22:04:38 2022
 
  

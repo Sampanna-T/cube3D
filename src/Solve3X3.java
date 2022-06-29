@@ -10,16 +10,9 @@ import javafx.util.Pair;
 import java.util.*;
 
 public class Solve3X3{
-
-    RubiksCube3X3 cube3X3;
-
-    public Solve3X3(RubiksCube3X3 cube3X3){
-        this.cube3X3 = cube3X3;
-    }
-
     
-    public static void add(String move, String state, List<Pair<String,String>> solution){
-        solution.add(new Pair(move,state));
+    public static void add(String move, RubiksCube3X3 cube3X3, List<Pair<String,String>> solution){
+        solution.add(new Pair(move,cube3X3.toString()));
     }
 
 
@@ -47,16 +40,18 @@ public class Solve3X3{
     }
 
     public static void layerFirst(RubiksCube3X3 cube3X3,List <Pair<String,String>>solution)throws Exception{
-        /*LayerFirst layerFirstObj = new LayerFirst(cube3X3,solution);
-        layerFirstObj.solveAll();*/
+        LayerFirst layerFirstObj = new LayerFirst(cube3X3,solution);
+        layerFirstObj.solveAll();
     }
 
     public static void layerSecond(RubiksCube3X3 cube3X3,List <Pair<String,String>>solution)throws Exception{
-
+        LayerSecond layerSecondObj = new LayerSecond(cube3X3,solution);
+        layerSecondObj.solveAll();
     }
 
     public static void plusTop(RubiksCube3X3 cube3X3,List <Pair<String,String>>solution)throws Exception{
-
+        PlusTop plusTopObj = new PlusTop(cube3X3,solution);
+        plusTopObj.solveAll();
     }
 
     public static void alignCenter(RubiksCube3X3 cube3X3,List <Pair<String,String>>solution)throws Exception{

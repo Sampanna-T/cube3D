@@ -14,17 +14,11 @@ public class Algorithm3X3{
 	* perfoms L algorithm and adds [step to be performed, RubiksCube state] pair to the solution list
 	* @return void 
 	*/
-    public static void L(RubiksCube3X3 cube3X3, List<Pair<String,String>> solution){
-       
-        String move = "";
-            move = cube3X3.rightVertical(RubiksCube3X3.V_DOWN);
-            solution.add(new Pair(move,cube3X3.toString()));
-            move = cube3X3.downHorizontal(RubiksCube3X3.H_LEFT);
-            solution.add(new Pair(move,cube3X3.toString()));
-            move = cube3X3.rightVertical(RubiksCube3X3.V_UP);
-            solution.add(new Pair(move,cube3X3.toString()));
-            move = cube3X3.downHorizontal(RubiksCube3X3.H_RIGHT);
-            solution.add(new Pair(move,cube3X3.toString()));
+    public static void L(RubiksCube3X3 cube3X3, List<Pair<String,String>> solution){ 
+        Solve3X3.add(cube3X3.rightVertical(RubiksCube3X3.V_DOWN),cube3X3,solution); 
+        Solve3X3.add(cube3X3.downHorizontal(RubiksCube3X3.H_LEFT),cube3X3,solution);
+        Solve3X3.add(cube3X3.rightVertical(RubiksCube3X3.V_UP),cube3X3,solution);
+        Solve3X3.add(cube3X3.downHorizontal(RubiksCube3X3.H_RIGHT),cube3X3,solution);     
     }
     
         
@@ -34,24 +28,14 @@ public class Algorithm3X3{
 	* @return void 
 	*/
     public static void layer2L(RubiksCube3X3 cube3X3, List<Pair<String,String>> solution){
-    
-        String move = "";
-            move = cube3X3.upHorizontal(RubiksCube3X3.H_LEFT);
-            solution.add(new Pair(move,cube3X3.toString()));
-            move = cube3X3.rightVertical(RubiksCube3X3.V_UP);
-            solution.add(new Pair(move,cube3X3.toString()));
-            move = cube3X3.upHorizontal(RubiksCube3X3.H_RIGHT);
-            solution.add(new Pair(move,cube3X3.toString()));
-            move = cube3X3.rightVertical(RubiksCube3X3.V_DOWN);
-            solution.add(new Pair(move,cube3X3.toString()));
-            move = cube3X3.upHorizontal(RubiksCube3X3.H_RIGHT);
-            solution.add(new Pair(move,cube3X3.toString()));
-            move = cube3X3.rotateFront(RubiksCube3X3.R_ANTICLK);
-            solution.add(new Pair(move,cube3X3.toString()));
-            move = cube3X3.upHorizontal(RubiksCube3X3.H_LEFT);
-            solution.add(new Pair(move,cube3X3.toString()));
-            move = cube3X3.rotateFront(RubiksCube3X3.R_CLK);
-            solution.add(new Pair(move,cube3X3.toString()));
+        Solve3X3.add(cube3X3.upHorizontal(RubiksCube3X3.H_LEFT),cube3X3,solution);
+        Solve3X3.add(cube3X3.rightVertical(RubiksCube3X3.V_UP),cube3X3,solution);
+        Solve3X3.add(cube3X3.upHorizontal(RubiksCube3X3.H_RIGHT),cube3X3,solution);
+        Solve3X3.add(cube3X3.rightVertical(RubiksCube3X3.V_DOWN),cube3X3,solution);
+        Solve3X3.add(cube3X3.upHorizontal(RubiksCube3X3.H_RIGHT),cube3X3,solution);
+        Solve3X3.add(cube3X3.rotateFront(RubiksCube3X3.R_ANTICLK),cube3X3,solution);
+        Solve3X3.add(cube3X3.upHorizontal(RubiksCube3X3.H_LEFT),cube3X3,solution);
+        Solve3X3.add(cube3X3.rotateFront(RubiksCube3X3.R_CLK),cube3X3,solution);    
     }
 
     	
@@ -61,24 +45,14 @@ public class Algorithm3X3{
 	* @return void 
 	*/
     public static void layer2R(RubiksCube3X3 cube3X3, List<Pair<String,String>> solution){
-    
-        String move = "";
-            move = cube3X3.upHorizontal(RubiksCube3X3.H_RIGHT);
-            solution.add(new Pair(move,cube3X3.toString()));
-            move = cube3X3.leftVertical(RubiksCube3X3.V_UP);
-            solution.add(new Pair(move,cube3X3.toString()));
-            move = cube3X3.upHorizontal(RubiksCube3X3.H_LEFT);
-            solution.add(new Pair(move,cube3X3.toString()));
-            move = cube3X3.leftVertical(RubiksCube3X3.V_DOWN);
-            solution.add(new Pair(move,cube3X3.toString()));
-            move = cube3X3.upHorizontal(RubiksCube3X3.H_LEFT);
-            solution.add(new Pair(move,cube3X3.toString()));
-            move = cube3X3.rotateFront(RubiksCube3X3.R_CLK);
-            solution.add(new Pair(move,cube3X3.toString()));
-            move = cube3X3.upHorizontal(RubiksCube3X3.H_RIGHT);
-            solution.add(new Pair(move,cube3X3.toString()));
-            move = cube3X3.rotateFront(RubiksCube3X3.R_ANTICLK);
-            solution.add(new Pair(move,cube3X3.toString()));
+        Solve3X3.add(cube3X3.upHorizontal(RubiksCube3X3.H_RIGHT),cube3X3,solution);
+        Solve3X3.add(cube3X3.leftVertical(RubiksCube3X3.V_UP),cube3X3,solution);
+        Solve3X3.add(cube3X3.upHorizontal(RubiksCube3X3.H_LEFT),cube3X3,solution);
+        Solve3X3.add(cube3X3.leftVertical(RubiksCube3X3.V_DOWN),cube3X3,solution);
+        Solve3X3.add(cube3X3.upHorizontal(RubiksCube3X3.H_LEFT),cube3X3,solution);
+        Solve3X3.add(cube3X3.rotateFront(RubiksCube3X3.R_CLK),cube3X3,solution);
+        Solve3X3.add(cube3X3.upHorizontal(RubiksCube3X3.H_RIGHT),cube3X3,solution);
+        Solve3X3.add(cube3X3.rotateFront(RubiksCube3X3.R_ANTICLK),cube3X3,solution);
     }
 
     
@@ -88,20 +62,12 @@ public class Algorithm3X3{
 	* @return void 
 	*/
     public static void twistFront(RubiksCube3X3 cube3X3, List<Pair<String,String>> solution){
-
-        String move = "";
-            move = cube3X3.rotateFront(RubiksCube3X3.R_CLK);
-            solution.add(new Pair(move,cube3X3.toString()));
-            move = cube3X3.rightVertical(RubiksCube3X3.V_UP);
-            solution.add(new Pair(move,cube3X3.toString()));
-            move = cube3X3.upHorizontal(RubiksCube3X3.H_LEFT);
-            solution.add(new Pair(move,cube3X3.toString()));
-            move = cube3X3.rightVertical(RubiksCube3X3.V_DOWN);
-            solution.add(new Pair(move,cube3X3.toString()));
-            move = cube3X3.upHorizontal(RubiksCube3X3.H_RIGHT);
-            solution.add(new Pair(move,cube3X3.toString()));
-            move = cube3X3.rotateFront(RubiksCube3X3.R_ANTICLK);
-            solution.add(new Pair(move,cube3X3.toString()));
+        Solve3X3.add(cube3X3.rotateFront(RubiksCube3X3.R_CLK),cube3X3,solution);
+        Solve3X3.add(cube3X3.rightVertical(RubiksCube3X3.V_UP),cube3X3,solution);
+        Solve3X3.add(cube3X3.upHorizontal(RubiksCube3X3.H_LEFT),cube3X3,solution);
+        Solve3X3.add(cube3X3.rightVertical(RubiksCube3X3.V_DOWN),cube3X3,solution);
+        Solve3X3.add(cube3X3.upHorizontal(RubiksCube3X3.H_RIGHT),cube3X3,solution);
+        Solve3X3.add(cube3X3.rotateFront(RubiksCube3X3.R_ANTICLK),cube3X3,solution);
     }
 
 
@@ -111,24 +77,14 @@ public class Algorithm3X3{
 	* @return void 
 	*/
     public static void upTwist(RubiksCube3X3 cube3X3, List<Pair<String,String>> solution){
-
-        String move = "";
-            move = cube3X3.rightVertical(RubiksCube3X3.V_UP);
-            solution.add(new Pair(move,cube3X3.toString()));
-            move = cube3X3.upHorizontal(RubiksCube3X3.H_LEFT);
-            solution.add(new Pair(move,cube3X3.toString()));
-            move = cube3X3.rightVertical(RubiksCube3X3.V_DOWN);
-            solution.add(new Pair(move,cube3X3.toString()));
-            move = cube3X3.upHorizontal(RubiksCube3X3.H_LEFT);
-            solution.add(new Pair(move,cube3X3.toString()));
-            move = cube3X3.rightVertical(RubiksCube3X3.V_UP);
-            solution.add(new Pair(move,cube3X3.toString()));
-            move = cube3X3.upHorizontal(RubiksCube3X3.H_LEFT);
-            solution.add(new Pair(move,cube3X3.toString()));
-            move = cube3X3.upHorizontal(RubiksCube3X3.H_LEFT);
-            solution.add(new Pair(move,cube3X3.toString()));
-            move = cube3X3.rightVertical(RubiksCube3X3.V_DOWN);
-            solution.add(new Pair(move,cube3X3.toString()));
+        Solve3X3.add(cube3X3.rightVertical(RubiksCube3X3.V_UP),cube3X3,solution);
+        Solve3X3.add(cube3X3.upHorizontal(RubiksCube3X3.H_LEFT),cube3X3,solution);
+        Solve3X3.add(cube3X3.rightVertical(RubiksCube3X3.V_DOWN),cube3X3,solution);
+        Solve3X3.add(cube3X3.upHorizontal(RubiksCube3X3.H_LEFT),cube3X3,solution);
+        Solve3X3.add(cube3X3.rightVertical(RubiksCube3X3.V_UP),cube3X3,solution);
+        Solve3X3.add(cube3X3.upHorizontal(RubiksCube3X3.H_LEFT),cube3X3,solution);           
+        Solve3X3.add(cube3X3.upHorizontal(RubiksCube3X3.H_LEFT),cube3X3,solution);
+        Solve3X3.add(cube3X3.rightVertical(RubiksCube3X3.V_DOWN),cube3X3,solution);        
     }
 
     
@@ -138,26 +94,14 @@ public class Algorithm3X3{
 	* @return void 
 	*/
     public static void corner(RubiksCube3X3 cube3X3, List<Pair<String,String>> solution){
-        
-        String move = "";
-
-            move = cube3X3.upHorizontal(RubiksCube3X3.H_LEFT);
-            solution.add(new Pair(move,cube3X3.toString()));
-            move = cube3X3.rightVertical(RubiksCube3X3.V_UP);
-            solution.add(new Pair(move,cube3X3.toString()));
-            move = cube3X3.upHorizontal(RubiksCube3X3.H_RIGHT);
-            solution.add(new Pair(move,cube3X3.toString()));
-            move = cube3X3.leftVertical(RubiksCube3X3.V_UP);
-            solution.add(new Pair(move,cube3X3.toString()));
-            move = cube3X3.upHorizontal(RubiksCube3X3.H_LEFT);
-            solution.add(new Pair(move,cube3X3.toString()));
-            move = cube3X3.rightVertical(RubiksCube3X3.V_DOWN);
-            solution.add(new Pair(move,cube3X3.toString()));
-            move = cube3X3.upHorizontal(RubiksCube3X3.H_RIGHT);
-            solution.add(new Pair(move,cube3X3.toString()));
-            move = cube3X3.leftVertical(RubiksCube3X3.V_DOWN);
-            solution.add(new Pair(move,cube3X3.toString()));
-
+            Solve3X3.add(cube3X3.upHorizontal(RubiksCube3X3.H_LEFT),cube3X3,solution);
+            Solve3X3.add(cube3X3.rightVertical(RubiksCube3X3.V_UP),cube3X3,solution);
+            Solve3X3.add(cube3X3.upHorizontal(RubiksCube3X3.H_RIGHT),cube3X3,solution);
+            Solve3X3.add(cube3X3.leftVertical(RubiksCube3X3.V_UP),cube3X3,solution);
+            Solve3X3.add(cube3X3.upHorizontal(RubiksCube3X3.H_LEFT),cube3X3,solution);
+            Solve3X3.add(cube3X3.rightVertical(RubiksCube3X3.V_DOWN),cube3X3,solution);
+            Solve3X3.add(cube3X3.upHorizontal(RubiksCube3X3.H_RIGHT),cube3X3,solution);
+            Solve3X3.add(cube3X3.leftVertical(RubiksCube3X3.V_DOWN),cube3X3,solution);
     }    
     
 }

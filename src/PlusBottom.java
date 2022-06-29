@@ -1,27 +1,33 @@
+/**
+ * @file PlusBottom.java
+ * @author Sampanna T (kashisadan16@gmail.com)
+ * @brief 
+ * Solves PlusBottom of RubiksCube & returns the solution pair list
+ * 
+ * @date 29th June 2022
+ */
 import javafx.util.Pair;
 import java.util.List;
 
 public class PlusBottom{
 
-    private RubiksCube3X3 cube3X3;
-    private String move;
+    private RubiksCube3X3 cube3X3; 
     private List <Pair<String,String>>solution;
     
    	/**
 	* @brief 
-	* initializes PlusBottom object with cube objectect & solution list 
+	* initializes PlusBottom object with cube object & solution list 
 	* @return void
 	*/
     public PlusBottom(RubiksCube3X3 cube3X3, List <Pair<String,String>>solution){
         this.cube3X3 = cube3X3;
         this.solution = solution;
-        this.move = "";
     }
 
 
 	/**
 	* @brief
-	* Adds [move,RubiksCube state] pair into the solution list  
+	* Solves PlusBottom & Adds [move,RubiksCube state] pair into the solution list  
 	* @return void 
 	*/
     public void solveAll()throws Exception{
@@ -52,21 +58,17 @@ public class PlusBottom{
             if(loopCheck>100)throw new Exception("INFINTE LOOP");
 
             if(cube3X3.getFrontColor(0,0,1).equals(downMidColor)){
-                move = cube3X3.rotateFront(RubiksCube3X3.R_CLK);
-                solution.add(new Pair(move,cube3X3.toString()));
+                Solve3X3.add(cube3X3.rotateFront(RubiksCube3X3.R_CLK),cube3X3,solution);
 
                 while(cube3X3.getUpColor(1,0,2).equals(downMidColor)){
-                    move = cube3X3.upHorizontal(RubiksCube3X3.H_RIGHT);
-                    solution.add(new Pair(move,cube3X3.toString()));
+                    Solve3X3.add(cube3X3.upHorizontal(RubiksCube3X3.H_RIGHT),cube3X3,solution);
                     loopCheck++;
                     if(loopCheck>100)throw new Exception("INFINTE LOOP");
                 }
-                move = cube3X3.rightVertical(RubiksCube3X3.V_UP);
-                solution.add(new Pair(move,cube3X3.toString()));
+                Solve3X3.add(cube3X3.rightVertical(RubiksCube3X3.V_UP),cube3X3,solution);
             }
             else{
-                move = cube3X3.upHorizontal(RubiksCube3X3.H_RIGHT);
-                solution.add(new Pair(move,cube3X3.toString()));
+                Solve3X3.add(cube3X3.upHorizontal(RubiksCube3X3.H_RIGHT),cube3X3,solution); 
             }
         }
     }
@@ -89,28 +91,25 @@ public class PlusBottom{
             if(cube3X3.getFrontColor(0,1,2).equals(downMidColor)){
                 
                 while(cube3X3.getUpColor(1,0,2).equals(downMidColor)){
-                    move = cube3X3.upHorizontal(RubiksCube3X3.H_RIGHT);
-                    solution.add(new Pair(move,cube3X3.toString()));
+                    Solve3X3.add(cube3X3.upHorizontal(RubiksCube3X3.H_RIGHT),cube3X3,solution);
                     loopCheck++;
                     if(loopCheck>100)throw new Exception("INFINTE LOOP");
                 }
-                move = cube3X3.rightVertical(RubiksCube3X3.V_UP);
-                solution.add(new Pair(move,cube3X3.toString()));
+                Solve3X3.add(cube3X3.rightVertical(RubiksCube3X3.V_UP),cube3X3,solution);
+                
             }
             else if(cube3X3.getRightColor(0,1,2).equals(downMidColor)){
                 
                 while(cube3X3.getUpColor(0,0,1).equals(downMidColor)){
-                    move = cube3X3.upHorizontal(RubiksCube3X3.H_RIGHT);
-                    solution.add(new Pair(move,cube3X3.toString()));
+                    Solve3X3.add(cube3X3.upHorizontal(RubiksCube3X3.H_RIGHT),cube3X3,solution);   
                     loopCheck++;
                     if(loopCheck>100)throw new Exception("INFINTE LOOP");
                 }
-                move = cube3X3.rotateFront(RubiksCube3X3.R_ANTICLK);
-                solution.add(new Pair(move,cube3X3.toString()));
+                Solve3X3.add(cube3X3.rotateFront(RubiksCube3X3.R_ANTICLK),cube3X3,solution);
+                
             }
             else{
-                move = cube3X3.middleHorizontal(RubiksCube3X3.H_RIGHT);
-                solution.add(new Pair(move,cube3X3.toString()));
+                Solve3X3.add(cube3X3.middleHorizontal(RubiksCube3X3.H_RIGHT),cube3X3,solution);
             }
         }
     }
@@ -132,35 +131,28 @@ public class PlusBottom{
 
             if(cube3X3.getFrontColor(0,2,1).equals(downMidColor)){
                 while(cube3X3.getUpColor(0,0,1).equals(downMidColor)){
-                    move = cube3X3.upHorizontal(RubiksCube3X3.H_RIGHT);
-                    solution.add(new Pair(move,cube3X3.toString()));
+                    Solve3X3.add(cube3X3.upHorizontal(RubiksCube3X3.H_RIGHT),cube3X3,solution);  
                     loopCheck++;
                     if(loopCheck>100)throw new Exception("INFINTE LOOP");
                 }
-                move = cube3X3.downHorizontal(RubiksCube3X3.H_LEFT);
-                solution.add(new Pair(move,cube3X3.toString()));
-                move = cube3X3.middleVertical(RubiksCube3X3.V_DOWN);
-                solution.add(new Pair(move,cube3X3.toString()));
-                move = cube3X3.downHorizontal(RubiksCube3X3.H_RIGHT);
-                solution.add(new Pair(move,cube3X3.toString()));
-                move = cube3X3.middleVertical(RubiksCube3X3.V_UP);
-                solution.add(new Pair(move,cube3X3.toString()));
+                Solve3X3.add(cube3X3.downHorizontal(RubiksCube3X3.H_LEFT),cube3X3,solution);
+                Solve3X3.add(cube3X3.middleVertical(RubiksCube3X3.V_DOWN),cube3X3,solution);
+                Solve3X3.add(cube3X3.downHorizontal(RubiksCube3X3.H_RIGHT),cube3X3,solution);
+                Solve3X3.add(cube3X3.middleVertical(RubiksCube3X3.V_UP),cube3X3,solution);
+                
             }
             else if(cube3X3.getDownColor(0,2,1).equals(downMidColor)){
                 while(cube3X3.getUpColor(0,0,1).equals(downMidColor)){
-                    move = cube3X3.upHorizontal(RubiksCube3X3.H_RIGHT);
-                    solution.add(new Pair(move,cube3X3.toString()));
+                    Solve3X3.add(cube3X3.upHorizontal(RubiksCube3X3.H_RIGHT),cube3X3,solution);
                     loopCheck++;
                     if(loopCheck>100)throw new Exception("INFINTE LOOP");
                 }  
-                move = cube3X3.rotateFront(RubiksCube3X3.R_CLK);
-                solution.add(new Pair(move,cube3X3.toString()));
-                move = cube3X3.rotateFront(RubiksCube3X3.R_CLK);
-                solution.add(new Pair(move,cube3X3.toString()));
+                Solve3X3.add(cube3X3.rotateFront(RubiksCube3X3.R_CLK),cube3X3,solution);
+                Solve3X3.add(cube3X3.rotateFront(RubiksCube3X3.R_CLK),cube3X3,solution);
+                
             }
             else{
-                move = cube3X3.downHorizontal(RubiksCube3X3.H_RIGHT); 
-                solution.add(new Pair(move,cube3X3.toString()));   
+                Solve3X3.add(cube3X3.downHorizontal(RubiksCube3X3.H_RIGHT),cube3X3,solution);    
             }
         }
     
@@ -179,19 +171,15 @@ public class PlusBottom{
         
         for(int pos=0;pos<4;pos++){
             while(!(cube3X3.getFrontColor(0,0,1).equals(cube3X3.getFrontColor(0,1,1)) && cube3X3.getUpColor(0,0,1).equals(downMidColor))){
-                move = cube3X3.upHorizontal(RubiksCube3X3.H_RIGHT);
-                solution.add(new Pair(move,cube3X3.toString()));
+                Solve3X3.add(cube3X3.upHorizontal(RubiksCube3X3.H_RIGHT),cube3X3,solution);
                 loopCheck++;
                 if(loopCheck>100)throw new Exception("INFINTE LOOP");
             }
-            move = cube3X3.rotateFront(RubiksCube3X3.R_CLK);
-            solution.add(new Pair(move,cube3X3.toString()));
-            move = cube3X3.rotateFront(RubiksCube3X3.R_CLK);
-            solution.add(new Pair(move,cube3X3.toString()));
-            if(pos!=3){
-                move = cube3X3.circleHorizontal(RubiksCube3X3.H_RIGHT);
-                solution.add(new Pair(move,cube3X3.toString()));
-            }
+            Solve3X3.add(cube3X3.rotateFront(RubiksCube3X3.R_CLK),cube3X3,solution);
+            Solve3X3.add(cube3X3.rotateFront(RubiksCube3X3.R_CLK),cube3X3,solution);
+            
+            if(pos!=3)Solve3X3.add(cube3X3.circleHorizontal(RubiksCube3X3.H_RIGHT),cube3X3,solution); 
+            
         }
     }
 

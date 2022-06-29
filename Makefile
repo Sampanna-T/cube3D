@@ -14,6 +14,9 @@ inc/RubiksCube.java\
 SRC = src/RubiksCube3X3.java\
 src/Algorithm3X3.java\
 src/PlusBottom.java\
+src/LayerFirst.java\
+src/LayerSecond.java\
+src/PlusTop.java\
 src/Solve3X3.java\
 Main.java\
 
