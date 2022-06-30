@@ -17,6 +17,8 @@ src/PlusBottom.java\
 src/LayerFirst.java\
 src/LayerSecond.java\
 src/PlusTop.java\
+src/AlignCenter.java\
+src/Corner.java\
 src/Solve3X3.java\
 Main.java\
 

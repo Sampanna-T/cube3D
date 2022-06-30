@@ -55,15 +55,18 @@ public class Solve3X3{
     }
 
     public static void alignCenter(RubiksCube3X3 cube3X3,List <Pair<String,String>>solution)throws Exception{
-
+        AlignCenter alignCenterObj = new AlignCenter(cube3X3,solution);
+        alignCenterObj.solveAll();
     }
 
     public static void corner(RubiksCube3X3 cube3X3,List <Pair<String,String>>solution)throws Exception{
-
+        Corner cornerObj = new Corner(cube3X3,solution);
+        cornerObj.solveAll();
     }
 
     public static void layerThird(RubiksCube3X3 cube3X3,List <Pair<String,String>>solution)throws Exception{
-
+        LayerThird layerThirdObj = new LayerThird(cube3X3,solution);
+        layerThirdObj.solveAll();
     }
 
 }

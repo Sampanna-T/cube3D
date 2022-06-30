@@ -50,8 +50,8 @@ public class PlusTop {
             }
             else{
                 while(true){
-                    loopCheck++;
-                    if(loopCheck>100)throw new Exception("INFINTE LOOP");
+                    
+                    if(++loopCheck>100)throw new Exception("INFINTE LOOP");
 
                     if(isTopLORMinus() || isTopDot())break;
                     else Solve3X3.add(cube3X3.upHorizontal(RubiksCube3X3.H_RIGHT),cube3X3,solution);       

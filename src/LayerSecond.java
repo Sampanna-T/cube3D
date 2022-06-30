@@ -60,14 +60,14 @@ public class LayerSecond {
     public void solveUpEdgePieces()throws Exception{
         byte loopCheck = 0;
         while(isAnyUpEdgePieceValid()){//while
-            loopCheck++;
-            if(loopCheck>100)throw new Exception("INFINTE LOOP");
+            
+            if(++loopCheck>100)throw new Exception("INFINTE LOOP");
 
             if(isUpEdgePieceValid()){
                
                 while(!cube3X3.getFrontColor(0,0,1).equals(cube3X3.getFrontColor(0,1,1))){
-                    loopCheck++;
-                    if(loopCheck>100)throw new Exception("INFINTE LOOP");
+                    
+                    if(++loopCheck>100)throw new Exception("INFINTE LOOP");
                     Solve3X3.add(cube3X3.upHorizontal(RubiksCube3X3.H_LEFT),cube3X3,solution);
                     Solve3X3.add(cube3X3.circleHorizontal(RubiksCube3X3.H_RIGHT),cube3X3,solution);
                 }
@@ -94,8 +94,8 @@ public class LayerSecond {
     public void solveMiddleEdgePieces()throws Exception{
         byte loopCheck = 0;
         while(isAnyMiddleEdgePieceInvalid()){//whileMain
-            loopCheck++;
-            if(loopCheck>100)throw new Exception("INFINTE LOOP");
+            
+            if(++loopCheck>100)throw new Exception("INFINTE LOOP");
 
             String frontMidColor=cube3X3.getFrontColor(0,1,1);
             String rightMidColor=cube3X3.getRightColor(1,1,2);

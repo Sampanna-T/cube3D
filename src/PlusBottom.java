@@ -54,16 +54,16 @@ public class PlusBottom{
         byte loopCheck = 0;
 
         while(isColorUp()){
-            loopCheck++;
-            if(loopCheck>100)throw new Exception("INFINTE LOOP");
+            
+            if(++loopCheck>100)throw new Exception("INFINTE LOOP");
 
             if(cube3X3.getFrontColor(0,0,1).equals(downMidColor)){
                 Solve3X3.add(cube3X3.rotateFront(RubiksCube3X3.R_CLK),cube3X3,solution);
 
                 while(cube3X3.getUpColor(1,0,2).equals(downMidColor)){
                     Solve3X3.add(cube3X3.upHorizontal(RubiksCube3X3.H_RIGHT),cube3X3,solution);
-                    loopCheck++;
-                    if(loopCheck>100)throw new Exception("INFINTE LOOP");
+                    
+                    if(++loopCheck>100)throw new Exception("INFINTE LOOP");
                 }
                 Solve3X3.add(cube3X3.rightVertical(RubiksCube3X3.V_UP),cube3X3,solution);
             }
@@ -85,15 +85,15 @@ public class PlusBottom{
         byte loopCheck = 0;
 
         while(isColorMiddle()){
-            loopCheck++;
-            if(loopCheck>100)throw new Exception("INFINTE LOOP");
+            
+            if(++loopCheck>100)throw new Exception("INFINTE LOOP");
 
             if(cube3X3.getFrontColor(0,1,2).equals(downMidColor)){
                 
                 while(cube3X3.getUpColor(1,0,2).equals(downMidColor)){
                     Solve3X3.add(cube3X3.upHorizontal(RubiksCube3X3.H_RIGHT),cube3X3,solution);
-                    loopCheck++;
-                    if(loopCheck>100)throw new Exception("INFINTE LOOP");
+                    
+                    if(++loopCheck>100)throw new Exception("INFINTE LOOP");
                 }
                 Solve3X3.add(cube3X3.rightVertical(RubiksCube3X3.V_UP),cube3X3,solution);
                 
@@ -102,8 +102,8 @@ public class PlusBottom{
                 
                 while(cube3X3.getUpColor(0,0,1).equals(downMidColor)){
                     Solve3X3.add(cube3X3.upHorizontal(RubiksCube3X3.H_RIGHT),cube3X3,solution);   
-                    loopCheck++;
-                    if(loopCheck>100)throw new Exception("INFINTE LOOP");
+                    
+                    if(++loopCheck>100)throw new Exception("INFINTE LOOP");
                 }
                 Solve3X3.add(cube3X3.rotateFront(RubiksCube3X3.R_ANTICLK),cube3X3,solution);
                 
@@ -126,14 +126,14 @@ public class PlusBottom{
         byte loopCheck = 0;
 
         while(isColorDown()){
-            loopCheck++;
-            if(loopCheck>100)throw new Exception("INFINTE LOOP");
+            
+            if(++loopCheck>100)throw new Exception("INFINTE LOOP");
 
             if(cube3X3.getFrontColor(0,2,1).equals(downMidColor)){
                 while(cube3X3.getUpColor(0,0,1).equals(downMidColor)){
                     Solve3X3.add(cube3X3.upHorizontal(RubiksCube3X3.H_RIGHT),cube3X3,solution);  
-                    loopCheck++;
-                    if(loopCheck>100)throw new Exception("INFINTE LOOP");
+                    
+                    if(++loopCheck>100)throw new Exception("INFINTE LOOP");
                 }
                 Solve3X3.add(cube3X3.downHorizontal(RubiksCube3X3.H_LEFT),cube3X3,solution);
                 Solve3X3.add(cube3X3.middleVertical(RubiksCube3X3.V_DOWN),cube3X3,solution);
@@ -144,8 +144,8 @@ public class PlusBottom{
             else if(cube3X3.getDownColor(0,2,1).equals(downMidColor)){
                 while(cube3X3.getUpColor(0,0,1).equals(downMidColor)){
                     Solve3X3.add(cube3X3.upHorizontal(RubiksCube3X3.H_RIGHT),cube3X3,solution);
-                    loopCheck++;
-                    if(loopCheck>100)throw new Exception("INFINTE LOOP");
+                    
+                    if(++loopCheck>100)throw new Exception("INFINTE LOOP");
                 }  
                 Solve3X3.add(cube3X3.rotateFront(RubiksCube3X3.R_CLK),cube3X3,solution);
                 Solve3X3.add(cube3X3.rotateFront(RubiksCube3X3.R_CLK),cube3X3,solution);
@@ -172,8 +172,8 @@ public class PlusBottom{
         for(int pos=0;pos<4;pos++){
             while(!(cube3X3.getFrontColor(0,0,1).equals(cube3X3.getFrontColor(0,1,1)) && cube3X3.getUpColor(0,0,1).equals(downMidColor))){
                 Solve3X3.add(cube3X3.upHorizontal(RubiksCube3X3.H_RIGHT),cube3X3,solution);
-                loopCheck++;
-                if(loopCheck>100)throw new Exception("INFINTE LOOP");
+                
+                if(++loopCheck>100)throw new Exception("INFINTE LOOP");
             }
             Solve3X3.add(cube3X3.rotateFront(RubiksCube3X3.R_CLK),cube3X3,solution);
             Solve3X3.add(cube3X3.rotateFront(RubiksCube3X3.R_CLK),cube3X3,solution);
