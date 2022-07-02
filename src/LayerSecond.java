@@ -12,7 +12,6 @@ import java.util.List;
 public class LayerSecond {
 
     private RubiksCube3X3 cube3X3;
-    private String move;
     private List <Pair<String,String>>solution;
     
     /**
