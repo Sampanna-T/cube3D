@@ -1,6 +1,6 @@
 /**
  * @file RubiksCube.java
- * @author Sampanna T (kashisadan16@gmail.com)
+ * @author Sampanna T (kashi16sadan@gmail.com)
  * @brief 
  * Provides partial implementation of Cube & allows different dimension cubes to extend it's functionality
  * 
@@ -9,6 +9,14 @@
  import java.util.Scanner;
 
 public abstract class RubiksCube{
+	
+	//variables representing color counts of center,corner & edge node
+	public static final int CENTER_COUNT = 1;
+	public static final int EDGE_COUNT = 2;
+	public static final int CORNER_COUNT = 3;
+
+    //variable representing no. of faces in RubiksCube
+    public static final int FACE_COUNT = 6;
 
 	//variables representing possible movements of a given layer of the cube
 	public static final String FRONT = "FRONT";
@@ -36,14 +44,14 @@ public abstract class RubiksCube{
 	public static final boolean STRING_INPUT = true;
 	public static final boolean USER_INPUT = false;
 
-	//varaiables representing all possible movement of layer of the cube
+	//variables representing all possible movement of layer of the cube
 	public static final boolean R_CLK = true;
 	public static final boolean R_ANTICLK = false;
 	public static final boolean H_RIGHT = true;
 	public static final boolean H_LEFT = false;
 	public static final boolean V_UP = true;
 	public static final boolean V_DOWN = false;
-	
+
 	//Represents the dimension of Rubiks Cube & piece represents the ref to 3D cube
 	private int dimension;
 	private Node piece[][][];
@@ -78,8 +86,6 @@ public abstract class RubiksCube{
 	/**
 	* @brief 
 	* returns the dimension of Current RubiksCube
-	* @param dimension
-	* dimension represents the dimension of RubiksCube
 	* @return int 
 	*/
 	public int getDimension(){
@@ -96,10 +102,14 @@ public abstract class RubiksCube{
 	* if type = USER_INPUT & colorInput is any arbitrary String then RubiksCube is initialized with user input
 	* @return void 
 	*/
-	public void setRubiksCube(boolean type,String colorInput){
+	public void setRubiksCube(boolean type,String colorInput)throws Exception{
 		Scanner input = null;
 		
-		if(type == STRING_INPUT)input = new Scanner(colorInput);
+		if(type == STRING_INPUT){
+			if(colorInput.split(" ").length != (dimension*dimension*FACE_COUNT))
+				throw new Exception("INVALID COLOR INPUT");
+			input = new Scanner(colorInput);
+		}
 		else if(type == USER_INPUT)input = new Scanner(System.in);
 
 		int i=-1,j=-1,k=-1;
@@ -139,6 +149,11 @@ public abstract class RubiksCube{
 		for(i = 0; i < dimension; i++)
 			for(k = 0; k < dimension; k++)
 				setDownColor(i,j,k,input.next().toUpperCase());
+
+		if(!ValidateCube.isNodeValid(this) || !ValidateCube.isColorValid(this)){
+			piece = null;
+			throw new Exception("INVALID COLOR INPUT");
+		}
 	}
 
 
@@ -200,8 +215,10 @@ public abstract class RubiksCube{
 	* @return void 
 	*/
 	public void display(boolean type){
-		if(type == NODE_WISE)displayNodeWise();
-		else if(type == FACE_WISE)displayFaceWise();
+		if(type == NODE_WISE)
+			displayNodeWise();
+		else if(type == FACE_WISE)
+			displayFaceWise();
 	}
 
 
@@ -218,7 +235,8 @@ public abstract class RubiksCube{
 					int colorSize = Node.getCount(i,j,k,dimension);
 					for(int index = 0; index < colorSize; index++){
 						System.out.print(getColor(i,j,k,index));
-						if(index != colorSize-1)System.out.print(",");
+						if(index != colorSize-1)
+							System.out.print(",");
 					}	
 					System.out.print(" ");
 				}
@@ -243,7 +261,8 @@ public abstract class RubiksCube{
 		System.out.println("FRONT FACE COLORS - ");
 		i = 0;
 		for(j = 0; j < dimension; j++){
-			for(k = 0; k < dimension; k++)System.out.print(getFrontColor(i,j,k)+" ");
+			for(k = 0; k < dimension; k++)
+				System.out.print(getFrontColor(i,j,k)+" ");
 			System.out.println();
 		}
 		System.out.println("---------------------------------------");
@@ -251,7 +270,8 @@ public abstract class RubiksCube{
 		System.out.println("LEFT FACE COLORS - ");
 		k = 0;
 		for(j = 0; j < dimension; j++){
-			for(i = dimension-1; i >= 0; i--)System.out.print(getLeftColor(i,j,k)+" ");
+			for(i = dimension-1; i >= 0; i--)
+				System.out.print(getLeftColor(i,j,k)+" ");
 			System.out.println();
 		}
 		System.out.println("---------------------------------------");
@@ -259,7 +279,8 @@ public abstract class RubiksCube{
 		System.out.println("BACK FACE COLORS - ");
 		i = dimension-1;
 		for(j = 0; j < dimension; j++){
-			for(k = dimension-1; k >= 0; k--)System.out.print(getBackColor(i,j,k)+" ");
+			for(k = dimension-1; k >= 0; k--)
+				System.out.print(getBackColor(i,j,k)+" ");
 			System.out.println();
 		}
 		System.out.println("---------------------------------------");
@@ -267,7 +288,8 @@ public abstract class RubiksCube{
 		System.out.println("RIGHT FACE COLORS - ");
 		k = dimension-1;
 		for(j = 0; j < dimension; j++){
-			for(i = 0; i < dimension; i++)System.out.print(getRightColor(i,j,k)+" ");
+			for(i = 0; i < dimension; i++)	
+				System.out.print(getRightColor(i,j,k)+" ");
 			System.out.println();
 		}
 		System.out.println("---------------------------------------");
@@ -275,7 +297,8 @@ public abstract class RubiksCube{
 		System.out.println("UP FACE COLORS - ");
 		j = 0;
 		for(i = dimension-1; i >= 0; i--){
-			for(k = 0; k < dimension; k++)System.out.print(getUpColor(i,j,k)+" ");	
+			for(k = 0; k < dimension; k++)
+				System.out.print(getUpColor(i,j,k)+" ");	
 			System.out.println();
 		}
 		System.out.println("---------------------------------------");
@@ -283,7 +306,8 @@ public abstract class RubiksCube{
 		System.out.println("DOWN FACE COLORS - ");
 		j = dimension-1;
 		for(i = 0; i < dimension; i++){
-			for(k = 0; k < dimension; k++)System.out.print(getDownColor(i,j,k)+" ");
+			for(k = 0; k < dimension; k++)
+				System.out.print(getDownColor(i,j,k)+" ");
 			System.out.println();
 		}	
 		System.out.println("---------------------------------------");
@@ -896,11 +920,15 @@ public abstract class RubiksCube{
 	*/
 	public String circleHorizontal(boolean direction){
 		
-		for(int count = 0; count < getDimension(); count++)horizontal(count,direction);
+		for(int count = 0; count < getDimension(); count++)
+			horizontal(count,direction);
 
-		if(direction == H_RIGHT	)return HORIZONTAL+" "+RIGHT;
-		else if(direction == H_LEFT)return HORIZONTAL+" "+LEFT;
-		else return null;	
+		if(direction == H_RIGHT	)
+			return HORIZONTAL+" "+RIGHT;
+		else if(direction == H_LEFT)
+			return HORIZONTAL+" "+LEFT;
+		else
+			return null;	
 	}
 	
 
@@ -914,11 +942,37 @@ public abstract class RubiksCube{
 	*/
 	public String circleVertical(boolean direction){
 				
-		for(int count = 0; count < getDimension(); count++)vertical(count,direction);
+		for(int count = 0; count < getDimension(); count++)
+			vertical(count,direction);
 		
-		if(direction == V_UP)return VERTICAL+" "+UP;
-		else if(direction == V_DOWN)return VERTICAL+" "+DOWN;
-		else return null;
+		if(direction == V_UP)
+			return VERTICAL+" "+UP;
+		else if(direction == V_DOWN)
+			return VERTICAL+" "+DOWN;
+		else 
+			return null;
 	}	
+
+	
+	/**
+	* @brief 
+	* returns the circleRotate operation performed in String format
+	* @param direction
+	* direction = R_CLK moves the entire cube in clk direction
+	* direction = R_ANTICLK moves the entire cube in anti-clk direction
+	* @return String 
+	*/
+	public String circleRotate(boolean direction){
+				
+		for(int count = 0; count < getDimension(); count++)
+			rotate(count,direction);
+		
+		if(direction == R_CLK)
+			return ROTATE+" "+CLKWISE;
+		else if(direction == R_ANTICLK)
+			return ROTATE+" "+ANTICLK;
+		else
+			return null;
+	}
 
 }

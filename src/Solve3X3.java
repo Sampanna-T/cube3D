@@ -34,37 +34,37 @@ public class Solve3X3{
         }
     }
 
-    public static void plusBottom(RubiksCube3X3 cube3X3,List <Pair<String,String>>solution)throws Exception{
+    private static void plusBottom(RubiksCube3X3 cube3X3,List <Pair<String,String>>solution)throws Exception{
         PlusBottom plusBottomObj= new PlusBottom(cube3X3,solution);
         plusBottomObj.solveAll();
     }
 
-    public static void layerFirst(RubiksCube3X3 cube3X3,List <Pair<String,String>>solution)throws Exception{
+    private static void layerFirst(RubiksCube3X3 cube3X3,List <Pair<String,String>>solution)throws Exception{
         LayerFirst layerFirstObj = new LayerFirst(cube3X3,solution);
         layerFirstObj.solveAll();
     }
 
-    public static void layerSecond(RubiksCube3X3 cube3X3,List <Pair<String,String>>solution)throws Exception{
+    private static void layerSecond(RubiksCube3X3 cube3X3,List <Pair<String,String>>solution)throws Exception{
         LayerSecond layerSecondObj = new LayerSecond(cube3X3,solution);
         layerSecondObj.solveAll();
     }
 
-    public static void plusTop(RubiksCube3X3 cube3X3,List <Pair<String,String>>solution)throws Exception{
+    private static void plusTop(RubiksCube3X3 cube3X3,List <Pair<String,String>>solution)throws Exception{
         PlusTop plusTopObj = new PlusTop(cube3X3,solution);
         plusTopObj.solveAll();
     }
 
-    public static void alignCenter(RubiksCube3X3 cube3X3,List <Pair<String,String>>solution)throws Exception{
+    private static void alignCenter(RubiksCube3X3 cube3X3,List <Pair<String,String>>solution)throws Exception{
         AlignCenter alignCenterObj = new AlignCenter(cube3X3,solution);
         alignCenterObj.solveAll();
     }
 
-    public static void corner(RubiksCube3X3 cube3X3,List <Pair<String,String>>solution)throws Exception{
+    private static void corner(RubiksCube3X3 cube3X3,List <Pair<String,String>>solution)throws Exception{
         Corner cornerObj = new Corner(cube3X3,solution);
         cornerObj.solveAll();
     }
 
-    public static void layerThird(RubiksCube3X3 cube3X3,List <Pair<String,String>>solution)throws Exception{
+    private static void layerThird(RubiksCube3X3 cube3X3,List <Pair<String,String>>solution)throws Exception{
         LayerThird layerThirdObj = new LayerThird(cube3X3,solution);
         layerThirdObj.solveAll();
     }

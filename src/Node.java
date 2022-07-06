@@ -195,7 +195,7 @@ public class Node{
             return null;
         else{
             String colors[] = new String[color.length];
-            for(int i = 0; i < color.length; i++)colors[i] = color[i];
+            for(int i = 0; i < color.length; i++)colors[i] = new String(color[i]);
             return colors;
         }
     }

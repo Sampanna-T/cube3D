@@ -21,6 +21,7 @@ src/AlignCenter.java\
 src/Corner.java\
 src/LayerThird.java\
 src/Solve3X3.java\
+src/ValidateCube.java\
 Main.java\
 
 

@@ -14,7 +14,7 @@ public class RubiksCube3X3 extends RubiksCube{
 	* creates all the nodes of the RubiksCube & sets the colors based on user input 
 	* @return void 
 	*/
-    public RubiksCube3X3(){
+    public RubiksCube3X3()throws Exception{
         super(3);
         super.setRubiksCube(USER_INPUT,null);
     }
@@ -27,7 +27,7 @@ public class RubiksCube3X3 extends RubiksCube{
 	* colorInput must hold all the colors of RubiksCube
 	* @return void 
 	*/
-	public RubiksCube3X3(String colorInput){
+	public RubiksCube3X3(String colorInput)throws Exception{
 		super(3);
         super.setRubiksCube(STRING_INPUT,colorInput);
 	}
@@ -173,7 +173,7 @@ public class RubiksCube3X3 extends RubiksCube{
 
 	/**
 	* @brief 
-	* returns the circleHorizontal operation performed in String format
+	* returns the circleVertical operation performed in String format
 	* @param direction
 	* direction = V_UP moves the entire cube towards upward direction
 	* direction = V_DOWN moves the entire cube towards downward direction
@@ -182,5 +182,18 @@ public class RubiksCube3X3 extends RubiksCube{
 	public String circleVertical(boolean direction){
 		return super.circleVertical(direction);
     }	
+
+		
+	/**
+	* @brief 
+	* returns the circleRotate operation performed in String format
+	* @param direction
+	* direction = R_CLK moves the entire cube in clk direction
+	* direction = R_ANTICLK moves the entire cube in anticlk direction
+	* @return String 
+	*/
+	public String circleRotate(boolean direction){
+		return super.circleRotate(direction);
+    }
 
 }
