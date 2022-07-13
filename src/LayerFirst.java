@@ -1,61 +1,53 @@
-/**
- * @file LayerFirst.java
- * @author Sampanna T (kashisadan16@gmail.com)
- * @brief 
- * Solves LayerFirst of RubiksCube & returns the solution pair list
- * 
- * @date 29th June 2022
- */
 import javafx.util.Pair;
 import java.util.List;
-public class LayerFirst {
+
+/**
+ * Solves LayerFirst of RubiksCube and returns the solution pair list
+ * @author Sampanna T (kashisadan16@gmail.com)
+ * @version 1.0 29th June 2022
+ * @since JDK 10.0.2
+ */
+class LayerFirst {
     
     private RubiksCube3X3 cube3X3;
-    private String move;
     private List <Pair<String,String>>solution;
     
-
-    /**
-	* @brief 
-	* initializes LayerFirst object with cube object & solution list 
-	* @param cube3X3
+    
+   	/** 
+	* initializes LayerFirst object with cube object and solution list 
+    * @param cube3X3
+    * Reference to RubiksCube3X3 object
     * @param solution
-    * cube3X3 holds RubiksCube3X3 object
-    * solution holds [step to be performed, RubiksCube state] pair
+    * Reference to a list containing [move to be performed, Rubikscube state] pair
 	*/
-    public LayerFirst(RubiksCube3X3 cube3X3, List <Pair<String,String>>solution){
+    LayerFirst(RubiksCube3X3 cube3X3, List <Pair<String,String>>solution){
         this.cube3X3 = cube3X3;
         this.solution = solution;
     }
 
         
 	/**
-	* @brief
-	* Solves LayerFirst & Adds [move,RubiksCube state] pair into the solution list  
-	* @return void 
+	* Solves LayerFirst and Adds [move,RubiksCube state] pair into the solution list
+    * @throws Exception
+    * if LayerFirst couldn't be solved  
 	*/
-    public void solveAll()throws Exception{
+    void solveAll()throws Exception{
         flipCube();
         solveLayerFirst();
+        flipCube();
     }
     
 
     /**
-	* @brief
 	* flips the entire Cube in opposite direction  
-	* @return void 
 	*/
     private void flipCube(){
         Solve3X3.add(cube3X3.circleVertical(RubiksCube3X3.V_UP),cube3X3,solution);
         Solve3X3.add(cube3X3.circleVertical(RubiksCube3X3.V_UP),cube3X3,solution);
     }
 
-    /**
-	* @brief 
-	* to set the corner piece At the proper location
-    * Returns true if corner piece is placed at 0,0,2 else returns false
-	* @return boolean 
-	*/
+
+    //sets the corner piece At the proper location
     private void solveLayerFirst(){
         String upMidColor = cube3X3.getUpColor(1,0,1);
         boolean topFlag = false; //Tells if the required piece is present at 0,0,2
@@ -116,10 +108,8 @@ public class LayerFirst {
  
 
     /**
-	* @brief 
 	* Places the corner piece at index 0,0,2 or 0,2,2
-    * Returns true if corner piece is placed at 0,0,2 else returns false
-	* @return boolean 
+    * and returns true if corner piece is placed at 0,0,2 else returns false
 	*/
     private boolean placeThePiece(){
         if(isCornerValid(0,0,2)||isCornerValid(0,2,2)){  
@@ -158,13 +148,7 @@ public class LayerFirst {
     }
 
    
-    /**
-	* @brief 
-	* Checks if corner piece is valid or not
-	* @param i,j,k
-	* i,j,k represents the index of the 3X3 cube whole corner needs to be checked
-    * @return boolean 
-	*/
+    //returns true if the corner piece specified by i,j,k is valid
     private boolean isCornerValid(int i, int j, int k){
         String frontMidColor = cube3X3.getFrontColor(0,1,1);
         String upMidColor = cube3X3.getUpColor(1,0,1);
@@ -187,11 +171,7 @@ public class LayerFirst {
     }
     
 
-    /**
-	* @brief 
-	* checks whether the corner piece is in the right position or not
-	* @return boolean 
-	*/
+	//returns true if the corner piece is set at the right position
     private boolean isCornerSet(){
         String frontMidColor = cube3X3.getFrontColor(0,1,1);
         String upMidColor = cube3X3.getUpColor(1,0,1);

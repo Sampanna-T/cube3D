@@ -1,65 +1,156 @@
-/**
- * @file RubiksCube.java
- * @author Sampanna T (kashi16sadan@gmail.com)
- * @brief 
- * Provides partial implementation of Cube & allows different dimension cubes to extend it's functionality
- * 
- * @date 2nd June 2022
- */
- import java.util.Scanner;
+import java.util.Scanner;
 
+/**
+ * Provides implementation of Cube Interface and allows
+ * RubiksCubes of different dimensions to extend all the functionality
+ * @author Sampanna T (kashi16sadan@gmail.com)
+ * @version 1.0 2nd June 2022
+ * @since JDK 10.0.2
+ */
 public abstract class RubiksCube{
 	
-	//variables representing color counts of center,corner & edge node
+	/**
+	 * A constant field holding number of colors in a center node
+	 */
 	public static final int CENTER_COUNT = 1;
+
+	/**
+	 * A constant field holding number of colors in an edge node
+	 */
 	public static final int EDGE_COUNT = 2;
+
+	/**
+	 * A constant field holding number of colors in a corner node
+	 */
 	public static final int CORNER_COUNT = 3;
 
-    //variable representing no. of faces in RubiksCube
+	/**
+	 * A constant field holding number of faces in a RubiksCube
+	 */
     public static final int FACE_COUNT = 6;
 
-	//variables representing possible movements of a given layer of the cube
+	/**
+	 * A constant field holding front layer name
+	 */
 	public static final String FRONT = "FRONT";
+
+	/**
+	 * A constant field holding back layer name
+	 */
 	public static final String BACK = "BACK";
-	public static final String LEFT = "LFET";
+	
+	/**
+	 * A constant field holding left layer name
+	 */
+	public static final String LEFT = "LEFT";
+	
+	/**
+	 * A constant field holding right layer name
+	 */
 	public static final String RIGHT = "RIGHT";
+	
+	/**
+	 * A constant field holding up layer name
+	 */
 	public static final String UP = "UP";
+	
+	/**
+	 * A constant field holding down layer name
+	 */
 	public static final String DOWN = "DOWN";
+	
+	/**
+	 * A constant field holding clkwise moment name
+	 */
 	public static final String CLKWISE = "CLKWISE";
+	
+	/**
+	 * A constant field holding anti-clkwise moment name
+	 */
 	public static final String ANTICLK = "ANTI-CLKWISE";
 	
-	//variables representing operations that can be performed in the cube
+	/**
+	 * A constant field holding rotate moment name
+	 */
 	public static final String ROTATE = "ROTATE";
+	
+	/**
+	 * A constant field holding vertical moment name
+	 */
 	public static final String VERTICAL = "VERTICAL";
+	
+	/**
+	 * A constant field holding horizontal moment name
+	 */
 	public static final String HORIZONTAL = "HORIZONTAL";
 
-	//variable to represent layer of the cube
+	/**
+	 * A constant field holding circle moment name
+	 */
+	public static final String CIRCLE = "CIRCLE";
+
+	/**
+	 * A constant field holding the name layer
+	 */
 	public static final String LAYER = "LAYER";
 
-	//varaiables representing way of displaying the colors of Cube
+	/**
+	 * A constant field indicating that operation to be performed face wise
+	 */
 	public static final boolean FACE_WISE = true;
+	
+	/**
+	 * A constant field indicating that operation to be performed node wise
+	 */
 	public static final boolean NODE_WISE = false;
 
-	//variables representing if whether testing or not
+	/**
+	 * A constant field indicating that string input is provided
+	 */
 	public static final boolean STRING_INPUT = true;
+	
+	/**
+	 * A constant field indicating that user input must be provided
+	 */
 	public static final boolean USER_INPUT = false;
 
-	//variables representing all possible movement of layer of the cube
+	/**
+	 * A constant field indicating that operation to be performed is rotate clkwise
+	 */
 	public static final boolean R_CLK = true;
+	
+	/**
+	 * A constant field indicating that operation to be performed is rotate anti-clkwise
+	 */
 	public static final boolean R_ANTICLK = false;
+	
+	/**
+	 * A constant field indicating that operation to be performed is horizontal right
+	 */
 	public static final boolean H_RIGHT = true;
+	
+	/**
+	 * A constant field indicating that operation to be performed is horizontal left
+	 */
 	public static final boolean H_LEFT = false;
+	
+	/**
+	 * A constant field indicating that operation to be performed is vertical up
+	 */
 	public static final boolean V_UP = true;
+	
+	/**
+	 * A constant field indicating that operation to be performed is vertical down
+	 */
 	public static final boolean V_DOWN = false;
 
-	//Represents the dimension of Rubiks Cube & piece represents the ref to 3D cube
+
 	private int dimension;
 	private Node piece[][][];
 
 
 	/**
-	* @brief 
-	* constructor which initializes the RubiksCube by getting the colors from user
+	* constructor which initializes the RubiksCube by creating Nodes
 	* @param dimension
 	* represents dimension of the RubiksCube
 	*/
@@ -69,12 +160,7 @@ public abstract class RubiksCube{
 		createNodes();
 	}
 
-
-	/**
-	* @brief 
-	* initializes the colors of the Cube by taking input from user
-	* @return void 
-	*/
+	//creates nodes and adds it in 3D cube
 	private void createNodes(){
         for(int i = 0; i < dimension; i++)
             for(int j = 0; j < dimension; j++)
@@ -84,8 +170,7 @@ public abstract class RubiksCube{
 
 
 	/**
-	* @brief 
-	* returns the dimension of Current RubiksCube
+	* returns the dimension of Current RubiksCube object
 	* @return int 
 	*/
 	public int getDimension(){
@@ -94,13 +179,13 @@ public abstract class RubiksCube{
 
 
 	/**
-	* @brief 
-	* initializes the colors of the Cube based on type & colorInput
+	* initializes the colors of the Cube based on type and colorInput
 	* @param type
+	* specifies if the input is from user or colorInput(type can be STRING_INPUT or USER_INPUT)
 	* @param colorInput
-	* if type = STRING_INPUT & colorInput is specified RubiksCube is initialized with given color input 
-	* if type = USER_INPUT & colorInput is any arbitrary String then RubiksCube is initialized with user input
-	* @return void 
+	* holds all the colors of the RubiksCube to be initialized
+	* @throws Exception
+	* If the RubiksCube couldn't be initialized
 	*/
 	public void setRubiksCube(boolean type,String colorInput)throws Exception{
 		Scanner input = null;
@@ -158,7 +243,6 @@ public abstract class RubiksCube{
 
 
 	/**
-	* @brief 
 	* returns all the colors of the RubiksCube facewise in String format
 	* @return String
 	*/
@@ -207,12 +291,9 @@ public abstract class RubiksCube{
 
 
 	/**
-	* @brief 
 	* displays colors present in the cube based on type
 	* @param type
-	* type = FACE_WISE then color is displayed face wise 
-	* type = NODE_WISE then color is displayed node wise
-	* @return void 
+	* type is FACE_WISE,NODE_WISE then color would be displayed face wise, node wise respectively 
 	*/
 	public void display(boolean type){
 		if(type == NODE_WISE)
@@ -223,9 +304,7 @@ public abstract class RubiksCube{
 
 
 	/**
-	* @brief 
 	* displays colors present in the cube Node wise
-	* @return void 
 	*/
 	private void displayNodeWise(){
 		System.out.println("*******************************************");
@@ -249,9 +328,7 @@ public abstract class RubiksCube{
 
 
 	/**
-	* @brief 
 	* displays colors present in the cube Face wise
-	* @return void 
 	*/
 	private void displayFaceWise(){
 		int i=-1,j=-1,k=-1;
@@ -317,12 +394,15 @@ public abstract class RubiksCube{
 
 
 	/**
-	* @brief 
 	* returns the color of given index of 3D cube in String format
-	* @param i,j,k
+	* @param i
+	* represents index i out of (i,j,k) in 3D cube
+	* @param j
+	* represents index j out of (i,j,k) in 3D cube
+	* @param k
+	* represents index k out of (i,j,k) in 3D cube
 	* @param subIndex
-	* i,j,k represents the index of the Node in the 3D cube
-	* index represents the index within the Node
+	* represents the index within the Node
 	* @return String 
 	*/
 	public String getColor(int i, int j, int k, int subIndex){
@@ -331,10 +411,13 @@ public abstract class RubiksCube{
 
 
 	/**
-	* @brief 
 	* returns all the colors of given index of 3D cube in String[] format
-	* @param i,j,k
-	* i,j,k represents the index of the Node in the 3D cube
+	* @param i
+	* represents index i out of (i,j,k) in 3D cube
+	* @param j
+	* represents index j out of (i,j,k) in 3D cube
+	* @param k
+	* represents index k out of (i,j,k) in 3D cube
 	* @return String[] 
 	*/
 	public String[] getColors(int i, int j, int k){
@@ -343,10 +426,13 @@ public abstract class RubiksCube{
 
 
 	/**
-	* @brief 
 	* returns the up color of 3D cube in String format for given Node
-	* @param i,j,k
-	* i,j,k represents the index of the Node in the 3D cube
+	* @param i
+	* represents index i out of (i,j,k) in 3D cube
+	* @param j
+	* represents index j out of (i,j,k) in 3D cube
+	* @param k
+	* represents index k out of (i,j,k) in 3D cube
 	* @return String 
 	*/
 	public String getUpColor(int i, int j, int k){
@@ -355,27 +441,20 @@ public abstract class RubiksCube{
 
 
 	/**
-	* @brief 
 	* returns the down color of 3D cube in String format for given Node
-	* @param i,j,k
-	* i,j,k represents the index of the Node in the 3D cube
+	* @param i
+	* represents index i out of (i,j,k) in 3D cube
+	* @param j
+	* represents index j out of (i,j,k) in 3D cube
+	* @param k
+	* represents index k out of (i,j,k) in 3D cube
 	* @return String 
 	*/
 	public String getDownColor(int i, int j, int k){
 		return getUpDownColor(i,j,k,DOWN);
     }
 
-
-	/**
-	* @brief 
-	* returns the Up/down color of 3D cube in String format for given Node
-	* @param i,j,k
-	* @param type
-	* i,j,k represents the index of the Node in the 3D cube
-	* if type = UP up color is returned
-	* if type = DOWN down color is returned
-	* @return String 
-	*/
+	//returns upcolor,downcolor for given index if type is UP,DOWN respectively
 	private String getUpDownColor(int i, int j, int k, String type){
 		if(type.equals(UP) && (j != 0))return null;
 		else if(type.equals(DOWN) && (j != dimension-1))return null;
@@ -386,10 +465,13 @@ public abstract class RubiksCube{
 	}
 
 	/**
-	* @brief 
 	* returns the left color of 3D cube in String format for given Node
-	* @param i,j,k
-	* i,j,k represents the index of the Node in the 3D cube
+	* @param i
+	* represents index i out of (i,j,k) in 3D cube
+	* @param j
+	* represents index j out of (i,j,k) in 3D cube
+	* @param k
+	* represents index k out of (i,j,k) in 3D cube
 	* @return String 
 	*/
 	public String getLeftColor(int i, int j, int k){
@@ -398,10 +480,13 @@ public abstract class RubiksCube{
 
 
 	/**
-	* @brief 
 	* returns the right color of 3D cube in String format for given Node
-	* @param i,j,k
-	* i,j,k represents the index of the Node in the 3D cube
+	* @param i
+	* represents index i out of (i,j,k) in 3D cube
+	* @param j
+	* represents index j out of (i,j,k) in 3D cube
+	* @param k
+	* represents index k out of (i,j,k) in 3D cube
 	* @return String 
 	*/
 	public String getRightColor(int i, int j, int k){
@@ -409,16 +494,7 @@ public abstract class RubiksCube{
     }
 
 	
-	/**
-	* @brief 
-	* returns the left/right color of 3D cube in String format for given Node
-	* @param i,j,k
-	* @param type
-	* i,j,k represents the index of the Node in the 3D cube
-	* if type = RIGHT the right color is returned
-	* if type = LEFT the left color is returned
-	* @return String 
-	*/
+	//returns leftcolor,rightcolor for given index if type is LEFT,RIGHT respectively
 	private String getLeftRightColor(int i, int j, int k, String type){
 		if(type.equals(LEFT) && k != 0)return null;
 		else if(type.equals(RIGHT) && (k != dimension-1))return null;
@@ -427,10 +503,13 @@ public abstract class RubiksCube{
 	
 
 	/**
-	* @brief 
 	* returns the back color of 3D cube in String format for given Node
-	* @param i,j,k
-	* i,j,k represents the index of the Node in the 3D cube
+	* @param i
+	* represents index i out of (i,j,k) in 3D cube
+	* @param j
+	* represents index j out of (i,j,k) in 3D cube
+	* @param k
+	* represents index k out of (i,j,k) in 3D cube
 	* @return String 
 	*/
 	public String getBackColor(int i, int j, int k){
@@ -439,10 +518,13 @@ public abstract class RubiksCube{
 
 
 	/**
-	* @brief 
 	* returns the right color of 3D cube in String format for given Node
-	* @param i,j,k
-	* i,j,k represents the index of the Node in the 3D cube
+	* @param i
+	* represents index i out of (i,j,k) in 3D cube
+	* @param j
+	* represents index j out of (i,j,k) in 3D cube
+	* @param k
+	* represents index k out of (i,j,k) in 3D cube
 	* @return String 
 	*/
 	public String getFrontColor(int i, int j, int k){
@@ -450,16 +532,7 @@ public abstract class RubiksCube{
     }
 
 	
-	/**
-	* @brief 
-	* returns the front/back color of 3D cube in String format for given Node
-	* @param i,j,k
-	* @param type
-	* i,j,k represents the index of the Node in the 3D cube
-	* if type = FRONT the front color is returned
-	* if type = BACK the back color is returned
-	* @return String 
-	*/
+	//returns frontcolor,backcolor for given index if type is FRONT,BACK respectively
 	private String getFrontBackColor(int i, int j, int k, String type){
 		if(type.equals(FRONT) && (i != 0))return null;
 		else if(type.equals(BACK) && (i != dimension-1))return null;
@@ -468,28 +541,33 @@ public abstract class RubiksCube{
 
 
 	/**
-	* @brief 
 	* returns the color of given index of 3D cube in String format
-	* @param i,j,k
-	* @param index
+	* @param i
+	* represents index i out of (i,j,k) in 3D cube
+	* @param j
+	* represents index j out of (i,j,k) in 3D cube
+	* @param k
+	* represents index k out of (i,j,k) in 3D cube
+	* @param subIndex
+	* represents the index of color[] within given Node
 	* @param color
-	* i,j,k represents the index of the Node in the 3D cube
 	* index represents the index within the Node
 	* color represents the color to be set
-	* @return void 
 	*/
 	public void setColor(int i, int j, int k, int subIndex, String color){
 		piece[i][j][k].setColor(subIndex,color);
 	}
 
 	/**
-	* @brief 
 	* sets the up color of 3D cube in String format for given Node
-	* @param i,j,k
+	* @param i
+	* represents index i out of (i,j,k) in 3D cube
+	* @param j
+	* represents index j out of (i,j,k) in 3D cube
+	* @param k
+	* represents index k out of (i,j,k) in 3D cube
 	* @param color
-	* i,j,k represents the index of the Node in the 3D cube
 	* color represents the color to be set
-	* @return void 
 	*/
 	public void setUpColor(int i, int j, int k, String color){
 		setUpDownColor(i,j,k,UP,color);
@@ -497,31 +575,22 @@ public abstract class RubiksCube{
 
 
 	/**
-	* @brief 
 	* sets the down color of 3D cube in String format for given Node
-	* @param i,j,k
+	* @param i
+	* represents index i out of (i,j,k) in 3D cube
+	* @param j
+	* represents index j out of (i,j,k) in 3D cube
+	* @param k
+	* represents index k out of (i,j,k) in 3D cube
 	* @param color
-	* i,j,k represents the index of the Node in the 3D cube
 	* color represents the color to be set
-	* @return void
 	*/
 	public void setDownColor(int i, int j, int k, String color){
 		setUpDownColor(i,j,k,DOWN,color);
     }
 
 
-	/**
-	* @brief 
-	* sets the Up/down color of 3D cube in String format for given Node
-	* @param i,j,k	
-	* @param type
-	* @param color
-	* i,j,k represents the index of the Node in the 3D cube
-	* if type = UP up color is returned
-	* if type = DOWN down color is returned
-	* color represents the color to be set
-	* @return void
-	*/
+	//sets upcolor,downcolor for given index if type is UP,DOWN respectively as color
 	private void setUpDownColor(int i, int j, int k, String type, String color){
 		if(type.equals(UP) && (j != 0))return;
 		else if(type.equals(DOWN) && (j != dimension-1))return;
@@ -532,13 +601,15 @@ public abstract class RubiksCube{
 	}
 
 	/**
-	* @brief 
 	* sets the left color of 3D cube in String format for given Node
-	* @param i,j,k
+	* @param i
+	* represents index i out of (i,j,k) in 3D cube
+	* @param j
+	* represents index j out of (i,j,k) in 3D cube
+	* @param k
+	* represents index k out of (i,j,k) in 3D cube
 	* @param color
-	* i,j,k represents the index of the Node in the 3D cube
 	* color represents the color to be set
-	* @return void
 	*/
 	public void setLeftColor(int i, int j, int k, String color){
         setLeftRightColor(i,j,k,LEFT,color);
@@ -546,31 +617,22 @@ public abstract class RubiksCube{
 
 
 	/**
-	* @brief 
 	* sets the right color of 3D cube in String format for given Node
-	* @param i,j,k
+	* @param i
+	* represents index i out of (i,j,k) in 3D cube
+	* @param j
+	* represents index j out of (i,j,k) in 3D cube
+	* @param k
+	* represents index k out of (i,j,k) in 3D cube
 	* @param color
-	* i,j,k represents the index of the Node in the 3D cube
 	* color represents the color to be set
-	* @return void
 	*/
 	public void setRightColor(int i, int j, int k, String color){
         setLeftRightColor(i,j,k,RIGHT,color);
     }
 
 	
-	/**
-	* @brief 
-	* sets the left/right color of 3D cube in String format for given Node
-	* @param i,j,k
-	* @param type
-	* @param color
-	* i,j,k represents the index of the Node in the 3D cube
-	* if type = RIGHT the right color is returned
-	* if type = LEFT the left color is returned
-	* color represents the color to be set
-	* @return void
-	*/
+	//sets leftcolor,rightcolor for given index if type is LEFT,RIGHT respectively as color
 	private void setLeftRightColor(int i, int j, int k, String type, String color){
 		if(type.equals(LEFT) && k != 0)return;
 		else if(type.equals(RIGHT) && (k != dimension-1))return;
@@ -580,13 +642,15 @@ public abstract class RubiksCube{
 	
 
 	/**
-	* @brief 
 	* sets the back color of 3D cube in String format for given Node
-	* @param i,j,k
+	* @param i
+	* represents index i out of (i,j,k) in 3D cube
+	* @param j
+	* represents index j out of (i,j,k) in 3D cube
+	* @param k
+	* represents index k out of (i,j,k) in 3D cube
 	* @param color
-	* i,j,k represents the index of the Node in the 3D cube
 	* color represents the color to be set
-	* @return void
 	*/
 	public void setBackColor(int i, int j, int k, String color){
         setFrontBackColor(i,j,k,BACK,color);
@@ -594,31 +658,22 @@ public abstract class RubiksCube{
 
 
 	/**
-	* @brief 
 	* sets the right color of 3D cube in String format for given Node
-	* @param i,j,k
+	* @param i
+	* represents index i out of (i,j,k) in 3D cube
+	* @param j
+	* represents index j out of (i,j,k) in 3D cube
+	* @param k
+	* represents index k out of (i,j,k) in 3D cube
 	* @param color
-	* i,j,k represents the index of the Node in the 3D cube
 	* color represents the color to be set
-	* @return void
 	*/
 	public void setFrontColor(int i, int j, int k, String color){
         setFrontBackColor(i,j,k,FRONT,color);
     }
 
 
-	/**
-	* @brief 
-	* sets the front/back color of 3D cube in String format for given Node
-	* @param i,j,k
-	* @param type
-	* @param color
-	* i,j,k represents the index of the Node in the 3D cube
-	* if type = FRONT the front color is returned
-	* if type = BACK the back color is returned
-	* color represents the color to be set
-	* @return void
-	*/
+	//sets frontcolor,backcolor for given index if type is FRONT,BACK respectively as color
 	private void setFrontBackColor(int i, int j, int k, String type, String color){
 		if(type.equals(FRONT) && (i != 0))return;
 		else if(type.equals(BACK) && (i != dimension-1))return;
@@ -626,14 +681,13 @@ public abstract class RubiksCube{
 	}
 
 
-	/**
-	* @brief 
+	/** 
 	* returns the rotate operation performed in String format
 	* @param i
-	* @param direction
 	* i represents the layer of the cube to be rotated
-	* direction = R_CLK rotates ith layer of cube in clkwise direction
-	* direction = R_ANTICLK rotates ith layer of cube in anticlkwise direction
+	* @param direction
+	* for direction R_CLK,R_ANTICLK rotation of ith layer of
+	* cube happens in clkwise,anticlk direction respectively
 	* @return String 
 	*/
 	public String rotate(int i, boolean direction){
@@ -700,13 +754,12 @@ public abstract class RubiksCube{
 
 
 	/**
-	* @brief 
 	* returns the horizontal operation performed in String format
 	* @param j
-	* @param direction
 	* j represents the layer of the cube to be moved horizontally
-	* direction = H_RIGHT moves jth layer of cube in the right direction
-	* direction = H_LEFT moves jth layer of cube in the left direction
+	* @param direction
+	* for direction H_RIGHT,H_LEFT horizontal move of jth layer of 
+	* cube happens in horizontal right,horizontal left direction respectively
 	* @return String 
 	*/
 	public String horizontal(int j, boolean direction){
@@ -781,13 +834,12 @@ public abstract class RubiksCube{
 
 	
 	/**
-	* @brief 
 	* returns the vertical operation performed in String format
 	* @param k
-	* @param direction
 	* k represents the layer of the cube to be moved vertically
-	* direction = V_UP moves kth layer of cube in the upward direction
-	* direction = V_DOWN moves kth layer of cube in the downward direction
+	* @param direction
+	* for direction V_UP,V_DOWN vertical move of kth layer of 
+	* cube happens in vertical up,vertical down direction respectively
 	* @return String 
 	*/
 	public String vertical(int k, boolean direction){
@@ -856,13 +908,7 @@ public abstract class RubiksCube{
 	}
 
 
-	/**
-	* @brief 
-	* transposes the faceColor[][]
-	* @param faceColor
-	* faceColor[][] holds all the face Color to be transposed
-	* @return void 
-	*/
+	//transposes faceColor matrix
 	private void transpose(String faceColor[][]){	
         for(int i = 0; i < faceColor.length; i++){
             for(int j = 0; j < i; j++){
@@ -874,16 +920,7 @@ public abstract class RubiksCube{
 	}
 
 
-	/**
-	* @brief 
-	* rotates given faceColor in R_CLK or R_ANTICLK
-	* @param faceColor
-	* @param direction
-	* faceColor represents all the faceColor
-	* direction = R_CLK rotates faceColor[][] in clkwise direction
-	* direction = R_ANTICLK rotates faceColor[][] in anticlkwise direction
-	* @return void 
-	*/
+	//performs rotation of faceColor by transpose method
 	private void rotateFaceColor(String faceColor[][], boolean direction){
 
 		transpose(faceColor);
@@ -911,11 +948,9 @@ public abstract class RubiksCube{
 
 
 	/**
-	* @brief 
 	* returns the circleHorizontal operation performed in String format
 	* @param direction
-	* direction = H_RIGHT moves the entire cube towards right direction
-	* direction = H_LEFT moves the entire cube towards left direction
+	* for direction H_RIGHT,H_RIGHT entire cube moves towards right,left direction respectively
 	* @return String 
 	*/
 	public String circleHorizontal(boolean direction){
@@ -924,20 +959,18 @@ public abstract class RubiksCube{
 			horizontal(count,direction);
 
 		if(direction == H_RIGHT	)
-			return HORIZONTAL+" "+RIGHT;
+			return CIRCLE+" "+HORIZONTAL+" "+RIGHT;
 		else if(direction == H_LEFT)
-			return HORIZONTAL+" "+LEFT;
+			return CIRCLE+" "+HORIZONTAL+" "+LEFT;
 		else
 			return null;	
 	}
 	
 
 	/**
-	* @brief 
 	* returns the circleHorizontal operation performed in String format
 	* @param direction
-	* direction = V_UP moves the entire cube towards upward direction
-	* direction = V_DOWN moves the entire cube towards downward direction
+	* for direction V_UP,V_DOWN the entire cube moves up,down direction respectively
 	* @return String 
 	*/
 	public String circleVertical(boolean direction){
@@ -946,20 +979,18 @@ public abstract class RubiksCube{
 			vertical(count,direction);
 		
 		if(direction == V_UP)
-			return VERTICAL+" "+UP;
+			return CIRCLE+" "+VERTICAL+" "+UP;
 		else if(direction == V_DOWN)
-			return VERTICAL+" "+DOWN;
+			return CIRCLE+" "+VERTICAL+" "+DOWN;
 		else 
 			return null;
 	}	
 
 	
 	/**
-	* @brief 
 	* returns the circleRotate operation performed in String format
 	* @param direction
-	* direction = R_CLK moves the entire cube in clk direction
-	* direction = R_ANTICLK moves the entire cube in anti-clk direction
+	* for direction R_CLK,R_ANTICLK entire cube moves in clk,anticlk direction respectively
 	* @return String 
 	*/
 	public String circleRotate(boolean direction){
@@ -968,9 +999,9 @@ public abstract class RubiksCube{
 			rotate(count,direction);
 		
 		if(direction == R_CLK)
-			return ROTATE+" "+CLKWISE;
+			return CIRCLE+" "+ROTATE+" "+CLKWISE;
 		else if(direction == R_ANTICLK)
-			return ROTATE+" "+ANTICLK;
+			return CIRCLE+" "+ROTATE+" "+ANTICLK;
 		else
 			return null;
 	}

@@ -1,18 +1,16 @@
 /**
- * @file RubiksCube3X3.java
- * @author Sampanna T (kashisadan16@gmail.com)
- * @brief 
- * Provides complete implementation of RubiksCube class to perform all rubiks cube moves
- * 
- * @date 8th June 2022
+ * Provides implementation of RubiksCube class to 
+ * perform all operations on 3X3 RubiksCube
+ * @author Sampanna T (kashi16sadan@gmail.com)
+ * @version 1.0 8th June 2022
+ * @since JDK 10.0.2
  */
-
 public class RubiksCube3X3 extends RubiksCube{
 
 	/**
-	* @brief 
-	* creates all the nodes of the RubiksCube & sets the colors based on user input 
-	* @return void 
+	* creates all the nodes of the RubiksCube and sets the colors based on user input 
+	* @throws Exception 
+	* RubiksCube3X3 couldn't be initialized due to invalid user input provided 
 	*/
     public RubiksCube3X3()throws Exception{
         super(3);
@@ -21,11 +19,11 @@ public class RubiksCube3X3 extends RubiksCube{
 
 
 	/**
-	* @brief 
-	* creates all the nodes of the RubiksCube & sets the colors from space separated String 
+	* initializes the RubiksCube with colors given in colorInput
 	* @param colorInput
-	* colorInput must hold all the colors of RubiksCube
-	* @return void 
+	* holds all the colors of RubiksCube in String format
+	* @throws Exception
+	* RubiksCube3X3 couldn't be initialized due to invalid colorInput provided 
 	*/
 	public RubiksCube3X3(String colorInput)throws Exception{
 		super(3);
@@ -34,11 +32,10 @@ public class RubiksCube3X3 extends RubiksCube{
 
 
 	/**
-	* @brief 
 	* returns the rotate operation performed in String format
 	* @param direction
-	* direction = R_CLK rotates Front layer of cube in clkwise direction
-	* direction = R_ANTICLK rotates Front layer of cube in anticlkwise direction
+	* for directions R_CLK,R_ANTICLK rotation is performed on Front layer of the cube in
+	* clkwise,anticlkwise direction respectively
 	* @return String 
 	*/
 	public String rotateFront(boolean direction){
@@ -48,11 +45,10 @@ public class RubiksCube3X3 extends RubiksCube{
 
 
 	/**
-	* @brief 
 	* returns the rotate operation performed in String format
 	* @param direction
-	* direction = R_CLK rotates Midddle layer of cube in clkwise direction
-	* direction = R_ANTICLK rotates Middle layer of cube in anticlkwise direction
+	* for directions R_CLK,R_ANTICLK rotation is performed on Middle layer of the cube in 
+	* clkwise,anticlkwise direction respectively 
 	* @return String 
 	*/
 	public String rotateMiddle(boolean direction){		
@@ -62,11 +58,10 @@ public class RubiksCube3X3 extends RubiksCube{
 
 
 	/**
-	* @brief 
 	* returns the rotate operation performed in String format
 	* @param direction
-	* direction = R_CLK rotates Back layer of cube in clkwise direction
-	* direction = R_ANTICLK rotates Back layer of cube in anticlkwise direction
+	* for directions R_CLK,R_ANTICLK rotation is performed on Back layer of cube in
+	* clkwise,anticlkwise direction respectively 
 	* @return String 
 	*/
 	public String rotateBack(boolean direction){		
@@ -74,12 +69,12 @@ public class RubiksCube3X3 extends RubiksCube{
 		return super.rotate(i,direction)+" "+LAYER+(i+1);
 	}
 
+
 	/**
-	* @brief 
 	* returns the horizontal operation performed in String format
 	* @param direction
-	* direction = H_RIGHT moves Up layer of cube in the right direction
-	* direction = H_LEFT moves Up layer of cube in the left direction
+	* for directions H_RIGHT,H_LEFT move will be performed on Up layer of cube in 
+	* right,left direction respectively
 	* @return String 
 	*/
 	public String upHorizontal(boolean direction){
@@ -89,11 +84,10 @@ public class RubiksCube3X3 extends RubiksCube{
 
 
 	/**
-	* @brief 
 	* returns the horizontal operation performed in String format
 	* @param direction
-	* direction = H_RIGHT moves Middle layer of cube in the right direction
-	* direction = H_LEFT moves Middle layer of cube in the left direction
+	* for directions H_RIGHT,H_LEFT move will be performed on Middle layer of cube in
+	* right,left direction respectively
 	* @return String 
 	*/
 	public String middleHorizontal(boolean direction){
@@ -103,11 +97,10 @@ public class RubiksCube3X3 extends RubiksCube{
 
 
 	/**
-	* @brief 
 	* returns the horizontal operation performed in String format
 	* @param direction
-	* direction = H_RIGHT moves Down layer of cube in the right direction
-	* direction = H_LEFT moves Down layer of cube in the left direction
+	* for directions H_RIGHT,H_LEFT move will be performed on Down layer of cube in 
+	* right,left direction resectively
 	* @return String 
 	*/
 	public String downHorizontal(boolean direction){
@@ -117,11 +110,10 @@ public class RubiksCube3X3 extends RubiksCube{
 
 	
 	/**
-	* @brief 
 	* returns the vertical operation performed in String format
 	* @param direction
-	* direction = V_UP moves Left layer of cube in the upward direction
-	* direction = V_DOWN moves Left layer of cube in the downward direction
+	* for directions V_UP,V_DOWN move will be performed on Left layer of cube in
+	* up,down direction respectively
 	* @return String 
 	*/
 	public String leftVertical(boolean direction){
@@ -131,11 +123,10 @@ public class RubiksCube3X3 extends RubiksCube{
 
 
 	/**
-	* @brief 
 	* returns the vertical operation performed in String format
 	* @param direction
-	* direction = V_UP moves Middle layer of cube in the upward direction
-	* direction = V_DOWN moves Middle layer of cube in the downward direction
+	* for directions V_UP,V_DOWN move will be performed on Middle layer of cube in 
+	* up,down direction respectively
 	* @return String 
 	*/
 	public String middleVertical(boolean direction){
@@ -145,11 +136,10 @@ public class RubiksCube3X3 extends RubiksCube{
 
 
 	/**
-	* @brief 
 	* returns the vertical operation performed in String format
 	* @param direction
-	* direction = V_UP moves Right layer of cube in the upward direction
-	* direction = V_DOWN moves Right layer of cube in the downward direction
+	* for directions V_UP,V_DOWN move will be performed on Right layer of cube in 
+	* up,down direction respectively
 	* @return String 
 	*/
 	public String rightVertical(boolean direction){
@@ -159,11 +149,10 @@ public class RubiksCube3X3 extends RubiksCube{
 
 
 	/**
-	* @brief 
 	* returns the circleHorizontal operation performed in String format
 	* @param direction
-	* direction = H_RIGHT moves the entire cube towards right direction
-	* direction = H_LEFT moves the entire cube towards left direction
+	* for directions H_RIGHT,H_LEFT move will be performed on entire cube 
+	* in right,left direction respectively
 	* @return String 
 	*/
 	public String circleHorizontal(boolean direction){
@@ -172,11 +161,10 @@ public class RubiksCube3X3 extends RubiksCube{
 	
 
 	/**
-	* @brief 
 	* returns the circleVertical operation performed in String format
 	* @param direction
-	* direction = V_UP moves the entire cube towards upward direction
-	* direction = V_DOWN moves the entire cube towards downward direction
+	* for directions V_UP,V_DOWN move will be performed on entire cube 
+	* in up,down direction respectively
 	* @return String 
 	*/
 	public String circleVertical(boolean direction){
@@ -185,11 +173,10 @@ public class RubiksCube3X3 extends RubiksCube{
 
 		
 	/**
-	* @brief 
 	* returns the circleRotate operation performed in String format
 	* @param direction
-	* direction = R_CLK moves the entire cube in clk direction
-	* direction = R_ANTICLK moves the entire cube in anticlk direction
+	* for direction R_CLK,R_ANTICLK move will be performed on entire cube in 
+	* clkwise,anticlkwise direction respectively
 	* @return String 
 	*/
 	public String circleRotate(boolean direction){

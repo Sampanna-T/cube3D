@@ -1,47 +1,41 @@
+import javafx.util.Pair;
+import java.util.List;
+
 /**
- * @file AlignCenter.java
- * @author Sampanna T (kashisadan16@gmail.com)
- * @brief 
- * Solves AlignCenter of RubiksCube & returns the solution pair list
- * 
- * @date 30th June 2022
+ * Solves AlignCenter of RubiksCube and returns the solution pair list
+ * @author Sampanna T (kashi16sadan@gmail.com)
+ * @version 1.0 30th June 2022
+ * @since JDK 10.0.2
  */
- import javafx.util.Pair;
- import java.util.List;
-public class AlignCenter {
+class AlignCenter {
     
     private RubiksCube3X3 cube3X3;
     private List <Pair<String,String>>solution;
     
     /**
-	* @brief 
-	* initializes AlignCenter object with cube object & solution list 
-	* @param cube3X3
+	* initializes AlignCenter object with cube object and solution list 
+    * @param cube3X3
+    * Reference to RubiksCube3X3 object
     * @param solution
-    * cube3X3 holds RubiksCube3X3 object
-    * solution holds [step to be performed, RubiksCube state] pair
+    * Reference to a list containing [move to be performed, Rubikscube state] pair
 	*/
-    public AlignCenter(RubiksCube3X3 cube3X3, List <Pair<String,String>>solution){
+    AlignCenter(RubiksCube3X3 cube3X3, List <Pair<String,String>>solution){
         this.cube3X3 = cube3X3;
         this.solution = solution;
     }
 
 
     /**
-	* @brief
 	* solves the AlignCenter
-	* @return void 
+    * @throws Exception
+    * If AlignCenter couldn't be solved
 	*/
-    public void solveAll()throws Exception{
+    void solveAll()throws Exception{
         align();
     }
 
 
-    /**
-	* @brief
-	* aligns all the up layer edge pieces at the right position
-	* @return void 
-	*/
+	//aligns all the up layer edge pieces at the right position
     private void align()throws Exception{
         byte loopCheck = 0;
 
@@ -80,11 +74,7 @@ public class AlignCenter {
     }
 
 
-    /**
-	* @brief
-	* checks if the center is aligned or not
-	* @return boolean 
-	*/
+    //returns true if the center is aligned
     private boolean isCenterAligned(){
         String frontMidColor = cube3X3.getFrontColor(0,1,1);
         String leftMidColor = cube3X3.getLeftColor(1,1,0);
@@ -103,11 +93,7 @@ public class AlignCenter {
     }
     
 
-    /**
-	* @brief
-	* checks if adjacent colors are aligned or not
-	* @return boolean 
-	*/
+    //returns true if adjacent colors are aligned
     private boolean isAdjacentColorsAligned(){
         String frontMidColor=cube3X3.getFrontColor(0,1,1);
         String leftMidColor=cube3X3.getLeftColor(1,1,0);
@@ -129,11 +115,7 @@ public class AlignCenter {
     }
     
 
-    /**
-	* @brief
-	* checks if opposite colors are aligned or not
-	* @return boolean 
-	*/
+	//returns true if opposite colors are aligned 
     private boolean isOppositeColorsAligned(){
         String frontMidColor = cube3X3.getFrontColor(0,1,1);
         String leftMidColor = cube3X3.getLeftColor(1,1,0);

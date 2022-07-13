@@ -1,27 +1,30 @@
-/**
- * @file ValidateCube.java
- * @author Sampanna T (kashi16sadan@gmail.com)
- * @brief 
- * methods to validate the RubiksCube object
- * 
- * @date 5th July 2022
- */
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-public class ValidateCube{
+/**
+ * Contains essential methods to validate the RubiksCube of any dimension
+ * @author Sampanna T (kashi16sadan@gmail.com)
+ * @version 1.0 5th July 2022
+ * @since JDK 10.0.2
+ */
+public interface ValidateCube{
 
 	/**
-	* @brief 
-	* returns true if all the nodes of the RubiksCube are valid
+	* returns true if colors within all the nodes of the RubiksCube are valid
 	* @param cube
-	* cube basically holds RubiksCube object whose Nodes have to be checked
+	* Reference to RubiksCube object whose Nodes have to be checked
+    * @throws NullPointerException
+    * if the RubiksCube is pointing to null
+    * @throws Exception
+    * if the number of colors received for a given Node is invalid
 	* @return boolean
 	*/
-    public static boolean isNodeValid(RubiksCube cube)throws Exception{
+    static boolean isNodeValid(RubiksCube cube)throws Exception{
         int dimension = cube.getDimension();
+        if(cube == null)
+            throw new NullPointerException("RUBIKSCUBE NOT INITIALIZED");
 
         for(int i = 0; i < dimension; i++){
             for(int j = 0; j < dimension; j++){
@@ -40,13 +43,7 @@ public class ValidateCube{
     }
 
 
-	/**
-	* @brief 
-	* returns true if there are duplicate
-	* @param colors
-	* checks if there are duplicates in colors[] or not
-	* @return boolean
-	*/
+	//checks if there are duplicates in colors[] or not
     private static boolean isDuplicate(String colors[]){
         
         if(colors.length == RubiksCube.CORNER_COUNT){
@@ -66,12 +63,25 @@ public class ValidateCube{
     }
 
 
-    public static boolean isColorValid(RubiksCube cube)throws Exception{
+	/**
+	* returns true if all the colors of the RubiksCube are valid
+	* @param cube
+	* Reference to RubiksCube object whose Nodes have to be checked
+    * @throws NullPointerException
+    * if the RubiksCube is pointing to null
+    * @throws Exception
+    * if the number of colors received is greater than the actual number of colors of RubiksCube
+	* @return boolean
+	*/
+    static boolean isColorValid(RubiksCube cube)throws Exception{
+        if(cube == null)
+            throw new NullPointerException("RubiksCube not initialized");
 
         String colors[] = (cube.toString()).split(" ");
         int dimension = cube.getDimension();
         int colorCount = (dimension*dimension*RubiksCube.FACE_COUNT);
-        if(colors.length != colorCount)throw new Exception("INVALID COLOR COUNT");
+        if(colors.length != colorCount)
+            throw new Exception("INVALID COLOR COUNT");
 
         HashMap <String,Integer>result = new HashMap<String,Integer>();
 

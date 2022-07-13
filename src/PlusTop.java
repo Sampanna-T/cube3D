@@ -1,47 +1,40 @@
-/**
- * @file PlusTop.java
- * @author Sampanna T (kashisadan16@gmail.com)
- * @brief 
- * Solves PlusTop of RubiksCube & returns the solution pair list
- * 
- * @date 30th June 2022
- */
-
 import javafx.util.Pair;
 import java.util.List;
 
-public class PlusTop {
+/**
+ * Solves PlusTop of RubiksCube and returns the solution pair list
+ * @author Sampanna T (kashi16sadan@gmail.com) 
+ * @version 1.0 30th June 2022
+ * @since JDK 10.0.2
+ */
+class PlusTop {
 
     private RubiksCube3X3 cube3X3;
     private List <Pair<String,String>>solution;
     
     /**
-	* @brief 
-	* initializes PlusTop object with cube object & solution list 
-	* @param cube3X3
+	* initializes PlusTop object with cube object and solution list 
+    * @param cube3X3
+    * Reference to RubiksCube3X3 object
     * @param solution
-    * cube3X3 holds RubiksCube3X3 object
-    * solution holds [step to be performed, RubiksCube state] pair
+    * Reference to a list containing [move to be performed, Rubikscube state] pair
 	*/
-    public PlusTop(RubiksCube3X3 cube3X3, List <Pair<String,String>>solution){
+    PlusTop(RubiksCube3X3 cube3X3, List <Pair<String,String>>solution){
         this.cube3X3 = cube3X3;
         this.solution = solution;
     }
     
     /**
-	* @brief
 	* solves the PlusTop
-	* @return void 
+    * @throws Exception
+    * if PlusTop couldn't be solved
 	*/
-    public void solveAll()throws Exception{
+    void solveAll()throws Exception{
         solvePlus();
     }
 
-    /**
-	* @brief
-	* solves the plus on top
-	* @return void 
-	*/
+    
+    //solves the plus on top
     private void solvePlus()throws Exception{
         byte loopCheck = 0;
         while(!isTopPlus()){//while
@@ -61,11 +54,8 @@ public class PlusTop {
         }//while
     }
 
-    /**
-	* @brief
-	* checks if Top is plus or not
-	* @return boolean 
-	*/
+
+    //returns true if Top is plus
     private boolean isTopPlus(){
         String upMidColor = cube3X3.getUpColor(1,0,1);
         String upFUMColor = cube3X3.getUpColor(0,0,1);
@@ -80,11 +70,8 @@ public class PlusTop {
     }
     
 
-    /**
-	* @brief
-	* checks if top is dot or not
-	* @return boolean 
-	*/
+    
+	//returns true if top is dot 
     private boolean isTopDot(){
         String upMidColor = cube3X3.getUpColor(1,0,1);
         String upFUMColor = cube3X3.getUpColor(0,0,1);
@@ -99,11 +86,7 @@ public class PlusTop {
     }
     
 
-    /**
-	* @brief
-	* checks if top is L or Minus
-	* @return void 
-	*/
+    //returns true top is L or Minus
     private boolean isTopLORMinus(){
         String upMidColor = cube3X3.getUpColor(1,0,1);
         String upFUMColor = cube3X3.getUpColor(0,0,1);

@@ -1,24 +1,27 @@
 /**
- * @file Node.java
- * @author Sampanna T (kashisadan16@gmail.com)
- * @brief 
- * Provides partial implementation of a Node of a Cube
- * 
- * @date 3rd June 2022
- */
- 
+ * Provides functionality of a Node in the RubiksCube
+ * @author Sampanna T (kashi16sadan@gmail.com)
+ * @version 1.0 3rd June 2022
+ * @since JDK 10.0.2
+ */ 
 public class Node{
+
+    /**
+    * max value permitted for size i.e for storing colors
+    */
+    public static final int MAX_SIZE = 3;
+    /**
+    * min value permitted for size i.e for storing colors
+    */
+    public static final int MIN_SIZE = 0;
     
-    public static final int MAX_SIZE = 3;//max value permitted for size i.e for storing colors
-    public static final int MIN_SIZE = 0;//min value permitted for size i.e for storing colors
-    
-    
-    private String color[];//contains all the colors for a given Node
+    //contains all the colors for a given Node
+    private String color[];
 
 
     /**
-	* @brief 
-	* constructor to initialize the Node 
+	* 
+	* initializes the Node 
 	* @param size
 	* represents the size of color[] 
 	*/
@@ -28,7 +31,7 @@ public class Node{
 
 
     /**
-	* @brief 
+	* 
 	* creates a new String[] object and assigns it to color
 	* @param size
     * represents the size of color[] being created 
@@ -40,8 +43,7 @@ public class Node{
     }
 
 
-    /**
-	* @brief 
+    /** 
 	* returns the size of color[]
 	* @return int 
 	*/
@@ -51,12 +53,15 @@ public class Node{
 
 
     /**
-	* @brief 
-	* returns size of color[] for given dimension & i,j,k value
-	* @param i,j,k
-	* @param dimension
-    * i,j,k represents Node index of 3D cube
-    * dimension represents the dimension of 3D cube
+	* returns size of color[] for given dimension and i,j,k value
+	* @param i
+	* represents index i out of (i,j,k) in 3D cube
+	* @param j
+	* represents index j out of (i,j,k) in 3D cube
+	* @param k
+	* represents index k out of (i,j,k) in 3D cube
+    * @param dimension
+    * represents the dimension of 3D cube
 	* @return int 
 	*/
     public static int getCount(int i, int j, int k, int dimension){
@@ -69,13 +74,16 @@ public class Node{
     }
 
 
-    /**
-	* @brief 
+    /** 
 	* returns true if i,j,k value are valid for given dimension
-	* @param i,j,k
-	* @param dimension
-    * i,j,k represents Node index of 3D cube
-    * dimension represents the dimension of 3D cube
+	* @param i
+	* represents index i out of (i,j,k) in 3D cube
+	* @param j
+	* represents index j out of (i,j,k) in 3D cube
+	* @param k
+	* represents index k out of (i,j,k) in 3D cube
+    * @param dimension
+    * represents the dimension of 3D cube
 	* @return boolean 
 	*/
     public static boolean isIndexValid(int i, int j, int k, int dimension){
@@ -91,12 +99,15 @@ public class Node{
 
 
     /**
-	* @brief 
 	* returns true if i,j,k represents a valid corner Node for given dimension i.e. color[] holding 3 colors
-	* @param i,j,k
-	* @param dimension
-    * i,j,k represents Node index of 3D cube
-    * dimension represents the dimension of 3D cube
+	* @param i
+	* represents index i out of (i,j,k) in 3D cube
+	* @param j
+	* represents index j out of (i,j,k) in 3D cube
+	* @param k
+	* represents index k out of (i,j,k) in 3D cube
+    * @param dimension
+    * represents the dimension of 3D cube
 	* @return boolean 
 	*/
     public static boolean isCornerNode(int i, int j, int k, int dimension){
@@ -112,12 +123,15 @@ public class Node{
 
 
     /**
-	* @brief 
 	* returns true if i,j,k represents a valid edge Node for given dimension i.e. color[] holding 2 colors
-	* @param i,j,k
-	* @param dimension
-    * i,j,k represents Node index of 3D cube
-    * dimension represents the dimension of 3D cube
+	* @param i
+	* represents index i out of (i,j,k) in 3D cube
+	* @param j
+	* represents index j out of (i,j,k) in 3D cube
+	* @param k
+	* represents index k out of (i,j,k) in 3D cube
+    * @param dimension
+    * represents the dimension of 3D cube
 	* @return boolean 
 	*/
     public static boolean isEdgeNode(int i, int j, int k, int dimension){
@@ -141,12 +155,15 @@ public class Node{
 
 
     /**
-	* @brief 
 	* returns true if i,j,k represents a valid center Node for given dimension i.e. color[] holding 1 color
-	* @param i,j,k
-	* @param dimension
-    * i,j,k represents Node index of 3D cube
-    * dimension represents the dimension of 3D cube
+	* @param i
+	* represents index i out of (i,j,k) in 3D cube
+	* @param j
+	* represents index j out of (i,j,k) in 3D cube
+	* @param k
+	* represents index k out of (i,j,k) in 3D cube
+    * @param dimension
+    * represents the dimension of 3D cube
 	* @return boolean 
 	*/
     public static boolean isCenterNode(int i, int j, int k, int dimension){
@@ -169,13 +186,12 @@ public class Node{
 
 
     /**
-	* @brief 
 	* returns true if given value lies in the range of from to to
 	* @param value
-	* @param from
-	* @param to
     * value represents the value to be checked if it is in the range 
+	* @param from
     * from represents start range
+	* @param to
     * to represents end range
 	* @return boolean 
 	*/
@@ -186,7 +202,6 @@ public class Node{
 
 
     /**
-	* @brief 
 	* returns all the colors in the form of String[]
 	* @return String[]
 	*/
@@ -202,7 +217,6 @@ public class Node{
 
 
     /**
-	* @brief 
 	* returns color for given subIndex i.e index of color[]
 	* @param subIndex
     * represents index of color[] 
@@ -217,10 +231,11 @@ public class Node{
 
 
     /**
-	* @brief 
-	* adds newColor to the color[] at given subIndex & returns true if valid
+	* adds newColor to the color[] at given subIndex and returns true if valid
 	* @param subIndex
+    * represents index of color[]
 	* @param newColor
+    * represents the color to be set
 	* @return boolean 
 	*/
     public boolean setColor(int subIndex, String newColor){

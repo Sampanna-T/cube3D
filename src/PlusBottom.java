@@ -1,36 +1,39 @@
-/**
- * @file PlusBottom.java
- * @author Sampanna T (kashisadan16@gmail.com)
- * @brief 
- * Solves PlusBottom of RubiksCube & returns the solution pair list
- * 
- * @date 29th June 2022
- */
 import javafx.util.Pair;
+import java.util.Map;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 
-public class PlusBottom{
+/**
+ * Solves PlusBottom of RubiksCube and returns the solution list
+ * @author Sampanna T (kashi16sadan@gmail.com)
+ * @version 1.0 29th June 2022
+ * @since JDK 10.0.2
+ */
+class PlusBottom{
 
     private RubiksCube3X3 cube3X3; 
     private List <Pair<String,String>>solution;
     
-   	/**
-	* @brief 
-	* initializes PlusBottom object with cube object & solution list 
-	* @return void
+   	/** 
+	* initializes PlusBottom object with cube object and solution list 
+    * @param cube3X3
+    * Reference to RubiksCube3X3 object
+    * @param solution
+    * Reference to a list containing [move to be performed, Rubikscube state] pair
 	*/
-    public PlusBottom(RubiksCube3X3 cube3X3, List <Pair<String,String>>solution){
+    PlusBottom(RubiksCube3X3 cube3X3, List <Pair<String,String>>solution){
         this.cube3X3 = cube3X3;
         this.solution = solution;
     }
 
 
 	/**
-	* @brief
-	* Solves PlusBottom & Adds [move,RubiksCube state] pair into the solution list  
-	* @return void 
+	* Solves PlusBottom and Adds [move to be performed,RubiksCube state] pair into the solution list
+    * @throws Exception
+    * If PlusBottom couldn't be solved   
 	*/
-    public void solveAll()throws Exception{
+    void solveAll()throws Exception{
 
             String downMidColor = cube3X3.getDownColor(1,2,1);
 
@@ -39,16 +42,15 @@ public class PlusBottom{
             solveColorDown(downMidColor);
 
             solvePlusBottom(downMidColor);
-
     }
 
-     
-    /**
-	* @brief 
+
+    /** 
 	* puts all the up layer edge pieces having downColor onto the up layer 
 	* @param downMidColor
-    * downMidColor basically represents middle color @ down layer
-	* @return void 
+    * represents middle color at down layer 
+    * @throws Exception
+    * if solveCoulor up Couldn't be performed due to infinite loop
 	*/
     private void solveColorUp(String downMidColor) throws Exception{
         byte loopCheck = 0;
@@ -74,12 +76,12 @@ public class PlusBottom{
     }
 
     
-    /**
-	* @brief 
+    /** 
 	* puts all the middle layer edge pieces having downColor on the up layer
 	* @param downMidColor
-    * downMidColor basically represents middle color @ down layer
-	* @return void 
+    * downMidColor basically represents middle color at down layer 
+    * @throws Exception
+    * if solveColorMiddle couldn't be performed due to infinte loop
 	*/
     private void solveColorMiddle(String downMidColor)throws Exception{
         byte loopCheck = 0;
@@ -115,12 +117,12 @@ public class PlusBottom{
     }
 
 
-   /**
-	* @brief 
+   /** 
 	* puts all the down layer edge pieces having downColor on the up layer
 	* @param downMidColor
-    * downMidColor basically represents middle color @ down layer
-	* @return void 
+    * downMidColor basically represents middle color at down layer 
+    * @throws Exception
+    * if solveColorDown couldn't be performed due to infinte loop
 	*/
     private void solveColorDown(String downMidColor)throws Exception{
         byte loopCheck = 0;
@@ -159,12 +161,12 @@ public class PlusBottom{
     }
 
 
-   /**
-	* @brief 
+   /** 
 	* Performs rotation to shift edge pieces of up layer to the down layer
 	* @param downMidColor
-    * downMidColor basically represents middle color @ down layer
-	* @return void 
+    * downMidColor basically represents middle color at down layer 
+    * @throws Exception
+    * if solvePlusBottom couldn't be performed due to infinte loop
 	*/
     private void solvePlusBottom(String downMidColor)throws Exception{
         byte loopCheck = 0;
@@ -184,12 +186,7 @@ public class PlusBottom{
     }
 
 
-    /**
-	* @brief 
-	* checks whether the edge pieces in the UP layer edge piece contains FRONT,BACK,LEFT,RIGHT color
-	* which is equal to downMidColor
-    * @return boolean 
-	*/
+	//returns true if edge pieces in the UP layer contains color equal to downMidColor
     private boolean isColorUp(){
         int j=0;
         
@@ -206,11 +203,8 @@ public class PlusBottom{
     }
 
 
-    /**
-	* @brief 
-	* checks whether the edge pieces in the MIDDLE layer contain color equal to downMidColor
-    * @return boolean 
-	*/
+    
+	//returns true if edge pieces in the MIDDLE layer contains color equal to downMidColor
     private boolean isColorMiddle(){
         int j=1;
         String downMidColor = cube3X3.getDownColor(1,2,1);
@@ -227,11 +221,7 @@ public class PlusBottom{
     }
 
  
-    /**
-	* @brief 
-	* checks whether the edge pieces in the DOWN layer contain color equal to downMidColor
-    * @return boolean 
-	*/
+	//returns true if edge pieces in the DOWN layer contain color equal to downMidColor
     private boolean isColorDown(){
         int j=2;
         String downMidColor = cube3X3.getDownColor(1,2,1);
