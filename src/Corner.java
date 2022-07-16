@@ -31,6 +31,8 @@ class Corner{
     * If Corner couldn't be solved 
 	*/
     void solveAll()throws Exception{
+        if(!Optimizer.isAlignCenterSolved(cube3X3))throw new Exception("SOLVE ALIGNCENTER");
+        
         solveCorner();
     }
     

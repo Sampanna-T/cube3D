@@ -32,6 +32,7 @@ class LayerFirst {
     * if LayerFirst couldn't be solved  
 	*/
     void solveAll()throws Exception{
+        if(!Optimizer.isPlusBottomSolved(cube3X3))throw new Exception("SOLVE PLUSBOTTOM");
         flipCube();
         solveLayerFirst();
         flipCube();

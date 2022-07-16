@@ -7,7 +7,7 @@ make.exe all --print-data-base --no-builtin-variables --no-builtin-rules --quest
 
 # This program built for i386-pc-mingw32
 
-# Make data base, printed on Wed Jul 13 19:00:40 2022
+# Make data base, printed on Sat Jul 16 11:52:02 2022
 
 # Variables
 
@@ -78,7 +78,7 @@ ELECTRON_RUN_AS_NODE = 1
 # automatic
 %F = $(notdir $%)
 # environment
-CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_23684_WLSKKAPSADZWVVWV
+CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_16072_ZYQNSXLFXJBUVFUX
 # makefile (from `makefile', line 3)
 CPFLAG = -cp
 # environment
@@ -98,7 +98,7 @@ PUBLIC = C:\Users\Public
 # environment
 VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
 # environment
-VSCODE_CODE_CACHE_PATH = C:\Users\kashi\AppData\Roaming\Code\CachedData\92d25e35d9bf1a6b16f7d0758f25d48ace11e5b9
+VSCODE_CODE_CACHE_PATH = C:\Users\kashi\AppData\Roaming\Code\CachedData\b06ae3b2d2dbfe28bca3134cc6be65935cdfea6a
 # environment
 APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
 # environment
@@ -144,7 +144,7 @@ PROCESSOR_IDENTIFIER = AMD64 Family 23 Model 96 Stepping 1, AuthenticAMD
 # environment
 OS = Windows_NT
 # environment
-VSCODE_IPC_HOOK = \\.\pipe\d2fe2cc3479b1bfa48d76b2738714933-1.69.0-main-sock
+VSCODE_IPC_HOOK = \\.\pipe\d2fe2cc3479b1bfa48d76b2738714933-1.69.1-main-sock
 # environment
 HOMEPATH = \Users\kashi
 # environment
@@ -165,6 +165,8 @@ SYSTEMROOT = C:\WINDOWS
 +F = $(notdir $+)
 # environment
 APPDATA = C:\Users\kashi\AppData\Roaming
+# environment
+__COMPAT_LAYER = DetectorsAppHealth
 # environment
 TEMP = C:\Users\kashi\AppData\Local\Temp
 # environment
@@ -198,11 +200,11 @@ LANG = C
 # environment
 PROCESSOR_LEVEL = 23
 # environment
-VSCODE_PID = 23684
+VSCODE_PID = 16072
 # environment
 USERDOMAIN_ROAMINGPROFILE = LAPTOP-FGFKSPOU
 # variable set hash-table stats:
-# Load=95/1024=9%, Rehash=0, Collisions=11/122=9%
+# Load=96/1024=9%, Rehash=0, Collisions=11/123=9%
 
 # Pattern-specific Variable Values
 
@@ -210,7 +212,7 @@ USERDOMAIN_ROAMINGPROFILE = LAPTOP-FGFKSPOU
 
 # Directories
 
-# . (key d:/Project/RubixCube/RubiksCube, mtime 1657608971): 14 files, no impossibilities.
+# . (key d:/Project/RubixCube/RubiksCube, mtime 1657720078): 14 files, no impossibilities.
 # C:\WinAVR-20100110\bin (key C:/WinAVR-20100110/bin, mtime 1619145347): 75 files, no impossibilities.
 # C:\WinAVR-20100110\utils\bin (key C:/WinAVR-20100110/utils/bin, mtime 1619145358): 99 files, no impossibilities so far.
 # C:\Program Files (x86)\RSA SecurID Token Common (key C:/Program Files (x86)/RSA SecurID Token Common, mtime 1652079791): 8 files, no impossibilities.
@@ -311,6 +313,6 @@ compileSrc:
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Wed Jul 13 19:00:40 2022
+# Finished Make data base on Sat Jul 16 11:52:02 2022
 
  

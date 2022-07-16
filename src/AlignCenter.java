@@ -31,6 +31,7 @@ class AlignCenter {
     * If AlignCenter couldn't be solved
 	*/
     void solveAll()throws Exception{
+        if(!Optimizer.isPlusTopSolved(cube3X3))throw new Exception("SOLVE PLUSTOP");
         align();
     }
 

@@ -145,39 +145,39 @@ class Optimizer{
             ++faceNumber;
 
             switch(stage){
-                case 1 : if(isPlusBottomSolved()){
+                case 1 : if(Optimizer.isPlusBottomSolved(cube3X3)){
                             if(!faceNumberFound){
                                 bestFaceNumber = faceNumber;
-                                if(isLayerFirstSolved())faceNumberFound = true;
+                                if(Optimizer.isLayerFirstSolved(cube3X3))faceNumberFound = true;
                             }
                          }
                          break;
-                case 2 : if(isLayerFirstSolved()){
+                case 2 : if(Optimizer.isLayerFirstSolved(cube3X3)){
                             bestFaceNumber = faceNumber;
                             if(!faceNumberFound)faceNumberFound = true;
                          }
                          break;
-                case 3 : if(isLayerSecondSolved()){
+                case 3 : if(Optimizer.isLayerSecondSolved(cube3X3)){
                             bestFaceNumber = faceNumber;
                             if(!faceNumberFound)faceNumberFound = true;
                          }
                          break;
-                case 4 : if(isPlusTopSolved()){
+                case 4 : if(Optimizer.isPlusTopSolved(cube3X3)){
                             bestFaceNumber = faceNumber;
                             if(!faceNumberFound)faceNumberFound = true;
                          }
                          break;
-                case 5 : if(isAlignCenterSolved()){
+                case 5 : if(Optimizer.isAlignCenterSolved(cube3X3)){
                             bestFaceNumber = faceNumber;
                             if(!faceNumberFound)faceNumberFound = true;
                          }
                          break;
-                case 6 : if(isCornerSolved()){
+                case 6 : if(Optimizer.isCornerSolved(cube3X3)){
                             bestFaceNumber = faceNumber;
                             if(!faceNumberFound)faceNumberFound = true;
                          }
             
-                case 7 : if(isLayerThirdSolved()){
+                case 7 : if(Optimizer.isLayerThirdSolved(cube3X3)){
                             bestFaceNumber = faceNumber;
                             if(!faceNumberFound)faceNumberFound = true;
                          }
@@ -188,38 +188,38 @@ class Optimizer{
         cube3X3.circleRotate(RubiksCube3X3.R_ANTICLK);
         ++faceNumber;
         switch(stage){
-            case 1 : if(isPlusBottomSolved()){
+            case 1 : if(Optimizer.isPlusBottomSolved(cube3X3)){
                         if(!faceNumberFound){
                             bestFaceNumber = faceNumber;
-                            if(isLayerFirstSolved())faceNumberFound = true;
+                            if(Optimizer.isLayerFirstSolved(cube3X3))faceNumberFound = true;
                         }
                      }
                      break;
-            case 2 : if(isLayerFirstSolved()){
+            case 2 : if(Optimizer.isLayerFirstSolved(cube3X3)){
                         bestFaceNumber = faceNumber;
                         if(!faceNumberFound)faceNumberFound = true;
                      }
                      break;
-            case 3 : if(isLayerSecondSolved()){
+            case 3 : if(Optimizer.isLayerSecondSolved(cube3X3)){
                         bestFaceNumber = faceNumber;
                         if(!faceNumberFound)faceNumberFound = true;
                      }
                      break;
-            case 4 : if(isPlusTopSolved()){
+            case 4 : if(Optimizer.isPlusTopSolved(cube3X3)){
                         bestFaceNumber = faceNumber;
                         if(!faceNumberFound)faceNumberFound = true;
                      }
                      break;
-            case 5 : if(isAlignCenterSolved()){
+            case 5 : if(Optimizer.isAlignCenterSolved(cube3X3)){
                         bestFaceNumber = faceNumber;
                         if(!faceNumberFound)faceNumberFound = true;
                      }
                      break;
-            case 6 : if(isCornerSolved()){
+            case 6 : if(Optimizer.isCornerSolved(cube3X3)){
                         bestFaceNumber = faceNumber;
                         if(!faceNumberFound)faceNumberFound = true;
                      }
-            case 7 : if(isLayerThirdSolved()){
+            case 7 : if(Optimizer.isLayerThirdSolved(cube3X3)){
                         bestFaceNumber = faceNumber;
                         if(!faceNumberFound)faceNumberFound = true;
                      }
@@ -229,38 +229,38 @@ class Optimizer{
         cube3X3.circleRotate(RubiksCube3X3.R_CLK);
         ++faceNumber;
         switch(stage){
-            case 1 : if(isPlusBottomSolved()){
+            case 1 : if(Optimizer.isPlusBottomSolved(cube3X3)){
                         if(!faceNumberFound){
                             bestFaceNumber = faceNumber;
-                            if(isLayerFirstSolved())faceNumberFound = true;
+                            if(Optimizer.isLayerFirstSolved(cube3X3))faceNumberFound = true;
                         }
                      }
                      break;
-            case 2 : if(isLayerFirstSolved()){
+            case 2 : if(Optimizer.isLayerFirstSolved(cube3X3)){
                         bestFaceNumber = faceNumber;
                         if(!faceNumberFound)faceNumberFound = true;
                      }
                      break;
-            case 3 : if(isLayerSecondSolved()){
+            case 3 : if(Optimizer.isLayerSecondSolved(cube3X3)){
                         bestFaceNumber = faceNumber;
                         if(!faceNumberFound)faceNumberFound = true;
                      }
                      break;
-            case 4 : if(isPlusTopSolved()){
+            case 4 : if(Optimizer.isPlusTopSolved(cube3X3)){
                         bestFaceNumber = faceNumber;
                         if(!faceNumberFound)faceNumberFound = true;
                      }
                      break;
-            case 5 : if(isAlignCenterSolved()){
+            case 5 : if(Optimizer.isAlignCenterSolved(cube3X3)){
                         bestFaceNumber = faceNumber;
                         if(!faceNumberFound)faceNumberFound = true;
                      }
                      break;
-            case 6 : if(isCornerSolved()){
+            case 6 : if(Optimizer.isCornerSolved(cube3X3)){
                         bestFaceNumber = faceNumber;
                         if(!faceNumberFound)faceNumberFound = true;
                      }
-            case 7 : if(isLayerThirdSolved()){
+            case 7 : if(Optimizer.isLayerThirdSolved(cube3X3)){
                         bestFaceNumber = faceNumber;
                         if(!faceNumberFound)faceNumberFound = true;
                      }
@@ -297,7 +297,7 @@ class Optimizer{
 	* returns true if PlusBottom is solved
     * @return boolean 
 	*/
-    private boolean isPlusBottomSolved(){
+    static boolean isPlusBottomSolved(RubiksCube3X3 cube3X3){
         String frontMidColor = cube3X3.getFrontColor(0,1,1);
         String leftMidColor = cube3X3.getLeftColor(1,1,0);
         String backMidColor = cube3X3.getBackColor(2,1,1);
@@ -324,8 +324,8 @@ class Optimizer{
 	* returns true if LayerFirst is solved
     * @return boolean 
 	*/
-    private boolean isLayerFirstSolved(){  
-        if(!isPlusBottomSolved())return false;
+    static boolean isLayerFirstSolved(RubiksCube3X3 cube3X3){  
+        if(!Optimizer.isPlusBottomSolved(cube3X3))return false;
 
         String frontMidColor = cube3X3.getFrontColor(0,1,1);
         String leftMidColor = cube3X3.getLeftColor(1,1,0);
@@ -361,8 +361,8 @@ class Optimizer{
 	* returns true if LayerSecond is solved
     * @return boolean 
 	*/
-    private boolean isLayerSecondSolved(){  
-        if(!isLayerFirstSolved())return false;
+    static boolean isLayerSecondSolved(RubiksCube3X3 cube3X3){  
+        if(!Optimizer.isLayerFirstSolved(cube3X3))return false;
 
         String frontMidColor = cube3X3.getFrontColor(0,1,1);
         String leftMidColor = cube3X3.getLeftColor(1,1,0);
@@ -393,8 +393,8 @@ class Optimizer{
 	* returns true if PlusTop is solved
     * @return boolean 
 	*/
-    private boolean isPlusTopSolved(){  
-        if(!isLayerSecondSolved())return false;
+    static boolean isPlusTopSolved(RubiksCube3X3 cube3X3){  
+        if(!Optimizer.isLayerSecondSolved(cube3X3))return false;
 
         String upMidColor = cube3X3.getUpColor(1,0,1);
         String upFUMColor = cube3X3.getUpColor(0,0,1);
@@ -413,8 +413,8 @@ class Optimizer{
 	* returns true if AlignCenter is solved
     * @return boolean 
 	*/
-    private boolean isAlignCenterSolved(){  
-        if(!isPlusTopSolved())return false;
+    static boolean isAlignCenterSolved(RubiksCube3X3 cube3X3){  
+        if(!Optimizer.isPlusTopSolved(cube3X3))return false;
 
         String frontMidColor = cube3X3.getFrontColor(0,1,1);
         String leftMidColor = cube3X3.getLeftColor(1,1,0);
@@ -437,8 +437,8 @@ class Optimizer{
 	* returns true if Corner is solved  
 	* @return boolean 
 	*/
-    private boolean isCornerSolved(){
-        if(!isAlignCenterSolved())return false;
+    static boolean isCornerSolved(RubiksCube3X3 cube3X3){
+        if(!Optimizer.isAlignCenterSolved(cube3X3))return false;
 
         String upMidColor = cube3X3.getUpColor(1,0,1);
         String frontMidColor = cube3X3.getFrontColor(0,1,1);
@@ -463,7 +463,7 @@ class Optimizer{
     
 
     //returns true if colors[] contains all colors color1,color2,color3
-    private boolean containsAll(String colors[],String color1,String color2,String color3){
+    private static boolean containsAll(String colors[],String color1,String color2,String color3){
         boolean flag = false;
         
         for(int index = 0; index < 3; index++){
@@ -483,8 +483,8 @@ class Optimizer{
 	* returns true if LayerThird is solved
     * @return boolean 
 	*/
-    private boolean isLayerThirdSolved(){  
-        if(!isCornerSolved())return false;
+    static boolean isLayerThirdSolved(RubiksCube3X3 cube3X3){  
+        if(!Optimizer.isCornerSolved(cube3X3))return false;
 
         String frontMidColor = cube3X3.getFrontColor(0,1,1);
         String leftMidColor = cube3X3.getLeftColor(1,1,0);

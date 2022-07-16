@@ -7,7 +7,7 @@
  * @version 1.0 24th June 2022
  * @since JDK 10.0.2
  */
-class Algorithm3X3{   
+interface Algorithm3X3{   
 
 	/**
 	* perfoms L algorithm and adds [move to be performed, RubiksCube state] pair to the solution list
