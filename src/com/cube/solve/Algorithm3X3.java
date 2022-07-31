@@ -1,3 +1,6 @@
+ package com.cube.solve;
+ 
+ import com.cube.RubiksCube3X3;
  import javafx.util.Pair;
  import java.util.List;
 

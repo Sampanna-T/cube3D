@@ -1,4 +1,5 @@
-import java.util.Arrays;
+package com.cube;
+
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -23,8 +24,6 @@ public interface ValidateCube{
 	*/
     static boolean isNodeValid(RubiksCube cube)throws Exception{
         int dimension = cube.getDimension();
-        if(cube == null)
-            throw new NullPointerException("RUBIKSCUBE NOT INITIALIZED");
 
         for(int i = 0; i < dimension; i++){
             for(int j = 0; j < dimension; j++){
@@ -94,10 +93,10 @@ public interface ValidateCube{
                 result.put(colors[i],1);
         }
 
-        Iterator itr = result.entrySet().iterator();
+        Iterator <Map.Entry<String,Integer>>itr = result.entrySet().iterator();
         
         while(itr.hasNext()){
-            Map.Entry mapPair = (Map.Entry)itr.next();
+            Map.Entry <String,Integer>mapPair = (Map.Entry<String,Integer>)itr.next();
             int value = (int)mapPair.getValue();
             if(value != dimension*dimension)return false;
         }

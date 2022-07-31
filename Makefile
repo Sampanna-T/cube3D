@@ -8,20 +8,20 @@ MAIN = Main
 
 CLSPATH = build
 
-SRC =  src/Node.java\
-src/RubiksCube.java\
-src/RubiksCube3X3.java\
-src/Algorithm3X3.java\
-src/PlusBottom.java\
-src/LayerFirst.java\
-src/LayerSecond.java\
-src/PlusTop.java\
-src/AlignCenter.java\
-src/Corner.java\
-src/LayerThird.java\
-src/Solve3X3.java\
-src/ValidateCube.java\
-src/Optimizer.java\
+SRC =  src/com/cube/Node.java\
+src/com/cube/ValidateCube.java\
+src/com/cube/RubiksCube.java\
+src/com/cube/RubiksCube3X3.java\
+src/com/cube/solve/Algorithm3X3.java\
+src/com/cube/solve/PlusBottom.java\
+src/com/cube/solve/LayerFirst.java\
+src/com/cube/solve/LayerSecond.java\
+src/com/cube/solve/PlusTop.java\
+src/com/cube/solve/AlignCenter.java\
+src/com/cube/solve/Corner.java\
+src/com/cube/solve/LayerThird.java\
+src/com/cube/solve/Solve3X3.java\
+src/com/cube/solve/Optimizer.java\
 Main.java\
 
 

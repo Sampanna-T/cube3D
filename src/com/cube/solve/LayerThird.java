@@ -1,12 +1,16 @@
+package com.cube.solve;
+ 
+
+import javafx.util.Pair;
+import java.util.List;
+import com.cube.RubiksCube3X3;
+
 /**
  * Solves Corner of RubiksCube and returns the solution pair list
  * @author Sampanna T (kashi16sadan@gmail.com)
  * @version 1.0 30th June 2022
  * @since JDK 10.0.2
  */
-import javafx.util.Pair;
-import java.util.List;
-
 class LayerThird {
 
     private RubiksCube3X3 cube3X3;

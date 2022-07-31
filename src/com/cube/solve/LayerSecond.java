@@ -1,5 +1,8 @@
+package com.cube.solve;
+ 
 import javafx.util.Pair;
 import java.util.List;
+import com.cube.RubiksCube3X3;
 
 /**
  * Solves LayerSecond of RubiksCube and returns the solution pair list

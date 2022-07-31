@@ -1,5 +1,8 @@
+package com.cube.solve;
+ 
 import javafx.util.Pair;
 import java.util.List;
+import com.cube.RubiksCube3X3;
 
 /**
  * Solves PlusTop of RubiksCube and returns the solution pair list
@@ -90,7 +93,6 @@ class PlusTop {
     //returns true top is L or Minus
     private boolean isTopLORMinus(){
         String upMidColor = cube3X3.getUpColor(1,0,1);
-        String upFUMColor = cube3X3.getUpColor(0,0,1);
         String upMULColor = cube3X3.getUpColor(1,0,0);
         String upBUMColor = cube3X3.getUpColor(2,0,1);
         String upMURColor = cube3X3.getUpColor(1,0,2);

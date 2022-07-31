@@ -7,7 +7,7 @@ make.exe all --print-data-base --no-builtin-variables --no-builtin-rules --quest
 
 # This program built for i386-pc-mingw32
 
-# Make data base, printed on Sat Jul 16 11:52:02 2022
+# Make data base, printed on Sun Jul 31 14:21:16 2022
 
 # Variables
 
@@ -78,7 +78,7 @@ ELECTRON_RUN_AS_NODE = 1
 # automatic
 %F = $(notdir $%)
 # environment
-CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_16072_ZYQNSXLFXJBUVFUX
+CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_13104_EOFNOWNJYGDVLMLZ
 # makefile (from `makefile', line 3)
 CPFLAG = -cp
 # environment
@@ -98,7 +98,7 @@ PUBLIC = C:\Users\Public
 # environment
 VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
 # environment
-VSCODE_CODE_CACHE_PATH = C:\Users\kashi\AppData\Roaming\Code\CachedData\b06ae3b2d2dbfe28bca3134cc6be65935cdfea6a
+VSCODE_CODE_CACHE_PATH = C:\Users\kashi\AppData\Roaming\Code\CachedData\3b889b090b5ad5793f524b5d1d39fda662b96a2a
 # environment
 APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
 # environment
@@ -144,7 +144,7 @@ PROCESSOR_IDENTIFIER = AMD64 Family 23 Model 96 Stepping 1, AuthenticAMD
 # environment
 OS = Windows_NT
 # environment
-VSCODE_IPC_HOOK = \\.\pipe\d2fe2cc3479b1bfa48d76b2738714933-1.69.1-main-sock
+VSCODE_IPC_HOOK = \\.\pipe\d2fe2cc3479b1bfa48d76b2738714933-1.69.2-main-sock
 # environment
 HOMEPATH = \Users\kashi
 # environment
@@ -165,8 +165,6 @@ SYSTEMROOT = C:\WINDOWS
 +F = $(notdir $+)
 # environment
 APPDATA = C:\Users\kashi\AppData\Roaming
-# environment
-__COMPAT_LAYER = DetectorsAppHealth
 # environment
 TEMP = C:\Users\kashi\AppData\Local\Temp
 # environment
@@ -200,11 +198,11 @@ LANG = C
 # environment
 PROCESSOR_LEVEL = 23
 # environment
-VSCODE_PID = 16072
+VSCODE_PID = 13104
 # environment
 USERDOMAIN_ROAMINGPROFILE = LAPTOP-FGFKSPOU
 # variable set hash-table stats:
-# Load=96/1024=9%, Rehash=0, Collisions=11/123=9%
+# Load=95/1024=9%, Rehash=0, Collisions=11/122=9%
 
 # Pattern-specific Variable Values
 
@@ -313,6 +311,6 @@ compileSrc:
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Sat Jul 16 11:52:02 2022
+# Finished Make data base on Sun Jul 31 14:21:16 2022
 
  

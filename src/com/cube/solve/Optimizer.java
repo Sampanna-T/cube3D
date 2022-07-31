@@ -1,5 +1,8 @@
+package com.cube.solve;
+ 
 import javafx.util.Pair;
 import java.util.List;
+import com.cube.RubiksCube3X3;
 
 /**
  * Reduces the number of moves in solving the RubiksCube3X3 

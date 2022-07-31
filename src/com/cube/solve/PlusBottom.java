@@ -1,8 +1,8 @@
+package com.cube.solve;
+ 
 import javafx.util.Pair;
-import java.util.Map;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
+import com.cube.RubiksCube3X3;
 
 /**
  * Solves PlusBottom of RubiksCube and returns the solution list

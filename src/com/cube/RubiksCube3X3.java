@@ -1,3 +1,5 @@
+package com.cube;
+
 /**
  * Provides implementation of RubiksCube class to 
  * perform all operations on 3X3 RubiksCube
