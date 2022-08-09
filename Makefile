@@ -1,39 +1,45 @@
 CC = javac
+RN = java
+DOC = javadoc
+
 DFLAG = -d
 CPFLAG = -cp
 RM = rm -rf
 MK = mkdir
-RN = java
 MAIN = Main
 
 CLSPATH = build
+DOCPATH = doc
+DOCPACKAGE = src.cube src.cube3X3 src.solve3X3
+HTMLVERSION = -html5
 
-SRC =  src/com/cube/Node.java\
-src/com/cube/ValidateCube.java\
-src/com/cube/RubiksCube.java\
-src/com/cube/RubiksCube3X3.java\
-src/com/cube/solve/Algorithm3X3.java\
-src/com/cube/solve/PlusBottom.java\
-src/com/cube/solve/LayerFirst.java\
-src/com/cube/solve/LayerSecond.java\
-src/com/cube/solve/PlusTop.java\
-src/com/cube/solve/AlignCenter.java\
-src/com/cube/solve/Corner.java\
-src/com/cube/solve/LayerThird.java\
-src/com/cube/solve/Solve3X3.java\
-src/com/cube/solve/Optimizer.java\
+SRC = src/cube/RubiksCubeInterface.java\
+src/cube/RubiksCubeException.java\
+src/cube/RubiksCube.java\
+src/cube3X3/RubiksCube3X3.java\
+src/solve3X3/Algorithm3X3.java\
+src/solve3X3/PlusBottom.java\
+src/solve3X3/LayerFirst.java\
+src/solve3X3/LayerSecond.java\
+src/solve3X3/PlusTop.java\
+src/solve3X3/AlignCenter.java\
+src/solve3X3/Corner.java\
+src/solve3X3/LayerThird.java\
+src/solve3X3/Solve3X3.java\
+src/solve3X3/Optimizer.java\
 Main.java\
 
 
-all: compileSrc run
+all: compile run doc
 
-compileSrc:
-	$(CC) $(CPFLAG) $(CLSPATH) $(SRC) $(DFLAG) $(CLSPATH) 
+compile:
+	$(CC) $(CPFLAG) $(CLSPATH) $(SRC) $(DFLAG) $(CLSPATH)
 
 run:
-	$(RN) $(CPFLAG) $(CLSPATH) $(MAIN)
+	$(RN) $(CPFLAG) $(CLSPATH) $(MAIN)	
 
+doc:
+	$(DOC) $(DFLAG) $(DOCPATH) $(DOCPACKAGE) $(HTMLVERSION)
 
 clean: 
-	$(RM) $(CLSPATH)
-	$(MK) $(CLSPATH)   
+	$(RM) $(CLSPATH) $(DOCPATH)   

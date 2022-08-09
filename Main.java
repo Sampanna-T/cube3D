@@ -1,8 +1,9 @@
 import java.util.List;
 import javafx.util.Pair;
 import java.util.Scanner;
-import com.cube.*;
-import com.cube.solve.*;
+import src.cube.*;
+import src.cube3X3.*;
+import src.solve3X3.*;
 
 public class Main {
 	static long count = 0;
@@ -22,8 +23,9 @@ public class Main {
 		// RubiksCube3X3(str);
 		String str = "r r r r r r b r o g g g g g g g g r o o o o o o y o y b b b b b b g b o w w w w w w w w w y y y y y y r y b";
 		RubiksCube3X3 cube = new RubiksCube3X3(str);
-		cube.circleRotate(RubiksCube3X3.R_CLK);
-		cube.circleRotate(RubiksCube3X3.R_CLK);
+		//cube.circleRotate(RubiksCube3X3.R_CLK);
+		cube.horizontal(1,RubiksCube3X3.H_RIGHT);
+		cube.vertical(1,RubiksCube3X3.V_UP);
 		System.out.println(cube);
 		List<Pair<String, String>> steps = Solve3X3.solveCube(cube);
 		int count = 0;

@@ -1,0 +1,1 @@
+typeSearchIndex = [{"p":"src.cube","l":"RubiksCube"},{"p":"src.cube3X3","l":"RubiksCube3X3"},{"p":"src.cube","l":"RubiksCubeException"},{"p":"src.cube","l":"RubiksCubeInterface"},{"p":"src.cube","l":"RubiksCubeInterface.NodeInterface"},{"p":"src.solve3X3","l":"Solve3X3"}]
