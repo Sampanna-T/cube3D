@@ -1,6 +1,7 @@
 package src.solve3X3;
 
 import src.cube3X3.RubiksCube3X3;
+import src.cube3X3.RubiksCube3X3Factory;
 import src.cube.RubiksCubeException;
 import javafx.util.Pair;
 import java.util.List;
@@ -51,19 +52,19 @@ public interface Solve3X3 {
             List<Pair<String, String>> solution = new ArrayList<Pair<String, String>>();
             
             plusBottom(cube3X3, solution);
-            add("PLUS BOTTOM SOLVED",null, solution);
+            add("1",null, solution);
             layerFirst(cube3X3, solution);
-            add("LAYER FIRST SOLVED", null, solution);
+            add("2", null, solution);
             layerSecond(cube3X3, solution);
-            add("LAYER SECOND SOLVED",null,solution);
+            add("3",null,solution);
             plusTop(cube3X3, solution);
-            add("PLUS TOP SOLVED",null,solution);
+            add("4",null,solution);
             alignCenter(cube3X3, solution);
-            add("ALIGN CENTER SOLVED",null,solution);
+            add("5",null,solution);
             corner(cube3X3, solution);
-            add("CORNER SOLVED",null,solution);
+            add("6",null,solution);
             layerThird(cube3X3, solution);
-            add("LAYER THIRD SOLVED",null,solution);
+            add("7",null,solution);
             return solution;
         } catch (Exception e) {
             e.printStackTrace();
@@ -71,6 +72,85 @@ public interface Solve3X3 {
         }
     }
 
+    
+    /**
+     * Solves the 3X3 RubiksCube and adds [move to be performed, RubiksCube state]
+     * pair to solution list
+     * 
+     * @param cube3X3
+     *                Reference to RubiksCube3X3 object
+     * @return List
+     */
+    public static List<Pair<String, String>> solveCube(){
+        try{
+            RubiksCube3X3 cube3X3 = RubiksCube3X3Factory.getInstance();
+            if(cube3X3 == null)return null;
+            return solveCube(cube3X3);
+        }
+        catch(Exception e){
+            e.printStackTrace();
+            return null;
+        }
+    }
+    
+    /**
+     * Solves the 3X3 RubiksCube based on colorInput
+     * 
+     * @param cube3X3
+     *                Reference to RubiksCube3X3 object
+     * @return List
+     */
+    public static List<Pair<String, String>> solveCube(String colorInput){
+        try{
+            RubiksCube3X3 cube3X3 = RubiksCube3X3Factory.getInstance(colorInput);
+            if(cube3X3 == null){
+                return null;
+            }
+            else{
+            return solveCube(cube3X3);
+            }
+        }
+        catch(Exception e){
+            System.out.println("EXCEPTTION OCCURED");
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+
+    /**
+     * Returns Name for given stage for a given solution 
+     * @param str
+     * valid str can be either 1,2,3,4,5,6 or 7 representing stages.
+     * @return
+     */
+    public static String getStageName(String str){
+        switch(str){
+            case "1" : return "PLUS BOTTOM";
+            case "2" : return "LAYER FIRST";
+            case "3" : return "LAYER SECOND";
+            case "4" : return "TOP PLUS";
+            case "5" : return "ALIGN CENTER";
+            case "6" : return "CORNER";
+            case "7" : return "LAYER THIRD";
+        }
+        return "";
+    }
+
+    /**
+     * Returns number of moves required to solve the rubikscube
+     * 
+     * @param solution
+     *                 Reference to a list containing [move to be performed,
+     *                 Rubikscube state] pair
+     * @return
+     */
+    public static int getTotalMoves(List <Pair<String,String>>solution){
+        if(solution == null)return 0;
+        return solution.size();
+    }
+
+    
     /**
      * solves PlusBottom of RubiksCube i.e. Stage1 and adds [move to be performed,
      * RubiksCube state]
@@ -92,6 +172,7 @@ public interface Solve3X3 {
         plusBottomObj.solveAll();
     }
 
+
     /**
      * solves LayerFirst of RubiksCube i.e. Stage2 and adds [move to be performed,
      * RubiksCube state]
@@ -105,6 +186,8 @@ public interface Solve3X3 {
      * @throws Exception
      *                   If LayerFirst can't be solved
      */
+
+
     private static void layerFirst(RubiksCube3X3 cube3X3, List<Pair<String, String>> solution) throws Exception {
         Optimizer optimizerObj = new Optimizer(cube3X3, solution);
         if (optimizerObj.optimize((byte) 2))

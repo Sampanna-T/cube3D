@@ -17,6 +17,8 @@ SRC = src/cube/RubiksCubeInterface.java\
 src/cube/RubiksCubeException.java\
 src/cube/RubiksCube.java\
 src/cube3X3/RubiksCube3X3.java\
+src/cube3X3/RubiksCube3X3Factory.java\
+src/cube3X3GUI/MainFrame3X3.java\
 src/solve3X3/Algorithm3X3.java\
 src/solve3X3/PlusBottom.java\
 src/solve3X3/LayerFirst.java\

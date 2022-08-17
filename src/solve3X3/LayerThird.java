@@ -38,6 +38,7 @@ class LayerThird {
     void solveAll()throws Exception{
         if(!Optimizer.isCornerSolved(cube3X3))throw new Exception("SOLVE CORNER");
         setCorner();
+        if(!Optimizer.isLayerThirdSolved(cube3X3))throw new Exception("UNSOLVABLE");
     }
 
 
