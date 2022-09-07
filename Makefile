@@ -10,7 +10,7 @@ MAIN = Main
 
 CLSPATH = build
 DOCPATH = doc
-DOCPACKAGE = src.cube src.cube3X3 src.solve3X3
+DOCPACKAGE = src.cube src.cube3X3 src.solve3X3 src.cube3X3GUI
 HTMLVERSION = -html5
 
 SRC = src/cube/RubiksCubeInterface.java\

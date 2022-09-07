@@ -76,9 +76,6 @@ public interface Solve3X3 {
     /**
      * Solves the 3X3 RubiksCube and adds [move to be performed, RubiksCube state]
      * pair to solution list
-     * 
-     * @param cube3X3
-     *                Reference to RubiksCube3X3 object
      * @return List
      */
     public static List<Pair<String, String>> solveCube(){
@@ -95,9 +92,8 @@ public interface Solve3X3 {
     
     /**
      * Solves the 3X3 RubiksCube based on colorInput
-     * 
-     * @param cube3X3
-     *                Reference to RubiksCube3X3 object
+     * @param colorInput
+     * holds RubiksCube colors in String format
      * @return List
      */
     public static List<Pair<String, String>> solveCube(String colorInput){
@@ -122,7 +118,7 @@ public interface Solve3X3 {
      * Returns Name for given stage for a given solution 
      * @param str
      * valid str can be either 1,2,3,4,5,6 or 7 representing stages.
-     * @return
+     * @return String
      */
     public static String getStageName(String str){
         switch(str){
@@ -139,11 +135,10 @@ public interface Solve3X3 {
 
     /**
      * Returns number of moves required to solve the rubikscube
-     * 
      * @param solution
-     *                 Reference to a list containing [move to be performed,
-     *                 Rubikscube state] pair
-     * @return
+     * Reference to a list containing [move to be performed,
+     * Rubikscube state] pair
+     * @return int
      */
     public static int getTotalMoves(List <Pair<String,String>>solution){
         if(solution == null)return 0;

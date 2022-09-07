@@ -1,6 +1,5 @@
 package src.cube;
 
-
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -119,7 +118,7 @@ public abstract class RubiksCube implements RubiksCubeInterface{
 	 * constructor which initializes the RubiksCube by creating Nodes
 	 * 
 	 * @param dimension
-	 * represents dimension of the 
+	 * represents dimension of the RubiksCube
 	 * @throws Exception
 	 * if user input given is invalid
 	 */

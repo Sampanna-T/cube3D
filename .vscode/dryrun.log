@@ -2,6 +2,6 @@ make.exe --dry-run --always-make --keep-going --print-directory
 make.exe: Entering directory `d:/Project/RubixCube/RubiksCube'
 javac -cp build src/cube/RubiksCubeInterface.java src/cube/RubiksCubeException.java src/cube/RubiksCube.java src/cube3X3/RubiksCube3X3.java src/cube3X3/RubiksCube3X3Factory.java src/cube3X3GUI/MainFrame3X3.java src/solve3X3/Algorithm3X3.java src/solve3X3/PlusBottom.java src/solve3X3/LayerFirst.java src/solve3X3/LayerSecond.java src/solve3X3/PlusTop.java src/solve3X3/AlignCenter.java src/solve3X3/Corner.java src/solve3X3/LayerThird.java src/solve3X3/Solve3X3.java src/solve3X3/Optimizer.java Main.java  -d build
 java -cp build Main	
-javadoc -d doc src.cube src.cube3X3 src.solve3X3 -html5
+javadoc -d doc src.cube src.cube3X3 src.solve3X3 src.cube3X3GUI -html5
 make.exe: Leaving directory `d:/Project/RubixCube/RubiksCube'
  

@@ -1,1 +1,1 @@
-packageSearchIndex = [{"l":"src.cube"},{"l":"src.cube3X3"},{"l":"src.solve3X3"}]
+packageSearchIndex = [{"l":"src.cube"},{"l":"src.cube3X3"},{"l":"src.cube3X3GUI"},{"l":"src.solve3X3"}]

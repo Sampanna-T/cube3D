@@ -12,78 +12,115 @@ import javafx.util.Pair;
 import java.util.*;
 import java.io.*;
 
-
+/**
+ * Provides user interface to help solve the RubiksCube
+ * 
+ * @author Sampanna T (kashi16sadan@gmail.com)
+ * @version 1.0 8th August 2022
+ * @since JDK 10.0.2
+ */
 public class MainFrame3X3 extends JFrame implements ActionListener{
 
-    private final String DEFAULT_TITLE = "";
-    private final int DEFAULT_HEIGHT = 800;
-    private final int DEFAULT_WIDTH = 800;
-    private final int DEFAULT_DIMENSION = 3;
-    private final Color DEFAULT_COLOR = Color.gray;
-    private final int FACE_COUNT = 6;
-    private final String colors[] = {"RED","BLUE","WHITE","YELLOW","ORANGE","GREEN"};
+    /*
+     * holds the default title for the MainFrame
+     */
+    private static final String DEFAULT_TITLE = "RUBIKS CUBE SOLVER";
+    /*
+     * holds the default height for the MainFrame
+     */
+    private static final int DEFAULT_HEIGHT = 800;
+    /*
+     * holds the default width for the MainFrame
+     */
+    private static final int DEFAULT_WIDTH = 800;
+    /*
+     * holds the default dimension of RubiksCube i.e 3
+     */
+    private static final int DEFAULT_DIMENSION = 3;
+    /*
+     * holds the count of number of face colors
+     */
+    private static final int FACE_COUNT = 6;
+    /*
+     * holds the array of all colors present in RubiksCube
+     */
+    private static final String colors[] = {"RED","BLUE","WHITE","YELLOW","ORANGE","GREEN"};
    
-    List <Pair<String,String>>solutionList;
-    int solutionIndex;
-    String initialState;
+    private List <Pair<String,String>>solutionList;//holds the solution list for given input color of RubiksCube
+    private int solutionIndex;//holds the index for a given move
+    private String initialState;//holds the color input Given by the user
 
-    int width, height, dimension;
-    String title;
-    JPanel cubePanel[];
-    JButton buttonPressed;
-    JButton cubeButton[][];
+    private int dimension;//holds width,height of main frame & dimension of RubiksCube
+    private JPanel cubePanel[];//holds array of JPanel wherein each panel represents face of RubiksCube
+    private JButton buttonPressed;//holds the JButton Object which has been pressed
+    private JButton cubeButton[][];//holds all the JButton Objects which represent colors of RubiksCube
 
-    JLabel moveNumber;
-    JLabel moveRemaing;
-    JTextArea move;
+    private JLabel moveNumber;//holds the move number while solving the RubiksCube
+    private JLabel moveRemaing;//holds the move remaining while solving the RubiksCube
+    private JTextArea move;//holds the move to be performed while solving the RubiksCube
 
-    JTextArea info;
-    JButton loadButton;
-    JButton saveButton;
+    private JTextArea info;//holds the information regarding instruction/error message etc.
+    private JButton loadButton;//holds JButton Object which loads already saved RubiksCube color input
+    private JButton saveButton;//holds JButton Object that helps in saving the RubiksCube color input into a file
 
-    JButton resetButton;
-    JButton solveButton;
-    JButton leftButton;
-    JButton rightButton;
+    private JButton resetButton;//holds JButton Object which resets the mainframe
+    private JButton solveButton;//holds JButton Object which solves the RubiksCube
+    private JButton leftButton;//holds JButton Object to navigate to previous move
+    private JButton rightButton;//holds JButton Object to navigate to next move
 
+    /**
+	 * constructor which initializes the MainFrame3X3 
+	 */
     public MainFrame3X3(){
-        this.dimension = DEFAULT_DIMENSION;
-        this.width = DEFAULT_WIDTH;
-        this.height = DEFAULT_HEIGHT;
-        this.title = DEFAULT_TITLE;
-        this.buttonPressed = null;
-        this.solutionIndex = -1;
-        this.initialState = "";
-        initFrame(title, width, height);
+        this(DEFAULT_TITLE,DEFAULT_WIDTH,DEFAULT_HEIGHT,DEFAULT_DIMENSION);
     }
     
+    /**
+	 * constructor which initializes the MainFrame3X3
+	 * 
+	 * @param title
+	 * represents title of MainFrame3X3 
+	 */
     public MainFrame3X3(String title){
-        this.dimension = DEFAULT_DIMENSION;
-        this.width = DEFAULT_WIDTH;
-        this.height = DEFAULT_HEIGHT;
-        this.title = title;
-        this.buttonPressed = null;
-        this.solutionIndex = -1;
-        this.initialState = "";
-        initFrame(title, width, height);
+        this(title,DEFAULT_WIDTH,DEFAULT_HEIGHT,DEFAULT_DIMENSION);
     }
 
+    /**
+	 * constructor which initializes the MainFrame3X3
+	 * 
+	 * @param title
+	 * represents title of MainFrame3X3 
+     * @param width
+	 * represents width of MainFrame3X3
+     * @param height
+	 * represents of height
+     * @param dimension
+	 * represents dimension of RubiksCube   
+	 */
     public MainFrame3X3(String title, int width, int height, int dimension){
         this.dimension = dimension;
-        this.title = title;
-        this.width = width;
-        this.height = height;
         this.buttonPressed = null;
         this.solutionIndex = -1;
         this.initialState = "";
         initFrame(title, width, height);
     }
     
+    //Displays the user interface of MainFrame3X3
     public void display(){
         Border blackBorder = BorderFactory.createLineBorder(Color.black);
         JPanel newPanelMain = getPanel(4,4,20,20,Color.white,blackBorder);
         
         cubePanel = new JPanel[FACE_COUNT];
+        updateCubePanel(cubePanel,newPanelMain);
+
+        JPanel controlPanel[] = new JPanel[4];
+        updateControlPanel(controlPanel,newPanelMain);
+        
+        setVisible(true);
+    }
+
+    private void updateCubePanel(JPanel cubePanel[],JPanel newPanelMain){
+        Border blackBorder = BorderFactory.createLineBorder(Color.black);
         cubeButton = new JButton[FACE_COUNT][dimension*dimension];
         int index = 0;
 
@@ -102,8 +139,10 @@ public class MainFrame3X3 extends JFrame implements ActionListener{
             }
         }
 
-        JPanel controlPanel[] = new JPanel[4];
+    }
 
+    private void updateControlPanel(JPanel controlPanel[], JPanel newPanelMain){
+        Border blackBorder = BorderFactory.createLineBorder(Color.black);
         JLabel moveNumberLabel = getLabel("MOVE NUMBER",Color.cyan,BorderFactory.createEmptyBorder());
         JLabel moveRemaingLabel = getLabel("MOVES REMAINING",Color.cyan,BorderFactory.createEmptyBorder());
         JLabel moveLabel = getLabel("MOVE", Color.cyan, BorderFactory.createEmptyBorder());
@@ -146,17 +185,17 @@ public class MainFrame3X3 extends JFrame implements ActionListener{
         controlPanel[3].add(resetButton);
         controlPanel[3].add(solveButton);
         controlPanel[3].add(temp2);
-        
-        for(int i = 0; i < controlPanel.length; i++){
-            newPanelMain.add(controlPanel[i]);
-        }
+
+        for(int i = 0; i < controlPanel.length; i++)
+        newPanelMain.add(controlPanel[i]);
 
         add(newPanelMain);
 
         setVisible(true);
     }
 
-    JTextArea getTextArea(String text,Color color, Border border){
+    //returns JTextArea Object with given text,color and border
+    private JTextArea getTextArea(String text,Color color, Border border){
         JTextArea newTextArea = new JTextArea();
         newTextArea.setText(text);
         newTextArea.setOpaque(true);
@@ -169,7 +208,8 @@ public class MainFrame3X3 extends JFrame implements ActionListener{
         return newTextArea;
     }
 
-    JLabel getLabel(String text,Color color, Border border){
+    //returns JLabel Object with given text,color and border
+    private JLabel getLabel(String text,Color color, Border border){
         JLabel newLabel = new JLabel();
         newLabel.setText(text);
         newLabel.setOpaque(true);
@@ -183,14 +223,16 @@ public class MainFrame3X3 extends JFrame implements ActionListener{
         return newLabel;
     }
 
-    JButton getButton(String text, Color color, Border border, int size){
+    //returns JButton Object with given text,color,border and size
+    private JButton getButton(String text, Color color, Border border, int size){
         JButton newButton = getButton(color, border);
         newButton.setText(text);
         newButton.setFont(new Font("PlayFair",Font.BOLD,size));
         return newButton;
     }
 
-    JButton getButton(Color color, Border border){
+    //returns JButton Object with given color and border
+    private JButton getButton(Color color, Border border){
         JButton newButton = new JButton();
         newButton.setBackground(color);
         newButton.setBorder(border);
@@ -199,7 +241,8 @@ public class MainFrame3X3 extends JFrame implements ActionListener{
         return newButton;
     }
 
-    JPanel getPanel(int row, int col, int hGap, int vGap, Color color, Border border){
+    //returns JPanel Object with given row,col,hGap,vGap,color,border
+    private JPanel getPanel(int row, int col, int hGap, int vGap, Color color, Border border){
         JPanel newPanel = new JPanel();
         newPanel.setLayout(new GridLayout(row,col,hGap,vGap));
         newPanel.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
@@ -209,7 +252,8 @@ public class MainFrame3X3 extends JFrame implements ActionListener{
         return newPanel;
     }
 
-    void initFrame(String title,int width, int height){
+    //creates a new Frame with given title,width and height
+    private void initFrame(String title,int width, int height){
         setTitle(title);
         setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
         setLocation(getXOrigin(width),getYOrigin(height));
@@ -220,7 +264,8 @@ public class MainFrame3X3 extends JFrame implements ActionListener{
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
-    String getAllColors(){
+    //returns all the colors given as input by the user
+    private String getAllColors(){
         StringBuilder sb = new StringBuilder();
         sb.append(getColors(3));
         sb.append(getColors(2));
@@ -231,7 +276,8 @@ public class MainFrame3X3 extends JFrame implements ActionListener{
         return sb.toString();
     }
 
-    String getColors(int index){
+    //returns all colors for a given face
+    private String getColors(int index){
         StringBuilder sb = new StringBuilder();
         for(int j = 0; j < dimension*dimension; j++){
             Color curColor = cubeButton[index][j].getBackground();
@@ -240,31 +286,25 @@ public class MainFrame3X3 extends JFrame implements ActionListener{
         return sb.toString();
     }
 
-    private String getColor(Color color){
-        
-        if(color.equals(Color.red)){
+    //returns String format of Color
+    private String getColor(Color color){  
+        if(color.equals(Color.red))
             return "RED";
-        }
-        else if(color.equals(Color.white)){
+        else if(color.equals(Color.white))
             return "WHITE";
-        }
-        else if(color.equals(Color.blue)){
+        else if(color.equals(Color.blue))
             return "BLUE";
-        }
-        else if(color.equals(Color.green)){
+        else if(color.equals(Color.green))
             return "GREEN";
-        }
-        else if(color.equals(Color.orange)){
+        else if(color.equals(Color.orange))
             return "ORANGE";
-        }
-        else if(color.equals(Color.yellow)){
+        else if(color.equals(Color.yellow))
             return "YELLOW";
-        }
-        else{
+        else
             return "GRAY";
-        }
     }   
 
+    //returns Color format of string format
     private Color getColor(String color){
         switch(color){
             case "RED" : return Color.red;
@@ -277,7 +317,7 @@ public class MainFrame3X3 extends JFrame implements ActionListener{
         return Color.gray;
     }   
 
-    
+    //disables color input by user while navigating through the solution list
     private void disableColorInput(){
         for(int i = 0; i < FACE_COUNT; i++){
             for(int j = 0; j < dimension*dimension; j++){
@@ -286,15 +326,17 @@ public class MainFrame3X3 extends JFrame implements ActionListener{
         }
     }
 
+    //returns part of array between startIndex and endIndex
     private String[] getPartialArray(String arr[], int startIndex, int endIndex){
         String []partialArray = new String[endIndex-startIndex+1];
         int partialArrayIndex = 0;
-        for(int i = startIndex; i <= endIndex; i++){
+        for(int i = startIndex; i <= endIndex; i++)
             partialArray[partialArrayIndex++] = arr[i].trim();
-        }
+        
         return partialArray;
     }
 
+    //sets colors of entire RubiksCube based on allColors String
     private void setColors(String allColors){
         String allColor[] = allColors.split(" ");
         int index = 0;
@@ -308,6 +350,7 @@ public class MainFrame3X3 extends JFrame implements ActionListener{
 
     }
 
+    //sets colors for given face of RubiksCube with colors[]
     private void setColors(int index, String colors[]){ 
         int colorsIndex = 0;
         for(int i = 0; i < dimension*dimension; i++){
@@ -316,55 +359,70 @@ public class MainFrame3X3 extends JFrame implements ActionListener{
         }
     }
 
-
-    //type == true returns xOrigin else returns yorigin
-    private int getOrigin(boolean type,int length){
+    //returns x origin for given width
+    private static int getXOrigin(int width){      
         Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+
+        int halfScrWidth = (int)(dimension.getWidth()/2);
+        int xOrigin = halfScrWidth-(width/2);
+        return xOrigin;
+    }
+
+    //returns y origin for a given height
+    private static int getYOrigin(int height){
+        Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+
+        int halfScrHeight = (int)(dimension.getHeight()/2);
+        int yOrigin = halfScrHeight-(height/2);
+        return yOrigin;
         
-        if(type){
-            int halfScrWidth = (int)(dimension.getWidth()/2);
-            int xOrigin = halfScrWidth-(length/2);
-            return xOrigin;
-        }
-        else{
-            int halfScrHeight = (int)(dimension.getHeight()/2);
-            int yOrigin = halfScrHeight-(length/2);
-            return yOrigin;
-        }
     }
 
-    private int getXOrigin(int width){
-        return getOrigin(true,width);
-    }
-
-    private int getYOrigin(int height){
-        return getOrigin(false,height);
-    }
-
+    /**
+	 * Provides smaller window to enter color input for the RubiksCube
+	 * 
+	 * @author Sampanna T (kashi16sadan@gmail.com)
+	 * @version 1.0 8th August 2022
+	 * @since JDK 10.0.2
+	 */
     private class PopUpFrame extends JFrame implements ActionListener,KeyListener{
-        final int DEFAULT_HEIGHT = 100;
-        final int DEFAULT_WIDTH = 100;
-        final String DEFAULT_TITLE = "";
+        /*
+         * holds default height of PopUpFrame
+         */
+        private static final int DEFAULT_HEIGHT = 100;
+        /*
+         * holds default width of PopUpFrame
+         */
+        private static final int DEFAULT_WIDTH = 100;
+        /*
+         * holds default title for the PopUpFrame
+         */
+        private static final String DEFAULT_TITLE = "SET COLOR";
 
-        int width,height;
-        String title;
-        JButton newButton[];
+        private int width,height;
+        private String title;
+        private JButton newButton[];
 
-        PopUpFrame(){
-            this.width = DEFAULT_WIDTH;
-            this.height = DEFAULT_HEIGHT;
-            this.title = DEFAULT_TITLE;
-            initFrame();
-        }
 
+        /**
+         * constructor which initializes the PopUpFrame
+         * 
+         * @param title
+         * represents title of PopUpFrame 
+         * @param width
+         * represents width of PopUpFrame
+         * @param height
+         * represents of height  
+	    */
         PopUpFrame(String title,int width, int height){
             this.width = width;
             this.height = height;
             this.title = title;
             initFrame();
         }
-
-        void display(){
+        
+        //dispalys the GUI to input colors
+        public void display(){
             Border blackBorder = BorderFactory.createLineBorder(Color.black);
             newButton = new JButton[FACE_COUNT];
             JPanel newPanel = getPanel(1, FACE_COUNT, 5, 5, Color.white, blackBorder);
@@ -376,25 +434,19 @@ public class MainFrame3X3 extends JFrame implements ActionListener{
             add(newPanel);
         }
 
-        JPanel getPanel(int row, int col, int hGap, int vGap, Color color, Border border){
-            JPanel newPanel = new JPanel();
-            newPanel.setLayout(new GridLayout(row,col,hGap,vGap));
-            newPanel.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
-            newPanel.setBackground(color);
-            newPanel.setBorder(border);
-            newPanel.setVisible(true);
-            return newPanel;
+        //returns JPanel Object with given row,col,hGap,vGap,color,border
+        private JPanel getPanel(int row, int col, int hGap, int vGap, Color color, Border border){
+            return MainFrame3X3.this.getPanel(row, col, hGap, vGap, color, border);
         }
 
-        JButton getButton(Color color, Border border){
-            JButton newButton = new JButton();
-            newButton.setBackground(color);
-            newButton.setBorder(border);
-            newButton.setVisible(true);
-            return newButton;
+        //returns JButton Object with given color,border
+        private JButton getButton(Color color, Border border){
+            return MainFrame3X3.this.getButton(color,border);
         }
 
-        void initFrame(){    
+        //initialized the PopUpFrame
+        private void initFrame(){ 
+            //ensuring that when PopUpFrame is closed MainFrame shouldn't be closed   
             addWindowListener(new java.awt.event.WindowAdapter() {
                 @Override
                 public void windowClosing(java.awt.event.WindowEvent e) {
@@ -412,46 +464,42 @@ public class MainFrame3X3 extends JFrame implements ActionListener{
             setResizable(false);
         }
 
-        void setColor(String color){
+        //sets the color of MainFrame RubiksCube based on String color input
+        private void setColor(String color){
             MainFrame3X3.this.setEnabled(true);
-            buttonPressed.setBackground(getColor(color));
+            MainFrame3X3.this.buttonPressed.setBackground(getColor(color));
             MainFrame3X3.this.buttonPressed.setBorder(BorderFactory.createLineBorder(Color.black));     
             dispose();
         }
 
+        //Handles ActionEvents on PopUpFrame
         @Override
         public void actionPerformed(ActionEvent e) {
             for(int i = 0; i < FACE_COUNT; i++){
                 if(e.getSource() == newButton[i]){
-                    setColor(colors[i]);
+                    setColor(MainFrame3X3.colors[i]);
                     break;
                 }
             }
         }
 
+        //Handles Key press events
         @Override
         public void keyPressed(KeyEvent e) {
-            if(e.getKeyChar() == 'r'){
+            if(e.getKeyChar() == 'r')
                 setColor("RED");
-            }
-            else if(e.getKeyChar() == 'b'){
+            else if(e.getKeyChar() == 'b')
                 setColor("BLUE");
-            }
-            else if(e.getKeyChar() == 'w'){
+            else if(e.getKeyChar() == 'w')
                 setColor("WHITE");
-            }
-            else if(e.getKeyChar() == 'g'){
+            else if(e.getKeyChar() == 'g')
                 setColor("GREEN");
-            }
-            else if(e.getKeyChar() == 'y'){
+            else if(e.getKeyChar() == 'y')
                 setColor("YELLOW");
-            }
-            else if(e.getKeyChar() == 'o'){
+            else if(e.getKeyChar() == 'o')
                 setColor("ORANGE");
-            }
-            else{
+            else
                 setColor("DEFAULT");
-            }
         }
 
         @Override
@@ -462,6 +510,8 @@ public class MainFrame3X3 extends JFrame implements ActionListener{
 
     } 
 
+    
+    //performs necessary updations while navigating solution list to left
     private void navigatePrev(){
         if(solutionIndex > 0){
             info.setText("");
@@ -493,12 +543,12 @@ public class MainFrame3X3 extends JFrame implements ActionListener{
                 setColors(initialState);
             }
             else{
-                info.setText("START REACHED");
+                info.setText("CAN'T GO BACK \n FURTHER");
             }
         }
-
     }
 
+    //performs necessary updations while navigating solution list to right
     private void navigateNext(){
         int end = Solve3X3.getTotalMoves(solutionList)-1;
         if(solutionIndex < end){
@@ -524,10 +574,11 @@ public class MainFrame3X3 extends JFrame implements ActionListener{
             
         }
         else{
-            info.setText("END REACHED");
+            info.setText("CAN'T GO FORWARD FURTHER");
         }
     }
 
+    //Handles ActionEvents on MainFrame
     @Override
     public void actionPerformed(ActionEvent e) {
         
@@ -539,7 +590,7 @@ public class MainFrame3X3 extends JFrame implements ActionListener{
             }
             else{
                 disableColorInput();
-                info.setText("PRESS\n<,> BUTTOn\nTO NAVIGATE\nSOLUTION LIST");
+                info.setText("PRESS PREV / NEXT\nBUTTON\nTO NAVIGATE\nSOLUTION LIST");
                 initialState = colorInput;
                 leftButton.setEnabled(true);
                 rightButton.setEnabled(true);
