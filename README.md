@@ -38,6 +38,9 @@ Once all the colors have been entered press solve botton.
 
 ![Rubiks color input cases](https://github.com/Sampanna-T/cube3D/blob/master/Image/COLOR_INPUT_CASE.png)
 
+## 3) Save and Load
+This option allows the user to save the state of the RubiksCube(i.e. input color) at any given point and continue using it again from the same state using the load option.
+
 
 
 
