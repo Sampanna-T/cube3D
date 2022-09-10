@@ -36,7 +36,7 @@ Once all the colors have been entered press solve botton.
 (a) If the color input is invalid then it will be shown in the green field.
 (b) If the color input is valid then "PREV" & "NEXT" button gets activated to navigate through the solution list as shown below.
 
-![Rubiks color input cases](https://github.com/Sampanna-T/cube3D/blob/master/Image/RUBIKSCUBE_FACES.png)
+![Rubiks color input cases](https://github.com/Sampanna-T/cube3D/blob/master/Image/COLOR_INPUT_CASE.png)
 
 
 
