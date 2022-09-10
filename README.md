@@ -10,4 +10,4 @@ RubiksCubeSolver is basically a GUI project which helps the user to solve the Ru
 Using the following options user can make best use of the GUI application.
 
 # 1) Fill the color
-![How to Fill Color](https://github.com/Sampanna-T/cube3D/blob/master/Vedio/FillColor.gif)
+![How to Fill Color](https://github.com/Sampanna-T/cube3D/blob/master/Vedio/FillColor1.gif)
