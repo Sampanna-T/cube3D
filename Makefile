@@ -44,4 +44,4 @@ doc:
 	$(DOC) $(DFLAG) $(DOCPATH) $(DOCPACKAGE) $(HTMLVERSION)
 
 clean: 
-	$(RM) $(CLSPATH) $(DOCPATH)   
+	$(RM) $(CLSPATH) $(DOCPATH)  
