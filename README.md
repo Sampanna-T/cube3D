@@ -5,19 +5,40 @@
 
 RubiksCubeSolver is basically a GUI project which helps the user to solve the Rubiks cube for any valid color input stage by stage as shown below.
 
-## STAGES OF RUBIKSCUBE
+
+
+## STAGES INVOLVED IN SOLVING A RUBIKSCUBE 
 ![Rubiks cube stages](https://github.com/Sampanna-T/cube3D/blob/master/Image/RUBIKSCUBE_STAGES.png)
 
 Following are the different faces of the Rubiks cube which are mapped to 2D square grids in the GUI as shown below.
 
+
+
 ## ACTUAL FACES OF RUBIKSCUBE
 ![How to Fill Color](https://github.com/Sampanna-T/cube3D/blob/master/Vedio/RubiksCubeFaces.gif)
 
+
+
 ## MAPPED 2D SQUARE GRIDS OF RUBIKSCUBE IN THE GUI
-![Rubiks cube stages](https://github.com/Sampanna-T/cube3D/blob/master/Image/RUBIKSCUBE_FACES.png)
+![Rubiks faces](https://github.com/Sampanna-T/cube3D/blob/master/Image/RUBIKSCUBE_FACES.png)
 
 
-# RUBIKSCUBE SOLVER APPLICATION FEATURES
 
-## 1) Fill the color
+# HOW TO USE RUBIKSCUBE SOLVER APPLICATION
+
+## 1) Filling the colors
+Keep on selecting the colors for all the boxes as shown below.
+
 ![How to Fill Color](https://github.com/Sampanna-T/cube3D/blob/master/Vedio/FillColor.gif)
+
+## 2) Solve button
+Once all the colors have been entered press solve botton.
+(a) If the color input is invalid then it will be shown in the green field.
+(b) If the color input is valid then "PREV" & "NEXT" button gets activated to navigate through the solution list as shown below.
+
+![Rubiks color input cases](https://github.com/Sampanna-T/cube3D/blob/master/Image/RUBIKSCUBE_FACES.png)
+
+
+
+
+
