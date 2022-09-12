@@ -7,7 +7,7 @@ package src.cube;
  * @version 1.0 1st June 2022
  * @since JDK 10.0.2
  */
-public abstract interface RubiksCubeInterface{
+public interface RubiksCubeInterface{
 
     
 	/**

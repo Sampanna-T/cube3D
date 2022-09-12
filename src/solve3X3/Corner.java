@@ -87,7 +87,6 @@ class Corner{
     }
     
       
-
 	//returns true if back left corner piece is valid
     private boolean isBackLeftCornerValid(){
         String backMidColor = cube3X3.getBackColor(2,1,1);

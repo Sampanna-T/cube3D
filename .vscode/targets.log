@@ -6,8 +6,9 @@ make.exe all --print-data-base --no-builtin-variables --no-builtin-rules --quest
 # PARTICULAR PURPOSE.
 
 # This program built for i386-pc-mingw32
+ 
 
-# Make data base, printed on Sat Sep 10 15:55:33 2022
+# Make data base, printed on Mon Sep 12 10:08:26 2022
 
 # Variables
 
@@ -80,7 +81,7 @@ ELECTRON_RUN_AS_NODE = 1
 # automatic
 %F = $(notdir $%)
 # environment
-CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_5084_ISQEPOMPJBJIOFIB
+CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_9220_TXIIEAXQFQTMHXVN
 # makefile (from `makefile', line 6)
 CPFLAG = -cp
 # environment
@@ -212,7 +213,7 @@ LANG = C
 # environment
 PROCESSOR_LEVEL = 23
 # environment
-VSCODE_PID = 5084
+VSCODE_PID = 9220
 # environment
 USERDOMAIN_ROAMINGPROFILE = LAPTOP-FGFKSPOU
 # variable set hash-table stats:
@@ -224,12 +225,12 @@ USERDOMAIN_ROAMINGPROFILE = LAPTOP-FGFKSPOU
 
 # Directories
 
-# . (key d:/Project/RubixCube/RubiksCube, mtime 1662796853): 16 files, no impossibilities.
+# . (key d:/Project/RubixCube/RubiksCube, mtime 1662808507): 12 files, no impossibilities.
 # C:\WinAVR-20100110\bin (key C:/WinAVR-20100110/bin, mtime 1619145347): 75 files, no impossibilities.
 # C:\WinAVR-20100110\utils\bin (key C:/WinAVR-20100110/utils/bin, mtime 1619145358): 99 files, no impossibilities so far.
 # C:\Program Files (x86)\RSA SecurID Token Common (key C:/Program Files (x86)/RSA SecurID Token Common, mtime 1652079791): 8 files, no impossibilities.
 
-# 198 files, no impossibilities in 4 directories.
+# 194 files, no impossibilities in 4 directories.
 
 # Implicit Rules
 
@@ -255,7 +256,7 @@ all: compile run doc
 # Not a target:
 makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-09-10 10:22:55
+#  Last modified 2022-09-11 22:03:31
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -332,6 +333,6 @@ doc:
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Sat Sep 10 15:55:33 2022
+# Finished Make data base on Mon Sep 12 10:08:26 2022
 
  

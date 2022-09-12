@@ -73,7 +73,6 @@ class PlusTop {
         else
             return false;
     }
-    
 
     
 	//returns true if top is dot 

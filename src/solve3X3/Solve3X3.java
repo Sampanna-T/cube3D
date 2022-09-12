@@ -72,7 +72,6 @@ public interface Solve3X3 {
         }
     }
 
-    
     /**
      * Solves the 3X3 RubiksCube and adds [move to be performed, RubiksCube state]
      * pair to solution list
@@ -103,7 +102,7 @@ public interface Solve3X3 {
                 return null;
             }
             else{
-            return solveCube(cube3X3);
+                return solveCube(cube3X3);
             }
         }
         catch(Exception e){
@@ -113,15 +112,14 @@ public interface Solve3X3 {
         }
     }
 
-
     /**
      * Returns Name for given stage for a given solution 
-     * @param str
-     * valid str can be either 1,2,3,4,5,6 or 7 representing stages.
+     * @param stageNumber
+     * valid stageNumber can be either 1,2,3,4,5,6 or 7 representing stages.
      * @return String
      */
-    public static String getStageName(String str){
-        switch(str){
+    public static String getStageName(String stageNumber){
+        switch(stageNumber){
             case "1" : return "PLUS BOTTOM";
             case "2" : return "LAYER FIRST";
             case "3" : return "LAYER SECOND";
@@ -145,7 +143,6 @@ public interface Solve3X3 {
         return solution.size();
     }
 
-    
     /**
      * solves PlusBottom of RubiksCube i.e. Stage1 and adds [move to be performed,
      * RubiksCube state]
@@ -167,7 +164,6 @@ public interface Solve3X3 {
         plusBottomObj.solveAll();
     }
 
-
     /**
      * solves LayerFirst of RubiksCube i.e. Stage2 and adds [move to be performed,
      * RubiksCube state]
@@ -181,8 +177,6 @@ public interface Solve3X3 {
      * @throws Exception
      *                   If LayerFirst can't be solved
      */
-
-
     private static void layerFirst(RubiksCube3X3 cube3X3, List<Pair<String, String>> solution) throws Exception {
         Optimizer optimizerObj = new Optimizer(cube3X3, solution);
         if (optimizerObj.optimize((byte) 2))
