@@ -48,10 +48,13 @@ This option resets every thing in the GUI.
 # PROGRAM FLOW
 
 (a) Our program starts with Main by creating MainFrame3X3 instance and calling display method of MainFrame3X3.
+
 (b) The display method is responsible for displaying the GUI.
+
 (c) When solve button is pressed in the GUI a solveCube(color) method of SolveCube3X3 is called, which does two things 
     1. Creates RubiksCube3X3 instance
     2. Solves the RubiksCube3X3 and returns the solution list
+
 (d) If soution exists
         Solution list will be returned and navigation option will be available for the solution list.
     else
