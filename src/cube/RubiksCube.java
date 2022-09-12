@@ -126,7 +126,6 @@ public abstract class RubiksCube implements RubiksCubeInterface{
 		this(dimension, null);
 	}
 
-
 	/**
 	 * constructor which initializes the RubiksCube by creating Nodes
 	 * 
@@ -146,7 +145,6 @@ public abstract class RubiksCube implements RubiksCubeInterface{
 		else
 			setRubiksCube(STRING_INPUT, colorInput);
 	}
-
 	
 	//returns true if colors within all the nodes of the RubiksCube are valid
     private boolean isNodeValid()throws Exception{
@@ -162,7 +160,6 @@ public abstract class RubiksCube implements RubiksCubeInterface{
 
         return true;
     }
-
 
 	//checks if there are duplicates in colors[] or not
     private boolean isDuplicate(String colors[]){
@@ -183,21 +180,17 @@ public abstract class RubiksCube implements RubiksCubeInterface{
             return false;
     }
 
-
 	//returns true if all the colors of the RubiksCube are valid
     private boolean isColorValid()throws Exception{
         String colors[] = toString().split(" ");
         int colorCount = (dimension*dimension*FACE_COUNT);
+		if(colors.length != colorCount)return false;
 
         HashMap <String,Integer>result = new HashMap<String,Integer>();
 
         for(int i = 0; i < colorCount; i++){
-            if(result.containsKey(colors[i])){
-                int value = result.get(colors[i]);
-                result.replace(colors[i],value+1);
-            }
-            else
-                result.put(colors[i],1);
+			int numberOfColors = result.getOrDefault(colors[i],0);
+			result.put(colors[i],numberOfColors+1);
         }
 
         Iterator <Map.Entry<String,Integer>>itr = result.entrySet().iterator();
@@ -210,7 +203,6 @@ public abstract class RubiksCube implements RubiksCubeInterface{
 
         return true;
     }
-
 
 	//returns size of color[] for given dimension and i,j,k value
 	private static int getCount(int i, int j, int k, int dimension) {
@@ -277,7 +269,6 @@ public abstract class RubiksCube implements RubiksCubeInterface{
 			return false;
 	}
 
-
 	//returns true if i,j,k represents a valid center Node for given dimension i.e. color[] holding 1 color
 	private static boolean isCenterNode(int i, int j, int k, int dimension) {
 		if (!isIndexValid(i, j, k, dimension))return false;
@@ -300,7 +291,6 @@ public abstract class RubiksCube implements RubiksCubeInterface{
 			return false;
 	}
 
-
 	//returns true if given value lies in the range of from to to
 	private static boolean isInRange(int value, int from, int to) {
 		if (value >= from && value <= to)
@@ -308,7 +298,6 @@ public abstract class RubiksCube implements RubiksCubeInterface{
 		else 
 			return false;
 	}
-
 
 	// creates nodes and adds it in 3D cube
 	private void createNodes() {

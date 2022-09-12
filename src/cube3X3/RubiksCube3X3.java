@@ -157,6 +157,7 @@ public class RubiksCube3X3 extends RubiksCube{
 	* in right,left direction respectively
 	* @return String 
 	*/
+	@Override
 	public String circleHorizontal(boolean direction){
 		return super.circleHorizontal(direction);
     }
@@ -169,6 +170,7 @@ public class RubiksCube3X3 extends RubiksCube{
 	* in up,down direction respectively
 	* @return String 
 	*/
+	@Override
 	public String circleVertical(boolean direction){
 		return super.circleVertical(direction);
     }	
@@ -181,6 +183,7 @@ public class RubiksCube3X3 extends RubiksCube{
 	* clkwise,anticlkwise direction respectively
 	* @return String 
 	*/
+	@Override
 	public String circleRotate(boolean direction){
 		return super.circleRotate(direction);
     }
