@@ -72,7 +72,7 @@ public class MainFrame3X3 extends JFrame implements ActionListener{
 	 * constructor which initializes the MainFrame3X3 
 	 */
     public MainFrame3X3(){
-        this(DEFAULT_TITLE,DEFAULT_WIDTH,DEFAULT_HEIGHT,DEFAULT_DIMENSION);
+        this(DEFAULT_TITLE,DEFAULT_WIDTH,DEFAULT_HEIGHT);
     }
     
     /**
@@ -82,7 +82,7 @@ public class MainFrame3X3 extends JFrame implements ActionListener{
 	 * represents title of MainFrame3X3 
 	 */
     public MainFrame3X3(String title){
-        this(title,DEFAULT_WIDTH,DEFAULT_HEIGHT,DEFAULT_DIMENSION);
+        this(title,DEFAULT_WIDTH,DEFAULT_HEIGHT);
     }
 
     /**
@@ -97,15 +97,17 @@ public class MainFrame3X3 extends JFrame implements ActionListener{
      * @param dimension
 	 * represents dimension of RubiksCube   
 	 */
-    public MainFrame3X3(String title, int width, int height, int dimension){
-        this.dimension = dimension;
+    public MainFrame3X3(String title, int width, int height){
+        this.dimension = DEFAULT_DIMENSION;
         this.buttonPressed = null;
         this.solutionIndex = -1;
         this.initialState = "";
         initFrame(title, width, height);
     }
     
-    //Displays the user interface of MainFrame3X3
+    /**
+     * Displays the user interface of MainFrame3X3
+     */
     public void display(){
         Border blackBorder = BorderFactory.createLineBorder(Color.black);
         JPanel newPanelMain = getPanel(4,4,20,20,Color.white,blackBorder);
@@ -340,13 +342,13 @@ public class MainFrame3X3 extends JFrame implements ActionListener{
     private void setColors(String allColors){
         String allColor[] = allColors.split(" ");
         int index = 0;
-
-        setColors(3,getPartialArray(allColor, index, index+8));index+=9;
-        setColors(2,getPartialArray(allColor, index, index+8));index+=9;
-        setColors(1,getPartialArray(allColor, index, index+8));index+=9;
-        setColors(4,getPartialArray(allColor, index, index+8));index+=9;
-        setColors(0,getPartialArray(allColor, index, index+8));index+=9;
-        setColors(5,getPartialArray(allColor, index, index+8));index+=9;
+        int colorsPerFace = dimension*dimension;
+        setColors(3,getPartialArray(allColor, index, index+colorsPerFace-1));index+=colorsPerFace;
+        setColors(2,getPartialArray(allColor, index, index+colorsPerFace-1));index+=colorsPerFace;
+        setColors(1,getPartialArray(allColor, index, index+colorsPerFace-1));index+=colorsPerFace;
+        setColors(4,getPartialArray(allColor, index, index+colorsPerFace-1));index+=colorsPerFace;
+        setColors(0,getPartialArray(allColor, index, index+colorsPerFace-1));index+=colorsPerFace;
+        setColors(5,getPartialArray(allColor, index, index+colorsPerFace-1));index+=colorsPerFace;
 
     }
 
@@ -386,23 +388,9 @@ public class MainFrame3X3 extends JFrame implements ActionListener{
 	 * @since JDK 10.0.2
 	 */
     private class PopUpFrame extends JFrame implements ActionListener,KeyListener{
-        /*
-         * holds default height of PopUpFrame
-         */
-        private static final int DEFAULT_HEIGHT = 100;
-        /*
-         * holds default width of PopUpFrame
-         */
-        private static final int DEFAULT_WIDTH = 100;
-        /*
-         * holds default title for the PopUpFrame
-         */
-        private static final String DEFAULT_TITLE = "SET COLOR";
-
         private int width,height;
         private String title;
         private JButton newButton[];
-
 
         /**
          * constructor which initializes the PopUpFrame
@@ -592,6 +580,7 @@ public class MainFrame3X3 extends JFrame implements ActionListener{
                 disableColorInput();
                 info.setText("PRESS PREV / NEXT\nBUTTON\nTO NAVIGATE\nSOLUTION LIST");
                 initialState = colorInput;
+                solutionIndex = 0;
                 leftButton.setEnabled(true);
                 rightButton.setEnabled(true);
             }
@@ -621,12 +610,15 @@ public class MainFrame3X3 extends JFrame implements ActionListener{
                         setColors(input.nextLine());
                         loadButton.setEnabled(false);
                         setFocusable(true);
+                        input.close();
                         return;
                     }
+                    input.close();
                 }
                 info.setText("FAILED TO LOAD");
             }
             catch(Exception exception){
+                exception.printStackTrace();
                 info.setText("FAILED TO LOAD");
             }
         }
@@ -665,3 +657,5 @@ public class MainFrame3X3 extends JFrame implements ActionListener{
 
 
 }
+
+//INPUT => RED ORANGE GREEN WHITE YELLOW GREEN RED BLUE ORANGE RED WHITE GREEN RED RED RED RED WHITE YELLOW BLUE RED WHITE RED WHITE YELLOW YELLOW ORANGE GREEN WHITE YELLOW ORANGE YELLOW ORANGE BLUE BLUE ORANGE GREEN BLUE GREEN YELLOW BLUE BLUE BLUE WHITE GREEN ORANGE BLUE ORANGE WHITE GREEN GREEN YELLOW YELLOW WHITE ORANGE 

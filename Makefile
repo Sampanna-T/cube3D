@@ -35,7 +35,7 @@ Main.java\
 all: compile run doc
 
 compile:
-	$(CC) $(CPFLAG) $(CLSPATH) $(SRC) $(DFLAG) $(CLSPATH)
+	$(CC) $(SRC) $(DFLAG) $(CLSPATH)
 
 run:
 	$(RN) $(CPFLAG) $(CLSPATH) $(MAIN)	

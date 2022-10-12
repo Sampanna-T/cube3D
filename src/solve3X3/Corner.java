@@ -27,8 +27,7 @@ class Corner{
         this.cube3X3 = cube3X3;
         this.solution = solution;
     }
-      
-      
+        
     /**
 	* partially solves all the corner pieces by positioning them in respective corners 
     * @throws Exception
@@ -40,7 +39,6 @@ class Corner{
         solveCorner();
     }
     
-
 	//partially solves all the corner pieces by positioning them in right way  
     private void solveCorner()throws Exception{
         byte loopCheck = 0;
@@ -64,7 +62,6 @@ class Corner{
         }
     }
 
-
 	//returns true if front left corner piece is valid 
     private boolean isFrontLeftCornerValid(){
         String frontMidColor = cube3X3.getFrontColor(0,1,1);
@@ -85,7 +82,6 @@ class Corner{
         }
         return isValid;   
     }
-    
       
 	//returns true if back left corner piece is valid
     private boolean isBackLeftCornerValid(){
@@ -108,7 +104,6 @@ class Corner{
         return isValid;   
     }
     
-
     //returns true if back right corner piece is valid
     private boolean isBackRightCornerValid(){
         String backMidColor = cube3X3.getBackColor(2,1,1);
@@ -130,7 +125,6 @@ class Corner{
         return isValid;   
     }
     
-
     //returns true if front right corner piece is valid
     private boolean isFrontRightCornerValid(){
         String frontMidColor = cube3X3.getFrontColor(0,1,1);
@@ -152,13 +146,11 @@ class Corner{
         return isValid;   
     }
     
-
     //returns true if all the corner pieces are valid
     private boolean isAllCornerAligned(){
         if(isFrontLeftCornerValid() && isBackLeftCornerValid() && isBackRightCornerValid() && isFrontRightCornerValid() )return true;
         else return false;
     }
-    
     
     //returns true if any one of the corner piece is valid
     private boolean isAnyCornerAligned(){
