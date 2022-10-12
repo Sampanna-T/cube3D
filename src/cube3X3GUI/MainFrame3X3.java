@@ -109,7 +109,7 @@ public class MainFrame3X3 extends JFrame implements ActionListener{
      * Displays the user interface of MainFrame3X3
      */
     public void display(){
-        Border blackBorder = BorderFactory.createLineBorder(Color.black);
+        Border blackBorder = BorderFactory.createLineBorder(Color.red);
         JPanel newPanelMain = getPanel(4,4,20,20,Color.white,blackBorder);
         
         cubePanel = new JPanel[FACE_COUNT];
@@ -118,6 +118,7 @@ public class MainFrame3X3 extends JFrame implements ActionListener{
         JPanel controlPanel[] = new JPanel[4];
         updateControlPanel(controlPanel,newPanelMain);
         
+        add(newPanelMain);
         setVisible(true);
     }
 
@@ -190,10 +191,6 @@ public class MainFrame3X3 extends JFrame implements ActionListener{
 
         for(int i = 0; i < controlPanel.length; i++)
         newPanelMain.add(controlPanel[i]);
-
-        add(newPanelMain);
-
-        setVisible(true);
     }
 
     //returns JTextArea Object with given text,color and border
