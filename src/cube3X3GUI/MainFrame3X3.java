@@ -93,8 +93,6 @@ public class MainFrame3X3 extends JFrame implements ActionListener{
      * @param width
 	 * represents width of MainFrame3X3
      * @param height
-	 * represents of height
-     * @param dimension
 	 * represents dimension of RubiksCube   
 	 */
     public MainFrame3X3(String title, int width, int height){
